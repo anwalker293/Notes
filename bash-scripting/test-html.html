@@ -1,0 +1,674 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Shell Scripting Notes</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c0fb892b-a589-4b6d-995d-fd2a77307d15" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Shell%20Scripting%20Notes%20c0fb892ba5894b6d995dfd2a77307d15/term.svg"/></div><h1 class="page-title">Shell Scripting Notes</h1></header><div class="page-body"><p id="a6a2a5e6-710a-43f6-b711-76e379288d12" class="">Keyboard Shortcuts</p><ul id="2aaaed22-3545-4a94-9ba8-5e0160efa0eb" class="toggle"><li><details open=""><summary><code>G</code> </summary><p id="ccbefc0f-f3b4-4460-a740-f030b11bfb64" class="">Go to end of file</p></details></li></ul><p id="73a879f2-397a-4e7b-a5ef-e63fe3d0cdb2" class="">Command Shortcuts (<code>:</code>)</p><ul id="ff2ef65a-5c8d-4b07-bb89-d6f0d48428b3" class="toggle"><li><details open=""><summary><code>set nu</code></summary><p id="18a78f23-7e7a-4671-b405-d2c20e5657d7" class="">Displays line numbers</p><p id="329c3911-d9d4-48c3-9f3a-0dfd890a8ad1" class="">To make persistent, add command to <code>~/.vimrc</code></p></details></li></ul><ul id="77989c37-051f-4698-818f-34efde898e62" class="toggle"><li><details open=""><summary><code>set nonu</code></summary><p id="9a1c108a-e577-4690-824f-f09b30a1f783" class="">Disable line numbering</p></details></li></ul><p id="2667392f-4bd8-4c72-b9e3-3e55ea506ce0" class="">Knowledge Checks</p><ul id="0331d4c7-f17b-4e33-b9b9-84a362526570" class="toggle"><li><details open=""><summary></summary></details></li></ul><h2 id="50ac4576-9284-491f-a107-30d829797f05" class="">Section 01: Intro to Bash Shell Scripting</h2><hr id="98ed0ebe-6250-4e47-8a40-c973959a03c0"/><ul id="f62b7d48-2f6e-475c-b695-67b0962ebed5" class="toggle"><li><details open=""><summary>Bash Aliases</summary><ul id="40d6b67b-9d9b-4baa-b966-5dffe72fd7eb" class="toggle"><li><details open=""><summary>List all aliases</summary><p id="f15d97fb-c935-4b9a-a317-b735e36bb61b" class=""><code>alias</code></p></details></li></ul><ul id="d86cb544-ebaf-42e1-a33e-7a361108701f" class="toggle"><li><details open=""><summary>Run original command and not alias</summary><p id="2d3bd0a7-802c-4b48-bc50-6c5173cc4e63" class=""><code>\ls</code></p></details></li></ul><ul id="55ad1965-4caf-4718-9920-80757f9ec676" class="toggle"><li><details open=""><summary>Create a new alias</summary><p id="220a174c-b07c-4c21-88b8-20543550eb3d" class=""><code>alias alias_name=&#x27;command_to_run&#x27;</code></p><p id="541614d1-29de-44f7-bf90-d7ac9f175d3c" class="">ex. <code>alias c=&#x27;clear&#x27;</code></p></details></li></ul><p id="55b6dfaa-03a8-4671-866d-6a71bb9a966c" class=""><em>In order to make aliases persistent, need to write to either </em><em><code>~/.bash_profile</code></em><em> or </em><em><code>~/.bashrc</code></em></p><ul id="62289ad2-fab7-4bb4-aa90-a7264711cf78" class="toggle"><li><details open=""><summary>Load the configuration file</summary><p id="14a9e986-1ec4-48c8-81e9-0451f245d257" class=""><code>source .bashrc</code></p></details></li></ul><ul id="27b69935-42ce-4bfa-90fb-dc136886a6f9" class="toggle"><li><details open=""><summary>Remove an alias</summary><p id="45e2f42b-b347-4f90-ab4c-b46e702c4ef6" class=""><code>unalias </code><code><em>name</em></code></p><p id="d8ff657b-466a-48fe-b459-66dcd55fef26" class="">e.g. <code>unalias now</code></p></details></li></ul><p id="5095e921-abfb-43ca-8025-305eab53a536" class="">
+</p></details></li></ul><ul id="c03c7b44-1206-4fdb-b04c-b743d7cd5979" class="toggle"><li><details open=""><summary>Shells and Scripts</summary><ul id="acb3ff22-c7e6-45bc-98ca-82d05bd60502" class="toggle"><li><details open=""><summary>Other Shells</summary><ul id="ca1f5639-19b4-4bc2-89da-259cdef3670a" class="bulleted-list"><li style="list-style-type:disc">BOURNE</li></ul><ul id="aadaf1c3-93f9-40d9-b92d-6dd8ba5554a1" class="bulleted-list"><li style="list-style-type:disc">BASH (Bourne Again SHell)</li></ul><ul id="7118ac6a-6d05-4df7-8e0c-0e389d78133f" class="bulleted-list"><li style="list-style-type:disc">Z Shell</li></ul><ul id="318bff48-4b70-4f1e-bf43-dce942a29e7a" class="bulleted-list"><li style="list-style-type:disc">C Shell</li></ul><ul id="9a0f41e7-ec9f-4710-b800-64a793f16bce" class="toggle"><li><details open=""><summary>List all valid other shells</summary><p id="75c50164-0372-4b42-b664-f63c8a2e9c67" class=""><code>cat /etc/shells</code></p></details></li></ul></details></li></ul><ul id="2685289c-1299-4d09-9c50-3075dcf30f53" class="toggle"><li><details open=""><summary>Change User’s Default Shell</summary><p id="37796974-96ad-4270-ba00-f6df5a0224e4" class=""><code>chsh -s $PATH</code></p><p id="a7e4f856-89cc-4bb1-80d6-8fbe5675b584" class="">where, in the <code>$PATH</code>, you are putting the path to the new shell (e.g. <code>/bin/bash</code>)</p></details></li></ul><ul id="76b0a99d-627e-43cc-b938-481eee5422d3" class="toggle"><li><details open=""><summary>See default shell of a user</summary><p id="87f0261d-5039-4b43-a030-88a9fc753c1d" class=""><code>cat /etc/passwd</code></p></details></li></ul><ul id="c3b4dd2a-bec0-4c37-af0b-bd4760e2d52c" class="toggle"><li><details open=""><summary>fkgn</summary></details></li></ul></details></li></ul><ul id="fa83713b-cbbb-4f85-b67d-d0c1bf14ca3f" class="toggle"><li><details open=""><summary>Execution Permissions</summary><ul id="73585eba-5575-4a71-a3c4-c911b21ef2c9" class="toggle"><li><details open=""><summary>Add </summary><ul id="a90cc872-7cb6-4aff-98c8-3b99442ec179" class="toggle"><li><details open=""><summary>For owner</summary><p id="01984bfd-a25e-45aa-b8c5-8451d3db560b" class=""><code>chmod 700 name.sh</code></p></details></li></ul><ul id="e65af821-b2fb-4611-97d0-088009fbb0ce" class="toggle"><li><details open=""><summary>For all users</summary><p id="1b595119-5df3-41b5-aadc-27cd48aa0901" class=""><code>chmod +x name.sh</code></p></details></li></ul></details></li></ul><ul id="249ea35c-8d32-4b55-9947-c582e289407e" class="toggle"><li><details open=""><summary>Remove </summary><p id="9e5abc7f-99fb-4f49-a3ff-4d9e37fe71a7" class=""><code>ls -l </code><code><em>name</em></code></p></details></li></ul></details></li></ul><ul id="cb6d3bbb-f232-4314-ace1-46f9ffbebff0" class="toggle"><li><details open=""><summary>Shebang</summary><p id="0dfe2f2c-d0bb-47d6-9295-bcd667afacab" class=""><code>#!(ABSOLUTE_PATH_OF_SHELL_TYPE)</code></p><p id="eee81c31-6b2a-4302-bb5f-3ab27584b4c0" class="">e.g. Bash Shebang <code>#!/bin/bash</code> (also used by default)</p><p id="54e0c4ca-7308-42cb-9ae5-9e071b298d23" class="">e.g. Python Shebang <code>#!/usr/bin/python3</code></p></details></li></ul><ul id="afc3efc1-2481-47a1-b8df-88e42cdc18b8" class="toggle"><li><details open=""><summary>Comments in Bash</summary><p id="c5fe43ab-1e61-47ef-9520-f89d1698ae81" class="">Ignores everything on the line of <code>#</code></p><ul id="2c11746b-dad9-40a9-b8bc-34be5c791e41" class="toggle"><li><details open=""><summary>Multi-line comment</summary><pre id="1f2025a3-8b1f-4c86-90cb-6122a72ef01e" class="code"><code>: &#x27;
+hey look at me what&#x27;s up
+ls -a
+&#x27;</code></pre></details></li></ul></details></li></ul><ul id="dccd35b7-2a40-4e3d-b8e5-c61d56eb44ae" class="toggle"><li><details open=""><summary>Running Scripts</summary><ul id="dfc1befb-c1bb-49f0-b0c0-4149a976db2d" class="toggle"><li><details open=""><summary>Script executed in new subshell</summary><p id="2c1781e3-2bbd-49a5-bdcb-109184876a2c" class=""><code>./script.sh</code></p><p id="c4787921-eb08-4721-bf48-2d765419bc23" class=""><em>Need to move to script’s directory and set execution permissions</em></p></details></li></ul><ul id="a847333d-362f-4cd0-8635-80161a45f82c" class="toggle"><li><details open=""><summary>Script executed in current shell</summary><p id="b4888782-46af-4da8-9c0f-915b45acfdff" class=""><code>source script.sh</code></p><p id="d23378a8-e8db-498b-be78-29733c9ebe75" class="">or, e.g.</p><p id="d5820018-b18f-420d-9a7d-4b9e4c118232" class=""><code>bash script.sh</code></p></details></li></ul></details></li></ul><h3 id="7242d53b-20ca-4ba3-83bb-1b1039ae92e8" class="">Knowledge Checks</h3><ul id="023e1962-585b-43c2-a4b0-6efcb090f1a2" class="toggle"><li><details open=""><summary>How can you print the value of the current shell that has started?</summary><p id="6c98fb96-869e-4efb-ad63-57c085ba208b" class=""><code>echo $SHELL</code></p></details></li></ul><hr id="b3d7b711-cd7d-4643-9433-3595d7350538"/><h2 id="e3661903-9cb1-4337-97ca-5461b3726aa6" class="">Section 02: Variables</h2><hr id="bdd16fd4-2c67-44fb-a095-02f5e3835cef"/><p id="c7615b21-c69d-475f-a58a-21e92b5530e8" class=""><strong>Naming Conventions</strong></p><ul id="f390f7ce-4d15-407a-8404-be3c1617d58d" class="bulleted-list"><li style="list-style-type:disc">Use lower_case variable names</li></ul><ul id="1c8dae7b-18df-43fa-b09f-a4db1ea0aee5" class="bulleted-list"><li style="list-style-type:disc">Constants should be written in CAPITALS</li></ul><ul id="bc2d9ab6-d103-4a71-b2c7-ac95dcbeca04" class="bulleted-list"><li style="list-style-type:disc">Variable names should be descriptive</li></ul><ul id="45907f83-7828-42da-9113-47157dd0507d" class="bulleted-list"><li style="list-style-type:disc">Variable names cannot start with a number and cannot contain spaces or other special characters</li></ul><hr id="72ec62e7-5542-492c-a56d-8cce3aefbd87"/><ul id="8ce93e27-0439-4de9-ba2f-ca2c2f5572cc" class="toggle"><li><details open=""><summary>Variables in Bash</summary><p id="57bf95db-04b7-491d-afba-19d30aafb654" class=""><code>os=Linux</code> (spaces are not allowed)</p><p id="dc37e39c-100a-4c5a-9c36-c08f959229d4" class=""><code>distro=&quot;Kali Linux&quot;</code></p><ul id="b5fbb9f7-4236-49da-90dc-8e3c8464e0d6" class="toggle"><li><details open=""><summary>Bash is <strong>weakly-tied</strong> programming language</summary><p id="632662bd-6b34-4769-94e6-2b78d0cc0365" class=""><em>Does not require you to define any data type at the time of data declaration</em></p></details></li></ul><ul id="9078dae2-65b9-42b0-a2d1-fbca9e21069f" class="toggle"><li><details open=""><summary>List all shell variables</summary><p id="6d26d09b-5f2a-454c-a1c4-e52234c97740" class=""><code>set</code></p><ul id="82f377ce-058a-4fd7-85af-2f682f8d38d5" class="toggle"><li><details open=""><summary>To look for a specific variable</summary><p id="b90bbbfc-6d1c-4210-9e5a-e11767176e9b" class=""><code>set | grep $NAME</code></p><p id="b27d4b00-18b1-490e-a44d-75ac5ea3b378" class="">e.g. <code>set | grep distro</code></p></details></li></ul></details></li></ul><ul id="cd523d4d-9c06-4f2a-84b0-03945dc8c0da" class="toggle"><li><details open=""><summary>Remove a variable</summary><p id="ce86cb03-9bf6-4b65-b796-6557661b9ad9" class=""><code>unset $NAME</code></p><p id="8d2aa5e9-4065-453b-9ded-fa9414c1bed7" class="">e.g. <code>unset distro</code></p></details></li></ul><ul id="3752f445-a426-4511-9412-13b5a8fd3e30" class="toggle"><li><details open=""><summary>Make a variable read-only</summary><p id="321d66af-a23d-4bf1-98d8-c53b0f2a8725" class=""><code>declare -r LOGDIR=/var/log</code></p><p id="d53d151c-47da-47b3-8a9b-297244c7951f" class="">If you try to change the value of <code>LOGDIR</code>, you will get an error</p></details></li></ul></details></li></ul><ul id="65772cfe-45bb-4f92-8f37-f6e65ce6a156" class="toggle"><li><details open=""><summary>Variable Expansion and Quoting</summary></details></li></ul><ul id="e2801ad9-b64d-40de-b01f-762466a7dad2" class="toggle"><li><details open=""><summary>Environment and Shell Local Variables</summary></details></li></ul><ul id="01e90b5c-290a-4914-a4d8-de4e9fec4b2d" class="toggle"><li><details open=""><summary>Getting User Input</summary></details></li></ul><ul id="27373be3-46ea-4d27-b61b-b101b55f2643" class="toggle"><li><details open=""><summary>Positional Parameters</summary></details></li></ul><ul id="2d7d90f6-4cb8-4e71-ae10-3fd25069a59b" class="toggle"><li><details open=""><summary>Project: How to protect yourself from hackers</summary></details></li></ul><ul id="03062d04-322a-4c13-98c3-a03ffdfac39a" class="toggle"><li><details open=""><summary>Special Parameters</summary></details></li></ul><ul id="472bc0a1-15fa-4576-a1e4-b0cbb7458aa5" class="toggle"><li><details open=""><summary>$@ vs. $*</summary></details></li></ul><hr id="7a00896b-c8ef-464f-aa6a-ef8c44fe274d"/><p id="a5afeff7-23f8-40d7-adff-6fcc4e97caa4" class="">
+</p><h2 id="855ecf34-f38d-43b0-b97f-3d3961e8e929" class="">Section 03: Shell Expansions</h2><hr id="6dfa35f6-3b5f-4a6b-8957-ad2976726441"/><ul id="9b856f7e-e422-4b5c-9dfd-e060fef7f9fe" class="toggle"><li><details open=""><summary>Intro. to Expansions</summary></details></li></ul><ul id="d1078146-66ae-4cc0-afc3-86972bd59cb6" class="toggle"><li><details open=""><summary>Brace Expansion</summary><ul id="431e434c-fa8d-4765-8ac9-a2887a6088ed" class="toggle"><li><details open=""><summary>String Lists</summary></details></li></ul><ul id="380e5044-9bec-4b03-9824-a118cd88e8f1" class="toggle"><li><details open=""><summary>Sequence Lists</summary></details></li></ul><ul id="8ec54620-6113-49df-a3b5-311427d79806" class="toggle"><li><details open=""><summary>Project: Brace Expansion</summary></details></li></ul></details></li></ul><ul id="12c6794d-0fc0-4c78-82a7-3615e3a2a8a9" class="toggle"><li><details open=""><summary>Tilde, Parameter, and Variable Expansions</summary></details></li></ul><ul id="4a2b4b2d-5d07-4a8e-80a2-57f1c776b1de" class="toggle"><li><details open=""><summary>Command Substitution</summary></details></li></ul><ul id="7d8a48ab-15e5-41cf-b582-bdedd7f195bc" class="toggle"><li><details open=""><summary>Arithmetic Expansion</summary></details></li></ul><ul id="b9afdb98-40f1-415b-a781-6d7d7e62a6cd" class="toggle"><li><details open=""><summary>Process Substitution</summary></details></li></ul><ul id="64287ba4-77e7-4b32-985e-eee9a05148ac" class="toggle"><li><details open=""><summary>Word Splitting</summary></details></li></ul><ul id="88ee91f1-5610-4446-b8ce-6d4bcabafe7f" class="toggle"><li><details open=""><summary>Filename Expansion (Globbing)</summary></details></li></ul><h2 id="56bfa098-9c7d-4844-bab8-796ac73e3354" class="">Section 04: Shell Operation in Depth</h2><ul id="51a2ab6b-5c5f-4cd8-9fe3-402dcc3151be" class="toggle"><li><details open=""><summary>Intro. to Shell Operation</summary></details></li></ul><ul id="294ba939-1489-42f8-a23e-6745cc21b0e1" class="toggle"><li><details open=""><summary>Tokenization</summary></details></li></ul><ul id="5189586a-9d0f-4d90-9a40-ee09067a78c6" class="toggle"><li><details open=""><summary>Command Identification</summary></details></li></ul><ul id="3ac81553-1870-49ea-bdc9-6a228fc7e9ce" class="toggle"><li><details open=""><summary>Shell Expansions</summary></details></li></ul><ul id="7825bcfc-d523-49a1-a0f7-3e82aafb1ce4" class="toggle"><li><details open=""><summary>Quote Removal</summary></details></li></ul><ul id="436d5f12-e67f-4a59-8741-5f827473b533" class="toggle"><li><details open=""><summary>Redirections (StdIn, StdOut, StdErr)</summary></details></li></ul><ul id="fad7b209-4043-46f3-b627-83e541f13a97" class="toggle"><li><details open=""><summary>Hands-On Example</summary></details></li></ul><h2 id="757e3e60-dca7-4319-ad8f-1c44fc17b49f" class="">Section 05: Program Flow in Bash</h2><ul id="cb6e2c98-9f14-4980-8fd0-7930afe2b64c" class="toggle"><li><details open=""><summary>If, Elif, Else </summary></details></li></ul><ul id="004e932c-7501-48c6-9edf-03bedac3213a" class="toggle"><li><details open=""><summary>Arithmetic Comparisons</summary></details></li></ul></div></article></body></html>
