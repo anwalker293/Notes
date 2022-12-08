@@ -6,3 +6,20 @@ List of personal notes for everyone to look back on. Planning to add
 <li>(c) my Dotfile command notes/keys that are being saved</li>
 <li>(d) Ethical hacking/penetration testing notes</li>
 <li>(e) More to come!</li>
+
+# Table of Contents
+
+## Completed
+
+## In Progress
+
+- Bash: Shell Scripting
+- My Neovim Configuration
+
+## Future
+
+- Tensorflow
+- Data Structures and Algorithms
+- DevOps
+- Pytorch
+- Vue
