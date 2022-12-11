@@ -684,7 +684,7 @@ echo &quot;Blocking connections from $1&quot;
 sleep 1
 
 iptables -I INPUT -s $1 -j DROP
-echo &quot;Done&quot;</code></pre></details></li></ul><ul id="cf144dba-c465-4d91-9c82-5b827a1806d6" class="toggle"><li><details open=""><summary>Special Parameters</summary><ul id="aa110c62-1445-43e4-8509-d5a3e4d77c4b" class="toggle"><li><details open=""><summary><code>$0</code> </summary><p id="da54605c-8aba-4307-a06a-014f66e4d538" class="">The name of the script itself </p></details></li></ul><ul id="0f69fb83-f809-4744-b988-8aa974c36026" class="toggle"><li><details open=""><summary><code>$@</code> and <code>$*</code> </summary><p id="b5434a7e-5d45-46a0-bf87-df93a56aa011" class="">A string representation of all positional parameters</p></details></li></ul><ul id="057b32d9-496d-4f5d-a9fc-3e1b4cf661c4" class="toggle"><li><details open=""><summary><code>$#</code></summary><p id="508a5adf-8997-4551-8ef6-c4cff56331ad" class="">The number of positional arguments</p></details></li></ul><ul id="5186c474-1643-4e9a-b887-77ec6aa30ee6" class="toggle"><li><details open=""><summary><code>$?</code></summary><p id="17819cdf-35ea-41f7-b9d5-57f976fc2541" class="">The most recent foreground command exit status</p></details></li></ul><ul id="8de3fdf3-64b3-449c-8fe6-4c0151d68685" class="toggle"><li><details open=""><summary><code>$$</code></summary><p id="64de97b1-1947-4090-ad61-58ac53683175" class="">The process ID of the [invoking] shell</p></details></li></ul></details></li></ul><ul id="472bc0a1-15fa-4576-a1e4-b0cbb7458aa5" class="toggle"><li><details open=""><summary><code>$@</code> vs. <code>$*</code></summary><p id="6f53b341-d298-4744-9158-9124ab20d643" class="">Only differ when wrapped inside double quotes</p><ul id="c31a8c98-c051-48cc-9c62-a7edc8ab881a" class="toggle"><li><details open=""><summary><code>$@</code> Word splitting is performed</summary><p id="aca51aae-b169-426b-ab3f-d8f52951f98a" class=""><code>$@=&quot;$1 $2 $3</code></p></details></li></ul><ul id="49054d1f-5dbd-45ce-8a1d-36236e914470" class="toggle"><li><details open=""><summary><code>&quot;$@&quot;</code> Word splitting is not performed</summary><p id="eed559cd-4a74-4217-bf39-1d7c733be373" class=""><code>&quot;$@&quot;=&quot;$1&quot; &quot;$2&quot; &quot;$3&quot;</code></p></details></li></ul><ul id="69db846f-e72f-4a55-b89a-3484ba64f50f" class="toggle"><li><details open=""><summary><strong>Example of </strong><strong><code>$@</code></strong><strong> vs. </strong><strong><code>&quot;$@&quot;</code></strong></summary><pre id="a15a7f61-ef92-41a6-b7fa-3e9ae1d50917" class="code"><code>(create-files.sh)
+echo &quot;Done&quot;</code></pre></details></li></ul><ul id="cf144dba-c465-4d91-9c82-5b827a1806d6" class="toggle"><li><details open=""><summary><strong>Special Parameters</strong></summary><ul id="aa110c62-1445-43e4-8509-d5a3e4d77c4b" class="toggle"><li><details open=""><summary><code>$0</code> </summary><p id="da54605c-8aba-4307-a06a-014f66e4d538" class="">The name of the script itself </p></details></li></ul><ul id="0f69fb83-f809-4744-b988-8aa974c36026" class="toggle"><li><details open=""><summary><code>$@</code> and <code>$*</code> </summary><p id="b5434a7e-5d45-46a0-bf87-df93a56aa011" class="">A string representation of all positional parameters</p></details></li></ul><ul id="057b32d9-496d-4f5d-a9fc-3e1b4cf661c4" class="toggle"><li><details open=""><summary><code>$#</code></summary><p id="508a5adf-8997-4551-8ef6-c4cff56331ad" class="">The number of positional arguments</p></details></li></ul><ul id="5186c474-1643-4e9a-b887-77ec6aa30ee6" class="toggle"><li><details open=""><summary><code>$?</code></summary><p id="17819cdf-35ea-41f7-b9d5-57f976fc2541" class="">The most recent foreground command exit status</p></details></li></ul><ul id="8de3fdf3-64b3-449c-8fe6-4c0151d68685" class="toggle"><li><details open=""><summary><code>$$</code></summary><p id="64de97b1-1947-4090-ad61-58ac53683175" class="">The process ID of the [invoking] shell</p></details></li></ul></details></li></ul><ul id="472bc0a1-15fa-4576-a1e4-b0cbb7458aa5" class="toggle"><li><details open=""><summary><code>$@</code> vs. <code>$*</code></summary><p id="6f53b341-d298-4744-9158-9124ab20d643" class="">Only differ when wrapped inside double quotes</p><ul id="c31a8c98-c051-48cc-9c62-a7edc8ab881a" class="toggle"><li><details open=""><summary><code>$@</code> Word splitting is performed</summary><p id="aca51aae-b169-426b-ab3f-d8f52951f98a" class=""><code>$@=&quot;$1 $2 $3</code></p></details></li></ul><ul id="49054d1f-5dbd-45ce-8a1d-36236e914470" class="toggle"><li><details open=""><summary><code>&quot;$@&quot;</code> Word splitting is not performed</summary><p id="eed559cd-4a74-4217-bf39-1d7c733be373" class=""><code>&quot;$@&quot;=&quot;$1&quot; &quot;$2&quot; &quot;$3&quot;</code></p></details></li></ul><ul id="69db846f-e72f-4a55-b89a-3484ba64f50f" class="toggle"><li><details open=""><summary><strong>Example of </strong><strong><code>$@</code></strong><strong> vs. </strong><strong><code>&quot;$@&quot;</code></strong></summary><pre id="a15a7f61-ef92-41a6-b7fa-3e9ae1d50917" class="code"><code>(create-files.sh)
 #!/bin/bash
 
 touch $@   # touch &quot;$1 $2 $3&quot;
@@ -1006,31 +1006,367 @@ do
 		echo &quot;Invalid option $REPLY&quot;
 		;;
 	esac
-done</code></pre></details></li></ul></details></li></ul><ul id="60232b8b-8e5b-4ed1-8d34-5d0e4ad49787" class="toggle"><li><details open=""><summary>Project: System Administration Script Using Menus</summary></details></li></ul><ul id="9d92f8a9-3a0f-4347-b41a-0b21ab64135f" class="toggle"><li><details open=""><summary>List of Commands</summary></details></li></ul><ul id="d3fe92c1-0774-489d-a32a-9e82fd756883" class="toggle"><li><details open=""><summary>Running a DOS Attack Without root Access</summary></details></li></ul><hr id="aef52295-76aa-4f4f-a447-4f8570f686e7"/><h3 id="d18d76f4-5f06-4259-8afd-93b249cb438a" class="">Challenges</h3><ul id="7061cda2-1a3d-49df-832a-0d87ae74e3ec" class="toggle"><li><details open=""><summary><strong>Challenge 1</strong></summary><ul id="790773f1-d739-4dcd-8451-d567295f3350" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, create a script that displays odd numbers between 1 and 50.</li></ul><ul id="95a97359-6892-4d18-aaaa-82811967e58e" class="toggle"><li><details open=""><summary>Solution</summary><pre id="06063065-cdd5-4e42-816c-6ed8d0e02246" class="code"><code>#!/bin/bash
+done</code></pre></details></li></ul></details></li></ul><ul id="60232b8b-8e5b-4ed1-8d34-5d0e4ad49787" class="toggle"><li><details open=""><summary>Project: System Administration Script Using Menus</summary><pre id="6303f6da-2fb6-4e5d-9bab-6f70696ff82f" class="code"><code>#!/bin/bash
+PS3=&quot;Your choice:&quot;
+select ITEM in &quot;Add User&quot; &quot;List All Processes&quot; &quot;Kill Process&quot; &quot;Install Program&quot; &quot;Quit&quot;
+do
+	if [[ $REPLY -eq 1 ]]
+	then
+		read -p &quot;Enter the username:&quot; username
+		# Search for the username, double-check that it doesn&#x27;t
+		# already exist
+		output=&quot;$(grep -w $username /etc/passwd)&quot;
+		if [[ -n &quot;$output&quot; ]]
+		then
+			echo &quot;The username already exists!&quot;
+		else
+			# Create the username
+			sudo useradd -m -s /bin/bash &quot;$username&quot;
 
-echo &quot;{1..50..2}&quot;</code></pre></details></li></ul></details></li></ul><ul id="e18b76f2-0846-40bf-92f5-1024cfe1474c" class="toggle"><li><details open=""><summary><strong>Challenge 2</strong></summary><ul id="e2dcd5df-bdc5-4151-9bf4-c4584f6a6a69" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, develop a script that will create 5 text files in the current directory.</li></ul><ul id="d8ba991c-a5a1-45a1-889b-1a4c00b95a49" class="bulleted-list"><li style="list-style-type:disc">The names of the files should be <strong>a.txt, b.txt, c.txt, d.txt</strong> and <strong>e.txt.</strong></li></ul><ul id="7b699678-420b-4ee5-890e-d27abb15a936" class="toggle"><li><details open=""><summary>Solution</summary><pre id="215cbe77-0ae2-4527-b8b2-1856c31ee48e" class="code"><code>#!/bin/bash
+			# Check successful
+			if [[ $? -eq 0 ]]
+			then
+				echo &quot;The user $username was added successfully&quot;
+				# Print last line of the passwd file to see newly created user
+				tail -n 1 /etc/passwd
+			else
+				echo &quot;There was an error adding the user&quot;
+			fi
 
-touch {a..e}.txt</code></pre></details></li></ul></details></li></ul><ul id="8a49f9cb-7a2c-4446-9055-dba46df2d580" class="toggle"><li><details open=""><summary><strong>Challenge 3</strong></summary><ul id="87a28fca-34da-4579-b177-a4798abeb407" class="bulleted-list"><li style="list-style-type:disc">Declare a variable called <strong>processes</strong> that contains all the running processes of the system.</li></ul><ul id="7eb6b214-9ea5-4967-8d5f-7c3dc6dacdd3" class="toggle"><li><details open=""><summary>Solution</summary><pre id="4c65a0f2-8d30-48cb-90a9-5b31273accd5" class="code"><code>#!/bin/bash
+		fi
 
-processes=&quot;$(ps aux)&quot;
-echo &quot;$processes&quot;</code></pre></details></li></ul></details></li></ul><ul id="da31b2b3-5cc0-4c82-9da9-79c77b13f364" class="toggle"><li><details open=""><summary><strong>Challenge 4</strong></summary><ul id="9fb2f813-34b1-4b0d-9b6e-f0a0dbc2344b" class="bulleted-list"><li style="list-style-type:disc">Declare a variable called <strong>users</strong> that contains all the users of the system.</li></ul><ul id="0f596833-fd6f-4088-8fe7-94a74363013d" class="bulleted-list"><li style="list-style-type:disc">Use a command substitution.</li></ul><ul id="b70f4279-fa35-4115-abad-ca28cb6a8b30" class="toggle"><li><details open=""><summary>Solution</summary><pre id="fe0368fd-74ab-402e-9ba9-34215a5dc018" class="code"><code>#!/bin/bash
+	elif [[ $REPLY -eq 2 ]]
+	then
+		echo &quot;Listing all processes&quot;
+		sleep 1
+		ps -ef
 
-users=&quot;$(cut -d: -f1 /etc/passwd)&quot;</code></pre></details></li></ul></details></li></ul><ul id="67df4e32-acaa-4b40-8bb1-299c9aa63426" class="toggle"><li><details open=""><summary><strong>Challenge 5</strong></summary><ul id="3c73c5a6-2832-4b4a-9270-885a8abdccc4" class="bulleted-list"><li style="list-style-type:disc">Run a single command that creates a file with the current date as its name and contains the current date and time.</li></ul><ul id="7ce1f73f-c329-442b-826a-f4a2d2ba751b" class="bulleted-list"><li style="list-style-type:disc">Use command substitutions.</li></ul><ul id="9c573c88-dc21-4da2-830f-8ba3a9d16d54" class="toggle"><li><details open=""><summary>Solution</summary><pre id="44064cb6-b379-4b46-9618-110e1434db24" class="code"><code>#!/bin/bash
+	elif [[ $REPLY -eq 3 ]]
+	then
+		read -p &quot;Enter the process to kill:&quot; process
+		pkill $process
 
-echo &quot;$(date)&quot; &gt; &quot;$(date +%F).txt&quot;</code></pre></details></li></ul></details></li></ul><ul id="08c234bb-b85c-4f59-8df6-869ee92d7d37" class="toggle"><li><details open=""><summary><strong>Challenge 6</strong></summary><ul id="dcbb5da0-9299-44af-ac9e-878d74fe4e3e" class="bulleted-list"><li style="list-style-type:disc">Calculate and display the result of<strong> 27 * 48</strong></li></ul><ul id="57c98498-14cd-4d5d-bade-011ea0095c84" class="bulleted-list"><li style="list-style-type:disc">Do the task in 3 different ways.</li></ul><ul id="263dc0f8-ae62-47a3-aeea-0b0a174f57c8" class="toggle"><li><details open=""><summary>Solution</summary><pre id="c8724b58-f3a4-480f-b547-c86fbd000904" class="code"><code>#!/bin/bash
+	elif [[ $REPLY -eq 4 ]]
+	then
+		read -p &quot;Enter the program to install:&quot; app
+		sudo apt update &amp;&amp; sudo apt install $app -y
 
-echo &quot;27*48&quot; | bc
-echo &quot;scale=4;27*48&quot; | bc
-bc &lt;&lt;&lt; &quot;scale=4;27*48&quot;</code></pre></details></li></ul></details></li></ul><ul id="0da3e048-caba-414d-8630-4746a51ab856" class="toggle"><li><details open=""><summary><strong>Challenge 7</strong></summary><ul id="c9ae6c1d-2839-41ba-b1ec-139f468f784b" class="bulleted-list"><li style="list-style-type:disc">Create a script that prompts the user for a distance in miles.</li></ul><ul id="6ae6beb4-d265-4b78-af19-b60db2d163b3" class="bulleted-list"><li style="list-style-type:disc">Convert and display the distance in km with 3 decimals. Note that 1 mile = 1.609 km.</li></ul><ul id="172ba9d4-bf05-4b56-801b-fec3043a3a60" class="toggle"><li><details open=""><summary>Solution</summary><pre id="31a81825-b531-4123-a4e3-ff9f6be37190" class="code"><code>#!/bin/bash
+	elif [[ $REPLY -eq 5 ]]
+	then
+		echo &quot;Quitting...&quot;
+	fi
 
-read -p &quot;Enter distance (in miles): &quot; distance_mi
+	else
+		echo &quot;Invalid menu selection.&quot;
+	
+done
+</code></pre></details></li></ul><ul id="9d92f8a9-3a0f-4347-b41a-0b21ab64135f" class="toggle"><li><details open=""><summary>List of Commands</summary><ul id="1f5d65e6-2627-4bb1-8f60-06fc56dc5240" class="toggle"><li><details open=""><summary>List Operators:</summary><ul id="c7c131ed-03b6-4bd8-9c8d-3f76a225096e" class="toggle"><li><details open=""><summary><code>;</code></summary><p id="163e462a-8aee-46b2-a906-0a2624805b6d" class="">Allows you to use commands right after one another</p></details></li></ul><ul id="9a762710-6179-4c82-b409-cc9541c44419" class="toggle"><li><details open=""><summary><code>&amp;</code></summary><p id="edc475b1-1cab-45c1-be7e-e0b20b802f6a" class="">Executes command in the background asynchronously</p><ul id="0ad18ba6-2dda-4a9c-a376-af6539a90a01" class="toggle"><li><details open=""><summary><code>sleep 10&amp; ls</code></summary><p id="7457cd32-7a07-45c3-b580-fff44188e2cc" class="">Does not wait for <code>sleep 10</code> to finish before running <code>ls</code></p></details></li></ul></details></li></ul><ul id="bffd0e40-b081-4339-8427-41692d131ad0" class="toggle"><li><details open=""><summary><code>&amp;&amp;</code></summary><p id="69f3e92f-50d1-4d17-9bcd-861bbfd38c35" class="">Command 2 runs iff Command 1 runs with success</p></details></li></ul><ul id="04b762eb-0fab-4476-9aca-7d6cc44dda43" class="toggle"><li><details open=""><summary><code>||</code></summary><p id="5246067b-0de9-4d17-920c-b9a7a09f5a3b" class="">Runs Command 2 <span style="border-bottom:0.05em solid"><strong>iff Command 1 errors</strong></span></p></details></li></ul></details></li></ul></details></li></ul><hr id="aef52295-76aa-4f4f-a447-4f8570f686e7"/><h3 id="d18d76f4-5f06-4259-8afd-93b249cb438a" class="">Challenges</h3><ul id="7061cda2-1a3d-49df-832a-0d87ae74e3ec" class="toggle"><li><details open=""><summary><strong>Challenge 1</strong></summary><ul id="790773f1-d739-4dcd-8451-d567295f3350" class="bulleted-list"><li style="list-style-type:disc">Create a script that takes an argument and tests if it&#x27;s a file or not.</li></ul><ul id="95a97359-6892-4d18-aaaa-82811967e58e" class="toggle"><li><details open=""><summary>Solution</summary><pre id="06063065-cdd5-4e42-816c-6ed8d0e02246" class="code"><code>#!/bin/bash
 
-# Grab value in km
-km=$(echo &quot;scale=3;$distance_mi*1.609&quot;|bc)
-echo &quot;That is $km km.&quot;</code></pre></details></li></ul></details></li></ul><ul id="e6c982fc-fb22-4e21-b16f-8477deb5b417" class="toggle"><li><details open=""><summary><strong>Challenge 8</strong></summary><ul id="96cc527e-699c-47b6-94eb-05ab17746564" class="bulleted-list"><li style="list-style-type:disc">Using <strong>cat</strong> and a process substitution display all the running processes.</li></ul><ul id="cbd8369d-3b71-41ea-a6f9-7bab3f21108d" class="toggle"><li><details open=""><summary>Solution</summary><pre id="d01d95df-ee80-4164-abae-8c54a181ba8e" class="code"><code>#!/bin/bash
+echo &quot;Enter file to check:&quot; file
+if [ -f &quot;$file&quot; ]
+then         
+	echo &quot;The argument is a file&quot;
+elif [ -d &quot;$file&quot; ]
+then
+	echo &quot;The argument is a directory&quot;
+else
+	echo &quot;The argument ($file) is neither a file or a directory&quot;
+fi</code></pre></details></li></ul></details></li></ul><ul id="e18b76f2-0846-40bf-92f5-1024cfe1474c" class="toggle"><li><details open=""><summary><strong>Challenge 2</strong></summary><ul id="e2dcd5df-bdc5-4151-9bf4-c4584f6a6a69" class="bulleted-list"><li style="list-style-type:disc">Consider the <a href="https://drive.google.com/file/d/1xr0pnl-Jl7sv8PmddXR2apcaeJC3fStI/view?usp=sharing">solution to the previous challenge</a>. Change it so that it also tests if the script is run with exactly one argument.</li></ul><ul id="7b699678-420b-4ee5-890e-d27abb15a936" class="toggle"><li><details open=""><summary>Solution</summary><pre id="215cbe77-0ae2-4527-b8b2-1856c31ee48e" class="code"><code>#!/bin/bash
 
-cat &lt;(ps -ef)</code></pre></details></li></ul></details></li></ul><ul id="202d1d2b-350f-49db-9ca2-b06decb35113" class="toggle"><li><details open=""><summary><strong>Challenge 9</strong></summary><ul id="899d7b54-5749-4196-9669-3a9dd8b485ba" class="bulleted-list"><li style="list-style-type:disc">Using <strong>ls</strong> and a globbing expression display all the files in <strong>/etc</strong> that end in<strong> .conf</strong></li></ul><ul id="152bf307-de93-4df2-a7d3-c2455cb8598f" class="toggle"><li><details open=""><summary>Solution</summary><pre id="cd50ff39-a8b5-4ac3-8d1a-72756b04eb4b" class="code"><code>#!/bin/bash
-ls /etc/*.conf</code></pre></details></li></ul></details></li></ul><ul id="69ba9173-9a15-4edc-9394-847c7664dfcd" class="toggle"><li><details open=""><summary><strong>Challenge 10</strong></summary></details></li></ul><hr id="d8bf31a8-1a5f-428d-8e03-3284c034d318"/><p id="e14f51fa-add6-4030-b3a8-d07ba089de39" class="">
+if [[ $# -eq 1 ]]
+then
+	if [ -f &quot;$1&quot; ]
+	then         
+		echo &quot;The argument is a file&quot;
+	elif [ -d &quot;$1&quot; ]
+	then
+		echo &quot;The argument is a directory&quot;
+	else
+		echo &quot;The argument ($1) is neither a file or a directory&quot;
+	fi
+else
+	echo &quot;The script was run with $# arguments. Please run with one argument&quot;
+fi</code></pre></details></li></ul></details></li></ul><ul id="8a49f9cb-7a2c-4446-9055-dba46df2d580" class="toggle"><li><details open=""><summary><strong>Challenge 3</strong></summary><ul id="0b4c7cd5-fb16-4f7d-bf04-8cdcff8eeb89" class="bulleted-list"><li style="list-style-type:disc">Create a script that clears the contents of a text file which is the script’s argument.</li></ul><ul id="630e9250-e268-485d-85de-5bbd3c44ec7a" class="bulleted-list"><li style="list-style-type:disc">Test if the argument is of type regular file.</li></ul><ul id="7eb6b214-9ea5-4967-8d5f-7c3dc6dacdd3" class="toggle"><li><details open=""><summary>Solution</summary><pre id="4c65a0f2-8d30-48cb-90a9-5b31273accd5" class="code"><code>#!/bin/bash
+
+if [[ -f &quot;$1&quot; ]]
+then
+	cat &quot;&quot; &gt; &quot;$1&quot;
+	echo &quot;The contents of $1 was cleared!&quot;
+else
+	echo &quot;The script&#x27;s argument should be a regular file!&quot;
+fi</code></pre></details></li></ul></details></li></ul><ul id="da31b2b3-5cc0-4c82-9da9-79c77b13f364" class="toggle"><li><details open=""><summary><strong>Challenge 4</strong></summary><ul id="9fb2f813-34b1-4b0d-9b6e-f0a0dbc2344b" class="bulleted-list"><li style="list-style-type:disc">Develop a script that appends to a file the users that are currently logged in and the current date and time.</li></ul><ul id="b70f4279-fa35-4115-abad-ca28cb6a8b30" class="toggle"><li><details open=""><summary>Solution</summary><pre id="fe0368fd-74ab-402e-9ba9-34215a5dc018" class="code"><code>#!/bin/bash
+
+users=&quot;`who | cut -f1 -d&quot; &quot;`&quot;
+date_time=&quot;`date +%F\ %H:%M`&quot;   #\ to escape the whitespace
+
+echo $date_time &gt;&gt; logged_users.txt
+echo &quot;-------------------------&quot; &gt;&gt; logged_users.txt
+echo $users &gt;&gt; logged_users.txt
+echo &gt;&gt; logged_users.txt</code></pre></details></li></ul></details></li></ul><ul id="67df4e32-acaa-4b40-8bb1-299c9aa63426" class="toggle"><li><details open=""><summary><strong>Challenge 5</strong></summary><ul id="3c73c5a6-2832-4b4a-9270-885a8abdccc4" class="bulleted-list"><li style="list-style-type:disc">Create a script that prompts for a username, checks if the username exists on the system and displays &quot;User exists!&quot; or &quot;User DOES NOT exist!&quot;.</li></ul><ul id="9c573c88-dc21-4da2-830f-8ba3a9d16d54" class="toggle"><li><details open=""><summary>Solution</summary><pre id="44064cb6-b379-4b46-9618-110e1434db24" class="code"><code>#!/bin/bash
+
+read -p &quot;Enter a username to check for:&quot; username
+
+result=&quot;$(grep -w $username /etc/passwd)&quot;
+if [[ -n $result ]]
+then
+	echo &quot;User ($username) exists&quot;
+else
+	echo &quot;User ($username) does not exist&quot;
+fi</code></pre></details></li></ul></details></li></ul><ul id="08c234bb-b85c-4f59-8df6-869ee92d7d37" class="toggle"><li><details open=""><summary><strong>Challenge 6</strong></summary><ul id="f353c477-111e-46ac-9082-a50338ab8e10" class="bulleted-list"><li style="list-style-type:disc">Create a script that prompts the user for a file. Test that the file exists and is of type regular file.</li></ul><ul id="dfb23b01-a019-49e4-ae27-149153a3fb0a" class="bulleted-list"><li style="list-style-type:disc">Prompt the user for 2 positive integers n and m.</li></ul><ul id="e2837e51-b84d-4783-87b0-08b2959f3271" class="bulleted-list"><li style="list-style-type:disc">Display the lines (from line number n to m, both included) of the text file.</li></ul><ul id="263dc0f8-ae62-47a3-aeea-0b0a174f57c8" class="toggle"><li><details open=""><summary>Solution</summary><pre id="c8724b58-f3a4-480f-b547-c86fbd000904" class="code"><code>#!/bin/bash
+
+read -p &quot;Enter a file to check for: &quot; file
+if [[ -f $file ]]
+then
+	read -p &quot;Enter a positive integer: &quot; n
+	read -p &quot;Enter another consecutive positive integer: &quot; m
+	while [[ $n -lt 0 || $m -lt 0 || $n -gt $m ]]
+	do
+		if [[ $n -lt 0 || $m -lt 0 ]]
+		then
+			echo &quot;Hey! No. Please try again TWO POSITIVE integers.&quot;
+			sleep 1
+		fi
+
+		if [[ $n -gt $m ]]
+		then
+			echo &quot;The integers must be consecutive, sorry&quot;
+			sleep 1
+		fi
+
+		read -p &quot;Please enter a positive integer: &quot; n
+		read -p &quot;Please enter another consecutive positive integer: &quot; m
+	done
+
+	echo &quot;Displaying lines $n to $m of the file ($file)...&quot;
+	sleep 1
+	q=$((m-n+1)) # no. of lines to display
+	tail -n &quot;+$n&quot; $file | head -n $q
+else
+	echo &quot;Are you sure $file is a file?&quot;
+fi</code></pre></details></li></ul></details></li></ul><ul id="0da3e048-caba-414d-8630-4746a51ab856" class="toggle"><li><details open=""><summary><strong>Challenge 7</strong></summary><ul id="c9ae6c1d-2839-41ba-b1ec-139f468f784b" class="bulleted-list"><li style="list-style-type:disc">Create a script that takes the name of a process as an argument, checks if that process is running and displays &quot;Process is running!&quot; or &quot;Process IS NOT running!&quot;.</li></ul><ul id="ef986fc1-c222-4f8e-a2da-07c37c1ec9db" class="bulleted-list"><li style="list-style-type:disc">Check that the script is run with exactly one argument.</li></ul><ul id="172ba9d4-bf05-4b56-801b-fec3043a3a60" class="toggle"><li><details open=""><summary>Solution</summary><pre id="31a81825-b531-4123-a4e3-ff9f6be37190" class="code"><code>#!/bin/bash
+if [[ $# -ne 1 ]]
+then
+	echo &quot;The script must be run with exactly one argument!&quot;
+	exit 10
+fi
+
+output=&quot;$(pgrep $1)&quot;
+if [[ -n $output ]]
+then
+	echo &quot;Process \&quot;$1\&quot; is running!&quot;
+
+else
+	echo &quot;Process \&quot;$1\&quot; IS NOT running!&quot;
+fi
+</code></pre></details></li></ul></details></li></ul><ul id="e6c982fc-fb22-4e21-b16f-8477deb5b417" class="toggle"><li><details open=""><summary><strong>Challenge 8</strong></summary><ul id="96cc527e-699c-47b6-94eb-05ab17746564" class="bulleted-list"><li style="list-style-type:disc">Create a script that prompts the user for a character.</li></ul><ul id="f441116f-47d5-4c3c-a452-48aa0841264c" class="bulleted-list"><li style="list-style-type:disc">If the character is <strong>Y, </strong>display <strong>&quot;YES&quot;</strong>. If the character is <strong>N, </strong>display <strong>&quot;NO&quot;.</strong> Use double quotes when displaying <strong>YES</strong> and <strong>NO</strong>. If the user enters any other characters, exit the script.</li></ul><ul id="cbd8369d-3b71-41ea-a6f9-7bab3f21108d" class="toggle"><li><details open=""><summary>Solution</summary><pre id="d01d95df-ee80-4164-abae-8c54a181ba8e" class="code"><code>#!/bin/bash
+
+cat &lt;(ps -ef)</code></pre></details></li></ul></details></li></ul><ul id="202d1d2b-350f-49db-9ca2-b06decb35113" class="toggle"><li><details open=""><summary><strong>Challenge 9</strong></summary><ul id="f9cf198e-1c23-4063-b9a2-c6540a04bd88" class="bulleted-list"><li style="list-style-type:disc">Change the previous script this way: If the character is <strong>Y</strong> or <strong>y</strong> display <strong>&quot;YES&quot;</strong>. If the character is <strong>N</strong> or <strong>n,</strong> display <strong>&quot;NO&quot;</strong>. If the user enters any other characters, exit the script.</li></ul><ul id="e4789cbf-5bdb-4351-bee3-0816aaf15470" class="bulleted-list"><li style="list-style-type:disc">Use the OR operator (||).</li></ul><ul id="152bf307-de93-4df2-a7d3-c2455cb8598f" class="toggle"><li><details open=""><summary>Solution</summary><pre id="cd50ff39-a8b5-4ac3-8d1a-72756b04eb4b" class="code"><code>#!/bin/bash
+
+echo -n &quot;Enter Y or N: &quot;
+read c
+if [[ &quot;$c&quot; == &quot;Y&quot; || &quot;$c&quot; == &quot;y&quot; ]]
+then
+	echo &quot;\&quot;YES\&quot;&quot;
+elif [[ &quot;$c&quot; == &quot;N&quot; || &quot;$c&quot; == &quot;n&quot; ]]
+then
+	echo &quot;\&quot;NO\&quot;&quot;
+else
+	echo &quot;You entered another character. Exiting ...&quot;
+	exit
+fi</code></pre></details></li></ul></details></li></ul><ul id="69ba9173-9a15-4edc-9394-847c7664dfcd" class="toggle"><li><details open=""><summary><strong>Challenge 10</strong></summary><ul id="9819738b-fda6-4aed-8afc-cf7c322e1074" class="bulleted-list"><li style="list-style-type:disc">Change the solution from the previous challenge and use <strong>case</strong> instead of <strong>if...elif..else</strong>.</li></ul><ul id="39344ee8-b5b5-4cbf-8096-b9b4699a41c8" class="toggle"><li><details open=""><summary>Solution</summary><pre id="f426005c-854c-4604-88c6-7fe8f54b1a61" class="code"><code>#!/bin/bash
+
+echo -n &quot;Enter Y or N: &quot;
+read c
+case $c in
+&quot;Y&quot; | &quot;y&quot;)
+	echo &quot;\&quot;YES\&quot;&quot;
+	;;
+&quot;N&quot; | &quot;n&quot;)
+	echo &quot;\&quot;NO\&quot;&quot;
+	;;
+*)
+	echo &quot;You entered another character. Exiting ...&quot;
+	;;
+esac</code></pre></details></li></ul></details></li></ul><ul id="a7f348cc-681e-4e06-8245-9a9d85d38918" class="toggle"><li><details open=""><summary><strong>Challenge 11</strong></summary><ul id="d0aed2d6-5525-4a56-80e0-646adc396ea5" class="bulleted-list"><li style="list-style-type:disc">Create a script that takes exactly two arguments. The first argument is a shell command and the second argument is a string.</li></ul><ul id="246a9ae1-d1e9-437d-9564-88356cf388f7" class="bulleted-list"><li style="list-style-type:disc">The script will check if the string belongs to the output of the command.</li></ul><ul id="929126a6-676e-4b56-8e26-6db590f7f8c3" class="toggle"><li><details open=""><summary>Solution</summary><pre id="206039fa-2f55-485a-b0e4-0c6b2d1be6fa" class="code"><code>#!/bin/bash
+if [[ $# -ne 2 ]]
+then
+	echo &quot;Run the script with exactly two arguments.&quot;
+	exit
+else
+	output=&quot;`$1`&quot;
+	if [[ &quot;$output&quot; == *&quot;$2&quot;* ]]
+	then
+		echo &quot;$2 is contained within the output of $1&quot;
+	else
+		echo &quot;$2 is NOT contained within the output of  $1&quot;
+	fi
+fi</code></pre></details></li></ul></details></li></ul><ul id="b56f2e13-bc47-476a-8b15-76cee1d21ea7" class="toggle"><li><details open=""><summary><strong>Challenge 12</strong></summary><ul id="f70ae3e2-455b-41af-a947-21d90831cf40" class="bulleted-list"><li style="list-style-type:disc"><strong>Create a Bash Menu with the following entries:</strong><ul id="ca8045e0-c935-46b7-8818-c3d2020aa260" class="bulleted-list"><li style="list-style-type:circle"><em>Display Date and Time</em></li></ul><ul id="c553d3be-8fff-495e-86ce-53f8f7ce311b" class="bulleted-list"><li style="list-style-type:circle"><em>List users logged in</em></li></ul><ul id="2e30decf-a41c-4ad0-8864-1a9b34008c56" class="bulleted-list"><li style="list-style-type:circle"><em>Display disk usage</em></li></ul></li></ul><ul id="e372e37e-84ad-45ec-b365-45fde0122d9f" class="bulleted-list"><li style="list-style-type:disc">Change the Menu Prompt to the string <strong>Choose:</strong></li></ul><ul id="eb1f4b9c-2f6e-44cb-9383-f12c28f2c38d" class="bulleted-list"><li style="list-style-type:disc">Implement each entry in the menu using the <strong>if...elif..else</strong> statements.</li></ul><ul id="0fb704bf-522f-43fd-ad10-c09a23113d9e" class="toggle"><li><details open=""><summary>Solution</summary><pre id="b4ced0dc-8ee8-4b44-ac8e-e11a853511a9" class="code"><code>#!/bin/bash
+PS3=&quot;Choose: &quot;
+select ITEM in &quot;Display date and time&quot; &quot;List users logged in&quot; &quot;Display disk usage&quot;
+do
+
+	case $REPLY in
+	1)
+		echo &quot;Displaying date and time&quot;
+		sleep 1
+		date
+    sleep 1
+    exit
+		;;
+	2)
+		echo &quot;Listing users logged in&quot;
+		sleep 1
+		who -aH
+    sleep 1
+    exit
+		;;
+	3)
+		echo &quot;Displaying disk usage&quot;
+		sleep 1
+		df -h
+    sleep 1
+    exit
+		;;
+	*)
+		echo &quot;Unknown selection&quot;
+    sleep 1
+    exit
+		;;
+	esac
+done</code></pre></details></li></ul></details></li></ul><ul id="17b3582f-cd12-47b3-9eb6-4f9438918fdb" class="toggle"><li><details open=""><summary><strong>Challenge 13</strong></summary><ul id="77f470dd-d222-48a8-b40f-7973dfa34c1c" class="bulleted-list"><li style="list-style-type:disc"><strong>Create a Bash Menu with the following </strong><a href="https://drive.google.com/file/d/1X799twxp_aO8Ke3A4nMIg3lLaQxaNy-9/view?usp=sharing"><strong>menu entries</strong></a><strong>.</strong></li></ul><ul id="f8c1f17b-329b-4cfd-8a6c-ec63ceb4e584" class="bulleted-list"><li style="list-style-type:disc">Implement each entry in the menu.</li></ul><ul id="12b43417-3130-493e-ae99-adb450a15d5f" class="bulleted-list"><li style="list-style-type:disc">The outcome of your final solution should be similar to <a href="https://drive.google.com/file/d/1N2R1W-3nlMcH9zEovMCMtHWqyMwVFYCC/view?usp=sharing">this one</a>.</li></ul><ul id="b470a4a1-1a63-4f14-867c-94cdfed53027" class="toggle"><li><details open=""><summary>Solution</summary><pre id="b6ba617b-e542-4539-a0a0-33ae2c478180" class="code"><code>#!/bin/bash
+PS3=&quot;Enter your choice [1-9]: &quot;
+select ITEM in &quot;Operating System Info&quot; &quot;Network Info&quot; &quot;Public IP&quot; &quot;Online Users&quot; &quot;CPU Info&quot; &quot;RAM Info&quot; &quot;Disk Usage&quot; &quot;Processes&quot; &quot;Quit&quot;
+do
+	case $REPLY in
+	1)
+		echo &quot;#########################&quot;
+		echo &quot;Operating System Info&quot;
+		echo &quot;#########################&quot;
+		sleep 1
+		echo &quot;Kernel version: $(uname -r)&quot;
+		if [[ -f /etc/lsb-release ]]
+		then
+			cat /etc/lsb-release
+		fi
+    exit
+		;;
+	2)
+		echo &quot;#########################&quot;
+		echo &quot;Network Info&quot;
+		echo &quot;#########################&quot;
+		sleep 1
+		echo &quot;------------------------&quot;
+		echo &quot;Interface Info&quot;
+		echo &quot;------------------------&quot;
+		sleep 1
+		ip address
+		echo 
+		echo &quot;------------------------&quot;
+		echo &quot;Default Gateway&quot;
+		echo &quot;------------------------&quot;
+		sleep 1
+		netstat -r
+		echo 
+		echo &quot;------------------------&quot;
+		echo &quot;Traffic Statistics&quot;
+		echo &quot;------------------------&quot;
+		sleep 1
+		netstat -i
+		echo &quot;#########################&quot;
+    exit
+		;;
+	3)
+		echo &quot;#########################&quot;
+		echo &quot;Public IP&quot;
+		echo &quot;#########################&quot;
+		sleep 1
+		curl ident.me
+		echo 
+		echo &quot;#########################&quot;
+    exit
+		;;
+	4)
+		echo &quot;#########################&quot;
+		echo &quot;Online Users&quot;
+		echo &quot;########################&quot;
+		who -H
+		echo &quot;########################&quot;
+    exit
+		;;
+	5)
+		echo &quot;#########################&quot;
+		echo &quot;CPU Info&quot;
+		echo &quot;#########################&quot;
+		sleep 1
+		lscpu
+		echo &quot;#########################&quot;
+    exit
+		;;
+	6)
+		echo &quot;#########################&quot;
+		echo &quot;RAM Info&quot;
+		echo &quot;#########################&quot;
+		echo &quot;------------------------&quot;
+		echo &quot;Free and used RAM&quot;
+		echo &quot;------------------------&quot;
+		sleep 1
+		free
+		echo 
+	
+		echo &quot;------------------------&quot;
+		echo &quot;Virtual memory statistics&quot;
+		echo &quot;------------------------&quot;
+		sleep 1
+		vmstat
+		
+		echo
+		echo &quot;------------------------&quot;
+		echo &quot;Top 5 memory eating processes&quot;
+		echo &quot;------------------------&quot;
+		sleep 1
+		ps auxf | sort -nr -k 4 | head -5  
+		echo &quot;------------------------&quot;
+    exit
+		;;
+	7)
+		echo &quot;#########################&quot;
+		echo &quot;Disk Usage&quot;
+		echo &quot;#########################&quot;
+		sleep 1
+		df -H | grep -v &quot;tmpfs&quot;
+		echo
+    exit
+		;;
+	8)
+		echo &quot;#########################&quot;
+		echo &quot;Processes&quot;
+		echo &quot;#########################&quot;
+		echo &quot;------------------------&quot;
+		echo &quot;All running processes&quot;
+		echo &quot;------------------------&quot;
+		sleep 1
+		ps -ef
+	
+		echo &quot;------------------------&quot;
+		echo &quot;Top 5 memory eating processes&quot;
+		echo &quot;------------------------&quot;
+		sleep 1
+		ps auxf | sort -nr -k 4 | head -5  
+		echo &quot;------------------------&quot;
+    exit
+		;;
+	9)
+		echo &quot;Quitting...&quot;
+		sleep 1
+    exit
+		;;
+	*)
+		echo &quot;Unknown selection&quot;
+    sleep 1
+    exit
+		;;
+	esac
+done</code></pre></details></li></ul></details></li></ul><hr id="d8bf31a8-1a5f-428d-8e03-3284c034d318"/><p id="e14f51fa-add6-4030-b3a8-d07ba089de39" class="">
 </p><h2 id="0470143d-868b-4131-af5b-e4d33d0f181e" class="">Section 06: Loops in Bash</h2><hr id="a628c62d-ff02-4415-9569-c63fa8d1e8dc"/><ul id="04fc68ad-ffe1-419d-a21c-ede1f7d4a3fe" class="toggle"><li><details open=""><summary>For Loops</summary></details></li></ul><ul id="76ade76d-9d87-4ffe-bb21-b1cfcfec5b33" class="toggle"><li><details open=""><summary>Project: Dropping a List of IP Addresses Using a For Loop</summary></details></li></ul><ul id="8669a21a-12f9-4f53-a36d-a0ad25a3243a" class="toggle"><li><details open=""><summary>While Loops</summary></details></li></ul><ul id="d9da6ec0-9c8a-499a-b087-53248bbb487a" class="toggle"><li><details open=""><summary>Project: Dropping a List of IP Addresses Using While and Process Substitution</summary></details></li></ul><ul id="65a785cb-0636-4c47-9f81-2cb7e60acc0f" class="toggle"><li><details open=""><summary>Loops with Break</summary></details></li></ul><ul id="490ba52a-7756-4ee2-9d58-55c119addf19" class="toggle"><li><details open=""><summary>Loops with Continue</summary></details></li></ul><ul id="2b491a5c-5621-44da-b3e0-98e68598131a" class="toggle"><li><details open=""><summary>Intro to Bash Arrays</summary></details></li></ul><ul id="cb6ffae7-fe32-4c93-9ae0-be848f42f360" class="toggle"><li><details open=""><summary>Arrays in Depth</summary></details></li></ul><ul id="b49a14c0-96ce-4b4d-8345-84b4239282e6" class="toggle"><li><details open=""><summary>Using the Readarray Command</summary></details></li></ul><ul id="cafda980-476b-4b12-8a61-9454b9724561" class="toggle"><li><details open=""><summary>Iterating Over Arrays</summary></details></li></ul><ul id="1f4b8e0c-e04c-430c-a26b-2c96db1634df" class="toggle"><li><details open=""><summary>Project: Account Creation</summary></details></li></ul><hr id="221b9d7e-4589-4182-9db1-d2f73db4d34b"/><h3 id="5287ae28-f923-4eab-b4e3-4c97b9efa4d0" class="">Challenges</h3><ul id="1cccc313-1224-480c-af72-c54f18fb1cee" class="toggle"><li><details open=""><summary><strong>Challenge 1</strong></summary><ul id="d6a22463-a386-4b3a-9e8f-b0fbb0774ec6" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, create a script that displays odd numbers between 1 and 50.</li></ul><ul id="d5679ba3-2c66-4bcf-9590-b3190347a772" class="toggle"><li><details open=""><summary>Solution</summary><pre id="fecca086-57dc-4c2f-9a24-2a7d0b6b68e7" class="code"><code>#!/bin/bash
 
 echo &quot;{1..50..2}&quot;</code></pre></details></li></ul></details></li></ul><ul id="3735f0ac-d45a-4d02-b30f-fce94eb5d6cf" class="toggle"><li><details open=""><summary><strong>Challenge 2</strong></summary><ul id="f6071bba-6236-456b-b554-9aa5f8a531fe" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, develop a script that will create 5 text files in the current directory.</li></ul><ul id="1a62249c-9238-484e-842e-7c5bf374823a" class="bulleted-list"><li style="list-style-type:disc">The names of the files should be <strong>a.txt, b.txt, c.txt, d.txt</strong> and <strong>e.txt.</strong></li></ul><ul id="68de7a73-b84b-4a5c-b447-09a49bdbb30f" class="toggle"><li><details open=""><summary>Solution</summary><pre id="0ef20e1f-da17-4b28-9862-9a6e1f3ea364" class="code"><code>#!/bin/bash
