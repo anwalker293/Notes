@@ -1367,7 +1367,124 @@ do
 		;;
 	esac
 done</code></pre></details></li></ul></details></li></ul><hr id="d8bf31a8-1a5f-428d-8e03-3284c034d318"/><p id="e14f51fa-add6-4030-b3a8-d07ba089de39" class="">
-</p><h2 id="0470143d-868b-4131-af5b-e4d33d0f181e" class="">Section 06: Loops in Bash</h2><hr id="a628c62d-ff02-4415-9569-c63fa8d1e8dc"/><ul id="04fc68ad-ffe1-419d-a21c-ede1f7d4a3fe" class="toggle"><li><details open=""><summary>For Loops</summary></details></li></ul><ul id="76ade76d-9d87-4ffe-bb21-b1cfcfec5b33" class="toggle"><li><details open=""><summary>Project: Dropping a List of IP Addresses Using a For Loop</summary></details></li></ul><ul id="8669a21a-12f9-4f53-a36d-a0ad25a3243a" class="toggle"><li><details open=""><summary>While Loops</summary></details></li></ul><ul id="d9da6ec0-9c8a-499a-b087-53248bbb487a" class="toggle"><li><details open=""><summary>Project: Dropping a List of IP Addresses Using While and Process Substitution</summary></details></li></ul><ul id="65a785cb-0636-4c47-9f81-2cb7e60acc0f" class="toggle"><li><details open=""><summary>Loops with Break</summary></details></li></ul><ul id="490ba52a-7756-4ee2-9d58-55c119addf19" class="toggle"><li><details open=""><summary>Loops with Continue</summary></details></li></ul><ul id="2b491a5c-5621-44da-b3e0-98e68598131a" class="toggle"><li><details open=""><summary>Intro to Bash Arrays</summary></details></li></ul><ul id="cb6ffae7-fe32-4c93-9ae0-be848f42f360" class="toggle"><li><details open=""><summary>Arrays in Depth</summary></details></li></ul><ul id="b49a14c0-96ce-4b4d-8345-84b4239282e6" class="toggle"><li><details open=""><summary>Using the Readarray Command</summary></details></li></ul><ul id="cafda980-476b-4b12-8a61-9454b9724561" class="toggle"><li><details open=""><summary>Iterating Over Arrays</summary></details></li></ul><ul id="1f4b8e0c-e04c-430c-a26b-2c96db1634df" class="toggle"><li><details open=""><summary>Project: Account Creation</summary></details></li></ul><hr id="221b9d7e-4589-4182-9db1-d2f73db4d34b"/><h3 id="5287ae28-f923-4eab-b4e3-4c97b9efa4d0" class="">Challenges</h3><ul id="1cccc313-1224-480c-af72-c54f18fb1cee" class="toggle"><li><details open=""><summary><strong>Challenge 1</strong></summary><ul id="d6a22463-a386-4b3a-9e8f-b0fbb0774ec6" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, create a script that displays odd numbers between 1 and 50.</li></ul><ul id="d5679ba3-2c66-4bcf-9590-b3190347a772" class="toggle"><li><details open=""><summary>Solution</summary><pre id="fecca086-57dc-4c2f-9a24-2a7d0b6b68e7" class="code"><code>#!/bin/bash
+</p><h2 id="0470143d-868b-4131-af5b-e4d33d0f181e" class="">Section 06: Loops in Bash</h2><hr id="a628c62d-ff02-4415-9569-c63fa8d1e8dc"/><ul id="04fc68ad-ffe1-419d-a21c-ede1f7d4a3fe" class="toggle"><li><details open=""><summary>For Loops</summary><ul id="07e26b36-81d1-465a-8fdc-cdb75cda3685" class="toggle"><li><details open=""><summary>Syntax</summary><pre id="a85edefe-16b7-437f-af3d-0031a73144ff" class="code"><code>#!/bin/bash
+for item in list_of_values
+do
+	RUN_THESE_COMMANDS
+done</code></pre></details></li></ul><ul id="83312a0d-0ef5-4ba2-9feb-3313a5c35d9d" class="toggle"><li><details open=""><summary>Example</summary><pre id="3d0e0d3c-17d7-4637-aa27-cd72565fa463" class="code"><code>#!/bin/bash
+for os in Ubuntu Pop!_OS Slackware Kali
+do
+	echo &quot;os is $os&quot;
+done</code></pre></details></li></ul><ul id="53a928b5-5b6d-44ea-aada-936f1bdc7882" class="toggle"><li><details open=""><summary>Example (over a range of numbers)</summary><pre id="91e9233c-b5e7-4144-ae11-990117d422da" class="code"><code>#!/bin/bash
+for num in {3..7}
+do
+	echo &quot;num is $num&quot;
+done</code></pre></details></li></ul><ul id="7635816d-db73-4f53-939f-b4d9c9ed1bc9" class="toggle"><li><details open=""><summary>Example (display contents of all files in current directory)</summary><pre id="47e72ef7-38fa-46cc-a1eb-9d64e3ca1ec8" class="code"><code>#!/bin/bash
+# Loop through items in current directory
+for item in ./*
+do
+	if [[ -f $item ]]
+	then
+		echo &quot;Displaying the contents of $item&quot;
+		sleep 1
+		cat $item
+	fi
+done</code></pre></details></li></ul><ul id="b94d71c5-623b-4e04-9d84-cded314d04b3" class="toggle"><li><details open=""><summary>Example (rename files ending in .txt)</summary><pre id="81f0430c-02e2-4b5e-aaa0-311f9460843e" class="code"><code>#!/bin/bash
+for file in *.txt
+do
+	mv &quot;$file&quot; &quot;renamed_by_script_$file&quot;
+done</code></pre></details></li></ul><ul id="dc343b4d-34fd-40b5-b2ce-9456d00a3bcf" class="toggle"><li><details open=""><summary>Example (Display numbers)</summary><pre id="d3be6c78-c752-42b8-ac4b-b1ef89fc3d63" class="code"><code>#!/bin/bash
+numbers=&quot;1 3 6 7 129&quot;
+for n in $(echo $numbers);do
+	echo -n &quot;$n&quot;
+done</code></pre></details></li></ul><ul id="10ec09c2-f2ff-4184-9180-54bd4452bfc6" class="toggle"><li><details open=""><summary>Example (Like enumerate, but only when i≤20)</summary><pre id="115901cd-8319-41cc-98b5-f528a6a90d3a" class="code"><code>#!/bin/bash
+for ((i=0;i&lt;=20;i++))
+do
+	echo &quot;i=$i&quot;
+done</code></pre></details></li></ul></details></li></ul><ul id="76ade76d-9d87-4ffe-bb21-b1cfcfec5b33" class="toggle"><li><details open=""><summary>Project: Dropping a List of IP Addresses Using a For Loop</summary><pre id="8e691d6d-461f-43f4-8a53-c6351f168301" class="code"><code>#!/bin/bash
+# ips.text is a text file containing all ips to drop
+for ip in $(cat ips.txt)
+do
+	echo &quot;Dropping packets from $ip&quot;
+	iptables -I INPUT -s $ip -j DROP
+done</code></pre></details></li></ul><ul id="8669a21a-12f9-4f53-a36d-a0ad25a3243a" class="toggle"><li><details open=""><summary>While Loops</summary><ul id="4b7c619f-04c0-4575-951c-a03c9910dd82" class="toggle"><li><details open=""><summary>Syntax</summary><pre id="b89cd2e8-0bd9-41c1-b5dd-756c536a57e2" class="code"><code>#!/bin/bash
+while CONDITION
+do
+	RUN_THESE_COMMANDS
+done</code></pre></details></li></ul><ul id="8116ca34-cc76-4364-b241-f21b27ed305c" class="toggle"><li><details open=""><summary>Example</summary><pre id="2c9f37c0-33b4-41ef-bd60-31b85940df66" class="code"><code>#!/bin/bash
+i=0
+while [[ $i -lt 10 ]]
+do
+	echo &quot;i=$i&quot;
+	(( i++ ))
+	# above is same as let i=i+1
+done</code></pre></details></li></ul><ul id="cc6d97ba-42c3-4be5-a55b-aaff6c312ab8" class="toggle"><li><details open=""><summary>Example (infinite loop)</summary><pre id="6ff697c5-b1ce-4fbd-89f7-b20e011eda8c" class="code"><code>#!/bin/bash
+while [[ 1 -eq 1 ]]
+do
+	echo &quot;Infinite loop, press CTRL+C to exit&quot;
+done</code></pre></details></li></ul><ul id="391fcc0f-d560-4a1c-9dd4-9acf620f1a83" class="toggle"><li><details open=""><summary>Example (checking if process is running)</summary><pre id="d2c8a9ce-448b-4da8-bbab-0bd5c717d2e5" class="code"><code>#!/bin/bash
+while true
+do
+	output=&quot;$(pgrep -l $1)&quot;
+	if [[ -n $output ]] # if not empty
+	then
+		echo &quot;The process \&quot;$1\&quot; is running&quot;
+	else
+		echo &quot;The process \&quot;$1\&quot; is NOT running&quot;
+	fi
+	sleep 3
+done</code></pre></details></li></ul><ul id="2d92902b-cacf-4efe-9444-48cd1353a4ab" class="toggle"><li><details open=""><summary>Example (checking ping is successful)</summary><pre id="ef65fdc1-1fe0-4678-87b5-f76441541e85" class="code"><code>#!/bin/bash
+while ping -c 1.8.8.8.8
+do
+	echo &quot;Ping was successful&quot;
+	sleep 1
+done</code></pre></details></li></ul><ul id="6a7c7f87-5700-4257-85b1-93f6d44db5cc" class="toggle"><li><details open=""><summary>Example</summary><pre id="060d876b-d044-464d-bb8b-332f6e284b20" class="code"><code>#!/bin/bash
+while read line
+do
+	echo #line
+done&lt; /etc/passwd # (or $1) # redirects this file to the while loop</code></pre></details></li></ul></details></li></ul><ul id="d9da6ec0-9c8a-499a-b087-53248bbb487a" class="toggle"><li><details open=""><summary>Project: Dropping a List of IP Addresses Using While and Process Substitution</summary><pre id="b3929466-d6f5-4979-9fb2-adeaa17c60bb" class="code"><code>#!/bin/bash
+while read ip
+do
+	echo &quot;Dropping packets from $ip&quot;
+	iptables -I INPUT -s $ip -j DROP
+	sleep 0.5
+done &lt; ./ips.txt # redirects this to the while loop
+# ^Can also do
+# done&lt; &lt;(cat ips.txt)</code></pre></details></li></ul><ul id="65a785cb-0636-4c47-9f81-2cb7e60acc0f" class="toggle"><li><details open=""><summary>Loops with Break and Continue</summary><ul id="e67565ab-d984-470b-8125-8d008eb2a9b8" class="toggle"><li><details open=""><summary>With <strong>break</strong>, you can exit from a <code>for</code>, <code>while</code>, <code>until</code>, or <code>select</code> loop</summary><ul id="c92606af-7874-4a0c-a22e-2187222deeb3" class="toggle"><li><details open=""><summary>Example</summary><pre id="c711c724-053e-4179-8b9f-e768e2a54c63" class="code"><code>#!/bin/bash
+i=0
+while [[ $i-lt 7 ]]
+do
+	echo &quot;i is $i&quot;
+	(( i++ ))
+	if [[ $i -eq 3 ]]
+	then
+		echo &quot;i is 3, so exiting the loop&quot;
+		break
+	fi
+done</code></pre></details></li></ul><ul id="d7f39a2f-e65e-47e0-b358-4938fafea3a7" class="toggle"><li><details open=""><summary>Example</summary><pre id="26565054-e2d1-49ca-be1c-d5dc488736c7" class="code"><code>#!/bin/bash
+while do
+do
+	ping -c 1 $1 &amp;&gt; /dev/null
+	if [[ $? -eq 0 ]]
+	then
+		echo &quot;OK&quot;
+	else
+		echo &quot;Exiting the while loop&quot;
+		break
+	fi
+	sleep 1
+done
+echo &quot;Ping to $1 is not working, I&#x27;m sending an email to the admin&quot;</code></pre></details></li></ul></details></li></ul><ul id="74170f0a-fa1d-4e81-965c-f076ffa3ba0b" class="toggle"><li><details open=""><summary>The <strong>continue</strong> statement skips the remaining commands inside the loop for the current iteration and passes program control to the next iteration of the loop</summary><ul id="fcee0960-2e60-4e53-8f20-411b9291060a" class="toggle"><li><details open=""><summary>Example (print out all odd numbers)</summary><pre id="e2d0a1d2-8ba2-4985-bb52-4bb3df0e9469" class="code"><code>#!/bin/bash
+for i in {1..15}
+do
+	result=$(( i%2 ))
+	if [[ $result -eq 0 ]]
+	then
+		continue
+	fi
+	echo $i
+done
+</code></pre></details></li></ul></details></li></ul></details></li></ul><ul id="2b491a5c-5621-44da-b3e0-98e68598131a" class="toggle"><li><details open=""><summary>Intro to Bash Arrays</summary></details></li></ul><ul id="cb6ffae7-fe32-4c93-9ae0-be848f42f360" class="toggle"><li><details open=""><summary>Arrays in Depth</summary></details></li></ul><ul id="b49a14c0-96ce-4b4d-8345-84b4239282e6" class="toggle"><li><details open=""><summary>Using the Readarray Command</summary></details></li></ul><ul id="cafda980-476b-4b12-8a61-9454b9724561" class="toggle"><li><details open=""><summary>Iterating Over Arrays</summary></details></li></ul><ul id="1f4b8e0c-e04c-430c-a26b-2c96db1634df" class="toggle"><li><details open=""><summary>Project: Account Creation</summary></details></li></ul><hr id="221b9d7e-4589-4182-9db1-d2f73db4d34b"/><h3 id="5287ae28-f923-4eab-b4e3-4c97b9efa4d0" class="">Challenges</h3><ul id="1cccc313-1224-480c-af72-c54f18fb1cee" class="toggle"><li><details open=""><summary><strong>Challenge 1</strong></summary><ul id="d6a22463-a386-4b3a-9e8f-b0fbb0774ec6" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, create a script that displays odd numbers between 1 and 50.</li></ul><ul id="d5679ba3-2c66-4bcf-9590-b3190347a772" class="toggle"><li><details open=""><summary>Solution</summary><pre id="fecca086-57dc-4c2f-9a24-2a7d0b6b68e7" class="code"><code>#!/bin/bash
 
 echo &quot;{1..50..2}&quot;</code></pre></details></li></ul></details></li></ul><ul id="3735f0ac-d45a-4d02-b30f-fce94eb5d6cf" class="toggle"><li><details open=""><summary><strong>Challenge 2</strong></summary><ul id="f6071bba-6236-456b-b554-9aa5f8a531fe" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, develop a script that will create 5 text files in the current directory.</li></ul><ul id="1a62249c-9238-484e-842e-7c5bf374823a" class="bulleted-list"><li style="list-style-type:disc">The names of the files should be <strong>a.txt, b.txt, c.txt, d.txt</strong> and <strong>e.txt.</strong></li></ul><ul id="68de7a73-b84b-4a5c-b447-09a49bdbb30f" class="toggle"><li><details open=""><summary>Solution</summary><pre id="0ef20e1f-da17-4b28-9862-9a6e1f3ea364" class="code"><code>#!/bin/bash
 
