@@ -1484,7 +1484,89 @@ do
 	fi
 	echo $i
 done
-</code></pre></details></li></ul></details></li></ul></details></li></ul><ul id="2b491a5c-5621-44da-b3e0-98e68598131a" class="toggle"><li><details open=""><summary>Intro to Bash Arrays</summary></details></li></ul><ul id="cb6ffae7-fe32-4c93-9ae0-be848f42f360" class="toggle"><li><details open=""><summary>Arrays in Depth</summary></details></li></ul><ul id="b49a14c0-96ce-4b4d-8345-84b4239282e6" class="toggle"><li><details open=""><summary>Using the Readarray Command</summary></details></li></ul><ul id="cafda980-476b-4b12-8a61-9454b9724561" class="toggle"><li><details open=""><summary>Iterating Over Arrays</summary></details></li></ul><ul id="1f4b8e0c-e04c-430c-a26b-2c96db1634df" class="toggle"><li><details open=""><summary>Project: Account Creation</summary></details></li></ul><hr id="221b9d7e-4589-4182-9db1-d2f73db4d34b"/><h3 id="5287ae28-f923-4eab-b4e3-4c97b9efa4d0" class="">Challenges</h3><ul id="1cccc313-1224-480c-af72-c54f18fb1cee" class="toggle"><li><details open=""><summary><strong>Challenge 1</strong></summary><ul id="d6a22463-a386-4b3a-9e8f-b0fbb0774ec6" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, create a script that displays odd numbers between 1 and 50.</li></ul><ul id="d5679ba3-2c66-4bcf-9590-b3190347a772" class="toggle"><li><details open=""><summary>Solution</summary><pre id="fecca086-57dc-4c2f-9a24-2a7d0b6b68e7" class="code"><code>#!/bin/bash
+</code></pre></details></li></ul></details></li></ul></details></li></ul><ul id="2b491a5c-5621-44da-b3e0-98e68598131a" class="toggle"><li><details open=""><summary>Bash Arrays</summary><ul id="bb0d8e67-a9bf-4b3a-bab9-324b4db54051" class="bulleted-list"><li style="list-style-type:disc">Bash provides one-dimensional indexed and associative arrays<ul id="c21ba748-ab3b-4701-a1c1-bfd89e32f7d6" class="bulleted-list"><li style="list-style-type:circle">Associative arrays contain key: value pairs<ul id="750c1395-f02d-4ae2-ab54-5aed1d800d93" class="bulleted-list"><li style="list-style-type:square">Uses a key to map the value instead of an index position</li></ul></li></ul></li></ul><ul id="c4ef1d54-1249-464a-884b-44b621c6ecb8" class="toggle"><li><details open=""><summary>Example</summary><pre id="7304f446-b6ac-43cc-af9b-7fb85b33ad51" class="code"><code>#!/bin/bash
+ages=(20 22 40 38)
+echo $age
+echo ${ages[@]}  # print whole 
+echo ${ages[*]}  # print whole
+echo ${!ages[*]} # print indices
+echo ${#ages[*]} # number of elements in array
+echo ${ages[1]}</code></pre></details></li></ul><ul id="2931ed17-ffec-4ecd-8780-7bb5c965b85d" class="toggle"><li><details open=""><summary>Another example</summary><pre id="7c0e4539-8a11-4a47-b3ee-55523f3d822a" class="code"><code>#!/bin/bash
+numbers[0]=100
+numbers[1]=200
+echo ${numbers[@]}
+echo {$!numbers[@]}</code></pre></details></li></ul><ul id="071c6264-43bb-4e1d-bb2d-d8ca8bc1fd24" class="toggle"><li><details open=""><summary>Example</summary><pre id="d1459406-65a2-4cd9-b5fb-e0e00ee4e1c8" class="code"><code>#!/bin/bash
+declare -a names
+names[0]=&quot;Dan&quot;
+names[1]=&quot;Alina&quot;
+names[2]=&quot;Diana&quot;
+echo ${names[@]}
+names[7]=&quot;Maya&quot;
+echo ${names[@]}
+unset ${names[@]}</code></pre></details></li></ul><ul id="9ceb8079-9dee-49d6-aee5-dbed7b24fe3f" class="toggle"><li><details open=""><summary>Example (Appending, slicing)</summary><pre id="7672a0ee-b7b0-48e9-a914-f79325fd1542" class="code"><code>#!/bin/bash
+years=(2018 2019 2020 2021 2022)
+years+=(2023) # append
+years+=(2024 2025 2026)
+echo ${years[@]:2}
+# Only four elements starting with **2*
+echo {$years[@]:2:4}</code></pre></details></li></ul><ul id="4db3c490-1fce-4e75-b59a-99749d16c40f" class="toggle"><li><details open=""><summary>Example (Associative Arrays)</summary><pre id="70610fa2-1caf-44c1-8386-32f1b498831b" class="code"><code>#!/bin/bash
+declare -A userdata
+userdata[username]=&quot;youradmin&quot;
+userdata[password]=&quot;fdsa4&quot;
+userdata[uid]=1010
+echo ${userdata[username]}
+echo ${userdata[@]}
+echo ${!userdata[@]} # print keys
+userdata[login]=&quot;$(date --uts +%s)&quot;
+userdata+=([shell]=&quot;Bash&quot; [admin]=&quot;False&quot;) # append
+# Make READONLY array
+declare -r -A SUPERSTARS=(
+[Germany]=&quot;Boney M&quot;
+[USA]=&quot;Bon Jovi&quot;
+[England]=&quot;The Beatles&quot;
+)</code></pre></details></li></ul></details></li></ul><ul id="b49a14c0-96ce-4b4d-8345-84b4239282e6" class="toggle"><li><details open=""><summary>Using the Readarray Command</summary><ul id="e2d9e86b-b356-43ba-8a5b-1dd57672bb5b" class="bulleted-list"><li style="list-style-type:disc">Converts whatever it reads into a standard array</li></ul><ul id="dae956a6-9b67-4e10-b6ff-6555e56369a7" class="toggle"><li><details open=""><summary>Example</summary><pre id="50c0c06d-02ce-406e-88ed-cff860301482" class="code"><code>readarray months
+Jan
+Feb
+Mar
+Apr
+^C
+readarray months &lt; &lt; (cat months.txt)</code></pre></details></li></ul><ul id="be0d637d-4b2c-4e21-a4aa-741e54d9f582" class="toggle"><li><details open=""><summary><code>echo ${months[@]@Q}</code></summary><p id="7c1bcaf3-8041-4bb2-b24f-c054899711da" class="">Sees \n as a part of the array</p></details></li></ul><ul id="0e7e8452-0af6-481f-aa6e-c50211c71477" class="toggle"><li><details open=""><summary>Another example (with all the users of the system)</summary><pre id="e233ed97-7598-4a94-bcb0-bd1612c64b95" class="code"><code>#!/bin/bash
+readarray users&lt; &lt;(cut -d: -f1 /etc/passwd)
+echo ${users[@]}
+readarray -t files&lt; &lt; (les /etc)</code></pre></details></li></ul></details></li></ul><ul id="cafda980-476b-4b12-8a61-9454b9724561" class="toggle"><li><details open=""><summary>Iterating Over Arrays (for bloop in bloop_array)</summary><ul id="186e47a6-aa7e-4f1b-a394-5123a6e289a7" class="toggle"><li><details open=""><summary>Example (display contents of all files)</summary><pre id="79eaa315-c03f-4186-aa57-b76486f2f4dd" class="code"><code>#!/bin/bash
+readarray -t files &lt; &lt;(ls /etc/*)
+for f in &quot;${files[@]}&quot;
+do
+	if [[ -f $f &amp;&amp; -r $f ]] # if file and can read
+	then
+		cat $f
+	fi
+done</code></pre></details></li></ul></details></li></ul><ul id="1f4b8e0c-e04c-430c-a26b-2c96db1634df" class="toggle"><li><details open=""><summary>Project: Account Creation</summary><pre id="522dc111-0d99-45c8-849d-caa56abcdcad" class="code"><code>#!/bin/bash
+readarray accounts&lt; &lt;(cat ./users.txt)
+
+for account in ${accounts[@]}&quot;
+do
+	user=$(echo $account | cut -d: -f1)
+	group=$(echo $account | cut -d: f2)
+
+	if [[ -z &quot;$(grep -w /etc/group)&quot; ]]
+	then
+		groupadd $group
+		echo &quot;Group $group added successfully!&quot;
+	else
+		echo &quot;Group $group already exists!&quot;
+	fi
+	
+	if [[ -z &quot;$(grep -w $user /etc/passwd)&quot; ]]
+	then
+		useradd -G $group $user
+		echo &quot;User $user added successfully!&quot;
+	else
+		echo &quot;User $user already exists!&quot;
+	fi
+	echo &quot;###############&quot;
+	sleep 1
+done</code></pre></details></li></ul><hr id="bc6f17c1-f6d2-47d4-9ead-6be340fa96e4"/><h3 id="e81a5900-19c5-4fc4-9e26-2765f294047f" class="">Knowledge Checks</h3><ul id="9a1ef328-3850-455a-a346-4f99a7273a04" class="toggle"><li><details open=""><summary>How can you print the value of the current shell that has started?</summary></details></li></ul><hr id="221b9d7e-4589-4182-9db1-d2f73db4d34b"/><h3 id="5287ae28-f923-4eab-b4e3-4c97b9efa4d0" class="">Challenges</h3><ul id="1cccc313-1224-480c-af72-c54f18fb1cee" class="toggle"><li><details open=""><summary><strong>Challenge 1</strong></summary><ul id="d6a22463-a386-4b3a-9e8f-b0fbb0774ec6" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, create a script that displays odd numbers between 1 and 50.</li></ul><ul id="d5679ba3-2c66-4bcf-9590-b3190347a772" class="toggle"><li><details open=""><summary>Solution</summary><pre id="fecca086-57dc-4c2f-9a24-2a7d0b6b68e7" class="code"><code>#!/bin/bash
 
 echo &quot;{1..50..2}&quot;</code></pre></details></li></ul></details></li></ul><ul id="3735f0ac-d45a-4d02-b30f-fce94eb5d6cf" class="toggle"><li><details open=""><summary><strong>Challenge 2</strong></summary><ul id="f6071bba-6236-456b-b554-9aa5f8a531fe" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, develop a script that will create 5 text files in the current directory.</li></ul><ul id="1a62249c-9238-484e-842e-7c5bf374823a" class="bulleted-list"><li style="list-style-type:disc">The names of the files should be <strong>a.txt, b.txt, c.txt, d.txt</strong> and <strong>e.txt.</strong></li></ul><ul id="68de7a73-b84b-4a5c-b447-09a49bdbb30f" class="toggle"><li><details open=""><summary>Solution</summary><pre id="0ef20e1f-da17-4b28-9862-9a6e1f3ea364" class="code"><code>#!/bin/bash
 
@@ -1509,7 +1591,44 @@ echo &quot;That is $km km.&quot;</code></pre></details></li></ul></details></li>
 
 cat &lt;(ps -ef)</code></pre></details></li></ul></details></li></ul><ul id="df6f7e31-ec31-41a6-bec0-1b6f339b59cb" class="toggle"><li><details open=""><summary><strong>Challenge 9</strong></summary><ul id="2b95dad1-b169-4699-97f7-8189f87f744e" class="bulleted-list"><li style="list-style-type:disc">Using <strong>ls</strong> and a globbing expression display all the files in <strong>/etc</strong> that end in<strong> .conf</strong></li></ul><ul id="32642a90-7eb0-4925-96be-0680d3982a82" class="toggle"><li><details open=""><summary>Solution</summary><pre id="7d6018fb-d999-42c1-bd68-1b1e26f331c5" class="code"><code>#!/bin/bash
 ls /etc/*.conf</code></pre></details></li></ul></details></li></ul><ul id="e5c6b434-9546-4748-8c8e-f6553b1451b2" class="toggle"><li><details open=""><summary><strong>Challenge 10</strong></summary></details></li></ul><hr id="651c9ef2-cdb5-4c1c-91a2-58eeda2e8163"/><p id="2d989d75-fbd3-4b6d-80e0-351d5d286986" class="">
-</p><h2 id="eee21056-21ca-444a-84e7-7b428e11997e" class="">Section 07: Functions in Bash</h2><hr id="da16bf7a-db9d-4fb6-b6be-01052774048d"/><ul id="1af79976-0125-4afe-9de8-36b15e83bbd5" class="toggle"><li><details open=""><summary>Intro. to Bash Functions</summary></details></li></ul><ul id="891be059-6d82-4b4b-b61f-ee258533de46" class="toggle"><li><details open=""><summary>Function’s Arguments</summary></details></li></ul><ul id="9f727317-6f1b-4842-a0cd-15aa40d7846a" class="toggle"><li><details open=""><summary>Variable Scopes in Functions</summary></details></li></ul><hr id="d78eac9c-0f76-4ecf-99f3-0d2d37478d8b"/><h3 id="17ff52fb-fd6d-49ef-9cd3-d3b6fe543550" class="">Challenges</h3><ul id="7fe88fb2-2e9b-4023-925c-317e70e9274a" class="toggle"><li><details open=""><summary><strong>Challenge 1</strong></summary><ul id="9bf59f5b-aae0-4771-a82c-376ad5d8ab2a" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, create a script that displays odd numbers between 1 and 50.</li></ul><ul id="d4a0bb0b-a752-444b-96bb-d4e99efd446c" class="toggle"><li><details open=""><summary>Solution</summary><pre id="a62947b6-dc64-4465-9189-aaced117416c" class="code"><code>#!/bin/bash
+</p><h2 id="eee21056-21ca-444a-84e7-7b428e11997e" class="">Section 07: Functions in Bash</h2><hr id="da16bf7a-db9d-4fb6-b6be-01052774048d"/><ul id="1af79976-0125-4afe-9de8-36b15e83bbd5" class="toggle"><li><details open=""><summary>Bash Functions</summary><ul id="5e73aaa4-6b11-43c8-9395-f3a319a895ef" class="toggle"><li><details open=""><summary>Example (declaring)</summary><pre id="a2b95adf-f7da-4e9f-b644-e72f3a02ff98" class="code"><code>#/bin/bash
+funcion log () {
+	echo &quot;I&#x27;m a simple log function!&quot;
+}
+
+display(){
+	echo &quot;Hey I&#x27;m displaying!&quot;
+}
+
+log 
+display</code></pre></details></li></ul><ul id="036c7f78-25f2-45a2-986f-ede020dccf75" class="toggle"><li><details open=""><summary>Example (passing in arguments)</summary><pre id="3523b890-55fb-46bd-83f7-a5879e8394ab" class="code"><code>#!/bin/bash
+create(){
+	echo &quot;Creating $1&quot;
+	touch $1
+	chmod 400 $1
+	echo &quot;Creating $2&quot;
+	touch $2
+	chmod 644 $2
+}
+create_files aa.txt bb.txt</code></pre></details></li></ul><ul id="d7102fc9-f1e1-42e2-ae6c-48ec364fadf7" class="bulleted-list"><li style="list-style-type:disc"><span style="border-bottom:0.05em solid"><strong>Bash doesn’t allow you to return values</strong></span> classically. In fact, if you return a value, that will change the success status of the function<ul id="df6c9489-9fb2-46af-b0b6-e87fa84c05b5" class="bulleted-list"><li style="list-style-type:circle">For example, doing <code>return 10</code> on a function, and then doing <code>echo #?</code>, we can see a given function will have a return value of 10</li></ul></li></ul><ul id="92550cee-0d83-4df3-8451-ac0a6c874090" class="bulleted-list"><li style="list-style-type:disc">However, there is a work around (command substitution)</li></ul><ul id="89e28f10-370f-4427-9ce7-3d9854a3626a" class="toggle"><li><details open=""><summary>Example</summary><pre id="c5731cee-616b-4e84-bcda-efc636ceeb11" class="code"><code>#!/bin/bash
+function lines_in_file(){
+	grep -c &quot;$1&quot; &quot;$2&quot;
+}
+
+# Find usb in /var/log/dmesg
+n=$(lines_in_file &quot;usb&quot; &quot;/var/log/dmesg&quot;)</code></pre></details></li></ul></details></li></ul><ul id="9f727317-6f1b-4842-a0cd-15aa40d7846a" class="toggle"><li><details open=""><summary>Variable Scopes in Functions</summary><ul id="fdf90943-faa7-46f5-8f28-9ec6e5246224" class="bulleted-list"><li style="list-style-type:disc">All variables by default <strong>global</strong></li></ul><ul id="07381981-ea8b-4c87-bfe6-21b552d9f511" class="toggle"><li><details open=""><summary>Example</summary><pre id="0d4665d0-9921-4792-af84-c179b0bc1864" class="code"><code>#/bin/bash
+var1=&quot;AA&quot;
+var2=&quot;BB&quot;
+
+function func1(){
+	echo &quot;Inside func1: var1 is $var1 and var2 is $var2&quot;
+	# however, if you do var1=&quot;XX&quot;, will be recognized everywhere
+	local var1=&quot;XX&quot; 
+  echo &quot;var1 after making it local: $var1&quot;
+)
+
+func1
+echo &quot;After calling fun1: var1 is $var1 and var2 is $var2&quot;</code></pre></details></li></ul></details></li></ul><hr id="d78eac9c-0f76-4ecf-99f3-0d2d37478d8b"/><h3 id="17ff52fb-fd6d-49ef-9cd3-d3b6fe543550" class="">Challenges</h3><ul id="7fe88fb2-2e9b-4023-925c-317e70e9274a" class="toggle"><li><details open=""><summary><strong>Challenge 1</strong></summary><ul id="9bf59f5b-aae0-4771-a82c-376ad5d8ab2a" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, create a script that displays odd numbers between 1 and 50.</li></ul><ul id="d4a0bb0b-a752-444b-96bb-d4e99efd446c" class="toggle"><li><details open=""><summary>Solution</summary><pre id="a62947b6-dc64-4465-9189-aaced117416c" class="code"><code>#!/bin/bash
 
 echo &quot;{1..50..2}&quot;</code></pre></details></li></ul></details></li></ul><ul id="a92c1bfd-1f1f-484d-90ee-d305d7003334" class="toggle"><li><details open=""><summary><strong>Challenge 2</strong></summary><ul id="6e86ffaf-8284-4f09-8e4f-5296eef01afd" class="bulleted-list"><li style="list-style-type:disc">Using a brace expansion, develop a script that will create 5 text files in the current directory.</li></ul><ul id="8db96e19-b93d-4456-bc6d-82ab8e38f36e" class="bulleted-list"><li style="list-style-type:disc">The names of the files should be <strong>a.txt, b.txt, c.txt, d.txt</strong> and <strong>e.txt.</strong></li></ul><ul id="3aa7437c-36bb-4722-bfc9-1f90453ddae1" class="toggle"><li><details open=""><summary>Solution</summary><pre id="32505b88-1d30-4d40-8bba-d71d463168c1" class="code"><code>#!/bin/bash
 
