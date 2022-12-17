@@ -10,11 +10,12 @@ List of personal notes for everyone to look back on. Planning to add
 # Table of Contents
 
 ## Completed
+- Bash: Shell Scripting
 
 ## In Progress
-
-- Bash: Shell Scripting
 - My Neovim Configuration
+- Rust
+- React
 
 ## Future
 
