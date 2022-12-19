@@ -16,6 +16,8 @@ List of personal notes for everyone to look back on. Planning to add
 - My Neovim Configuration
 - Rust
 - React
+- System Design and Architecture
+- Javascript
 
 ## Future
 
