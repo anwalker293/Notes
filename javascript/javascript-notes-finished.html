@@ -1,0 +1,3301 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Javascript</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="caf239e5-cae6-431f-b7f8-3cba57ad372b" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1592790062914-a5cc9f0a1520?ixlib=rb-4.0.3&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/snippet_yellow.svg"/></div><h1 class="page-title">Javascript</h1></header><div class="page-body"><h2 id="5ad34b9f-b776-456a-912b-b4e0d6a98ac1" class="">Section 01: Javascript Foundation</h2><hr id="5202b199-2641-4bc3-8a87-f3d32ef1e70d"/><ul id="7b9de47d-83c0-43cc-b787-e76792337ab4" class="toggle"><li><details open=""><summary>Javascript Types</summary><ul id="8c5a9587-da7e-4033-8616-aba9ad34c919" class="toggle"><li><details open=""><summary>Number</summary><ul id="173a6819-0716-4a2a-b0ea-23e6ca017059" class="toggle"><li><details open=""><summary><code>3+4</code></summary><p id="e1c5fc88-4caa-4050-861e-3c4ab747b28f" class="">7</p></details></li></ul><ul id="b6ff1c44-ff2d-44a9-8d3e-f2433f10149b" class="toggle"><li><details open=""><summary><code>4+5</code></summary><p id="8c20a379-d09a-4606-ab1f-d93ed3a6723c" class="">9</p></details></li></ul><ul id="491c3af1-a589-4032-a217-c3ab1306fb8f" class="toggle"><li><details open=""><summary><code>3*5</code></summary><p id="7d14a8f7-f7b3-4ff8-bf28-af5c9d10a7b9" class="">15</p></details></li></ul><ul id="bbf6c52b-59ee-4d18-9b6a-d8d68fc05577" class="toggle"><li><details open=""><summary><code>12/4</code></summary><p id="81486c06-4ce2-4afd-8a98-86c27e0f9738" class="">3</p></details></li></ul><ul id="cf3bb9b9-2974-4f6f-a3a5-1221445d88b3" class="toggle"><li><details open=""><summary><code>12-4</code></summary><p id="2dbcaa28-c2f9-4a44-9f1f-9ce5fdd9b53b" class="">8</p></details></li></ul><ul id="d591dddf-be63-4ed7-8bab-a4c4b28299f3" class="toggle"><li><details open=""><summary><code>(3+4) *2</code></summary><p id="4d5df492-0ac5-45ca-a56e-abf8a877c727" class="">14</p></details></li></ul><ul id="ff74cb3b-b598-4b93-ab60-2f5178951c4f" class="toggle"><li><details open=""><summary><code>12 % 5</code></summary><p id="191ddc71-de5b-4c35-be39-344c2b2e20e5" class="">2</p></details></li></ul></details></li></ul><ul id="e6858019-26ed-4b35-93ce-9b7cc0401f1f" class="toggle"><li><details open=""><summary>String</summary><ul id="8b0e0bb3-3303-42ef-bfbd-89ed1ccf1191" class="toggle"><li><details open=""><summary><code>&quot;Bob&quot;</code></summary><p id="0910a40f-bdb1-4ad5-9b29-ff014f202d18" class="">“Bob”</p></details></li></ul><ul id="2f30e7eb-4c10-4eaf-8153-05a833a08ae5" class="toggle"><li><details open=""><summary><code>&quot;Hello&quot; + &quot;There!&quot;</code></summary><p id="6f319de7-47a8-4941-bf5e-954296ddd4f5" class="">“HelloThere!”</p></details></li></ul><ul id="9cde5df4-5382-4b16-a34b-bb9dea499d58" class="toggle"><li><details open=""><summary><code>&#x27;This isn\&#x27;t very nice&#x27;</code></summary><p id="8112fb28-c389-436a-ba3e-77ac472a100e" class="">“This isn’t very nice”</p></details></li></ul><ul id="c6e4e248-31e6-4651-8fbe-74ce5cf84e8c" class="toggle"><li><details open=""><summary><code>10+&quot;34&quot;</code></summary><p id="b6fde15f-b826-4cfc-af9b-ca90897cd154" class="">“1034”</p></details></li></ul><ul id="b95dc471-c1ec-4972-a176-1019ef5ff19f" class="toggle"><li><details open=""><summary><code>10-&quot;3&quot;</code></summary><p id="6a3e2778-8198-498c-bed8-07361ddd4715" class="">7</p></details></li></ul></details></li></ul><ul id="cf671d38-5cf3-47a0-82d3-aaf825514198" class="toggle"><li><details open=""><summary>Boolean</summary><ul id="ff6c5437-8836-4cf2-9033-33b7e9220e2c" class="toggle"><li><details open=""><summary><code>3 === 3</code></summary><p id="abb78ba9-d7c9-46f1-a9af-c2f462803c49" class="">true</p></details></li></ul><ul id="5facc527-bbaa-49df-84a1-501458a8a006" class="toggle"><li><details open=""><summary><code>3 !== 3</code></summary><p id="63a4381e-599f-4291-93bf-24d7bdd78436" class="">false</p></details></li></ul></details></li></ul><ul id="2b16c15f-827d-41b5-851b-97be657c559a" class="toggle"><li><details open=""><summary>Undefined</summary><ul id="c7a95c60-bd19-42c2-9d05-2b73817b1744" class="toggle"><li><details open=""><summary><code>var b;</code></summary><p id="7d965919-ff35-48ca-a94d-13640afc8ef5" class="">Undefined</p></details></li></ul></details></li></ul><ul id="d1338310-c27a-4504-b22c-ef282d061062" class="toggle"><li><details open=""><summary>Null</summary><ul id="f99de298-a15a-4c22-94ad-d97a3dc5a60c" class="toggle"><li><details open=""><summary><code>var nullObj = null;</code></summary><p id="d5739561-505d-4e78-ab82-66b981b68487" class=""><code>nullObj</code></p><p id="c7579344-8bf3-4319-9d26-3a5c1dfb3ae6" class="">null</p></details></li></ul></details></li></ul><ul id="c6734ef4-adcd-4b50-b0b5-6145b80b2f83" class="toggle"><li><details open=""><summary>Symbol (new in ECMAScript 6)</summary><pre id="3d03b0e1-4866-4542-9036-c4f81db7d6c4" class="code"><code>let sym1 = Symbol();
+let sym2 = Symbol(&#x27;foo&#x27;);
+let sym3 = Symbol(&#x27;foo&#x27;);
+
+// Completely unique types ^
+
+sym2 === sym3
+// false</code></pre></details></li></ul><ul id="50482a27-8885-4513-8bae-8ed61333ea4d" class="toggle"><li><details open=""><summary>Object</summary><pre id="9c44c453-7625-4aec-8553-264c3dd47909" class="code"><code>var user = {
+	name: &quot;John&quot;,
+	age: 34,
+	hobby: &quot;Soccer&quot;,
+	isMarried: false,
+	spells: [&quot;abrakadra&quot;, &quot;shazam&quot;, &quot;boo&quot;]
+	shout: function() {
+		console.log(&quot;AHHH!&quot;)
+		}
+};
+user.name;
+user.hobby;
+user.favouriteFood = &quot;spinach&quot;;
+user.isMarried = true;
+user.spells[1];
+user.shout();
+
+var list = [&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;];
+list[1];
+list.pop;
+list.push;
+list.concat;
+
+var list = [
+	{
+		username: &quot;andy&quot;,
+		password: &quot;secre&quot;
+	},
+	{
+		username: &quot;jess&quot;,
+		password: &quot;123&quot;,
+];
+list[0].password;</code></pre></details></li></ul><ul id="dffa5ee8-138d-48ad-89b0-7001e17ea815" class="toggle"><li><details open=""><summary>Javascript Conversions</summary></details></li></ul></details></li></ul><ul id="72b42af6-cdd5-4184-a2e1-061bc36d2d4a" class="toggle"><li><details open=""><summary>Variables</summary><ul id="9cdfb2c4-f8fb-4d31-917f-5a9799018c2e" class="bulleted-list"><li style="list-style-type:disc"><strong>camelCase</strong></li></ul><ul id="a1aa51aa-f25d-4313-8403-852b7f3645bd" class="bulleted-list"><li style="list-style-type:disc">Needs to start with a letter</li></ul><ul id="99e78231-40e0-4184-9ac1-2209f71a1ded" class="bulleted-list"><li style="list-style-type:disc">Can’t start with a symbol</li></ul><ul id="c7d4519c-5f4a-4992-967b-dec17596dc5f" class="bulleted-list"><li style="list-style-type:disc">Can start with a <code>$</code> or <code>_</code></li></ul><ul id="3af1b7c8-f77f-448c-aba9-c5d79c70a1b7" class="toggle"><li><details open=""><summary><code>var george = &quot;These pretzels are making me thirsty&quot; + &quot;!&quot;;
+george</code></summary><p id="7626b65d-528e-4b33-b33b-a7df955a143f" class="">“These pretzels are making me thirsty!”</p></details></li></ul><ul id="cd3ee86d-0de8-43a0-af92-dcad7c2f8d6f" class="toggle"><li><details open=""><summary><code>prompt(&quot;What is your username?&quot;)</code></summary></details></li></ul><pre id="bcc018df-a0c2-4d62-bef2-f11eae44cd5e" class="code"><code>var first = prompt(&quot;enter first number&quot;);
+var second = prompt(&quot;enter second number&quot;);
+var sum = Number(first)+Number(second);
+alert(&quot;The sum is:&quot; + sum);</code></pre></details></li></ul><ul id="e59afcdb-b3de-4aa4-8440-3126b849a54a" class="toggle"><li><details open=""><summary>Control Flow</summary><ul id="ee43780e-6e28-459b-9f3a-0f75bf457f56" class="toggle"><li><details open=""><summary>if, else</summary><pre id="8ca33e84-f505-4a59-9183-03bd3f834e86" class="code"><code>var name = &quot;Billy&quot;;
+if (name === &quot;Billy&quot; ) {
+	alert(&quot;hi Billy!&quot;)
+} else {
+	alert(&quot;hmm I don&#x27;t know you&quot;)
+}</code></pre></details></li></ul><ul id="ad11b405-f3a3-461d-9cc2-1f23932d9f93" class="toggle"><li><details open=""><summary>else if</summary><pre id="19a17790-e13f-4f1c-b9e5-5e73d4652ee4" class="code"><code>var name = &quot;Billy&quot;;
+if (name === &quot;Billy&quot; ) {
+	alert(&quot;hi Billy!&quot;);
+} else if (name === &quot;Susy&quot;) {
+	alert(&quot;hi Susy!&quot;);
+} else {
+	alert(&quot;hmm I don&#x27;t know you&quot;);</code></pre></details></li></ul><ul id="1e375474-2386-4493-b4e0-dc93222fa78c" class="toggle"><li><details open=""><summary>ternary operator</summary></details></li></ul><ul id="35366c0c-65e6-44e5-a563-841f15f0347c" class="toggle"><li><details open=""><summary>Logical Operators</summary><ul id="27d3f761-b6d1-4ba7-82b1-f3e3c4a97961" class="toggle"><li><details open=""><summary>switch</summary><ul id="26bb5260-7c7b-4b65-8ee9-08115fb83834" class="toggle"><li><details open=""><summary><code>&amp;&amp;</code></summary></details></li></ul><ul id="5d077551-5f56-4bdd-a32f-fc772e5e4cac" class="toggle"><li><details open=""><summary><code>||</code></summary></details></li></ul><ul id="30a8e3e4-cc2c-4cd6-a324-1ceda5249d18" class="toggle"><li><details open=""><summary><code>!</code></summary></details></li></ul><pre id="86c96deb-8074-4f8e-aca5-cce8e64680c1" class="code"><code>if (name === &quot;Billy&quot; || name === &quot;Ann&quot; {
+	alert(&quot;Hi Billy or Ann!&quot;)
+}
+
+if (!(name === &quot;Bob&quot;)) {
+	alert(&quot;Hi Bob (opposite)&quot;);
+}</code></pre></details></li></ul></details></li></ul></details></li></ul><ul id="175a7929-0749-415e-8886-8d06363b2c89" class="toggle"><li><details open=""><summary>Java Script On Our Webpage</summary><ul id="7c565cc3-b758-4bf2-8cd9-327ff80b195c" class="toggle"><li><details open=""><summary><code>index.html</code></summary><pre id="2003981b-c57a-4f54-8eef-309c3fd395cf" class="code"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;Javascript&lt;/title&gt;
+	&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;Javascript in HTML&lt;/h1&gt;
+		&lt;script type=&quot;text/javascript&quot; src=&quot;script.js&quot;&gt; 
+		&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></details></li></ul><ul id="610c3c41-6844-4e48-8eb0-b4ed908ac39e" class="toggle"><li><details open=""><summary><code>script.js</code></summary><pre id="5b63d3fe-dcb8-4193-bda1-d8ae13552439" class="code"><code>4+3;
+if (4+3 === 7) {
+	alert(&quot;You&#x27;re smart!&quot;)
+}</code></pre></details></li></ul></details></li></ul><ul id="dcf48e36-b1bf-4cb0-ac04-561cb5a040b8" class="toggle"><li><details open=""><summary>Functions</summary><ul id="9091c9c1-f32e-4f11-83fd-d45ddd73fc98" class="toggle"><li><details open=""><summary>Function Declaration (<code>function name() {}</code>)</summary><pre id="59955f89-2799-4b34-b306-8ce3dd93721e" class="code"><code>function sayHello() {
+	console.log(&quot;Hello&quot;);
+}
+
+sayHello();
+
+function sing(song) {
+	console.log(song);
+}
+
+sing(&quot;la dee dah&quot;);
+
+function multiply(a,b) {
+	return a * b
+}
+
+multiply(5,10);</code></pre></details></li></ul><ul id="6f689ccb-187b-4b0b-926c-20bcee4c9063" class="toggle"><li><details open=""><summary>Function Expression <code>var a = function name() {}</code></summary><pre id="da2065be-e80c-4d95-86fb-20c9a0d32228" class="code"><code>// Anonymous Function
+var sayBye = function() {
+	console.log(&quot;Bye&quot;);
+}
+
+sayBye();</code></pre></details></li></ul><ul id="88aaff8e-c7fd-4c47-93fe-4b4038ed70b9" class="toggle"><li><details open=""><summary><code>() =&gt;</code> (new in ECMAScript 6)</summary><pre id="6e65017a-bc14-48bb-a26c-1654cb429068" class="code"><code>// Old
+function add(a,b) {
+	return a+b;
+}
+
+const add = (a,b) =&gt; a+b;</code></pre></details></li></ul></details></li></ul><ul id="e2da7f6d-3fc1-47ea-b38a-45b01669e816" class="toggle"><li><details open=""><summary>Exercise: Build Simple Facebook</summary><ul id="3f716644-21fc-443a-8d06-6892b0ec577a" class="toggle"><li><details open=""><summary><code>script.js</code></summary><pre id="b6f97200-3466-44f7-8b78-9a3c1d024baf" class="code"><code>var database = [
+	{
+		username: &quot;andrei&quot;,
+		password: &quot;supersecret&quot;
+	}
+];
+
+var newsFeed = [
+	{
+		username: &quot;Bobby&quot;,
+		timeline: &quot;So tired&quot;
+	},
+	{
+		username: &quot;Sally&quot;
+		timeline: &quot;Javascript is cool&quot;
+	}
+];
+
+var userNamePrompt = prompt(&quot;What&#x27;s your username?&quot;)
+var passwordPrompt = prompt(&quot;What&#x27;s your password?&quot;)
+
+function signIn(username,password) {
+	if (user === database[0].username) &amp;&amp; (password === database[0].password) {
+		console.log(newsFeed);
+	} else {
+		alert(&quot;Sorry, wrong username or password!&quot;)
+	}
+}
+
+signIn(userNamePrompt, passwordPrompt);</code></pre></details></li></ul></details></li></ul><ul id="b930d9ed-16f2-4d0f-942f-1c96b1fc4a66" class="toggle"><li><details open=""><summary>Loops</summary><ul id="9e09d82d-05a4-4a37-9a3d-06ef4044faab" class="toggle"><li><details open=""><summary><code>for</code></summary><pre id="90901ae5-4a4f-45a0-b668-0bf50d4bae56" class="code"><code>var todos = [
+	&quot;clean room&quot;,
+	&quot;brush teeth&quot;,
+	&quot;exercise&quot;,
+	&quot;study javascript&quot;,
+	&quot;eat healthy&quot;
+];
+
+for (var i=0; i &lt; todos.length; i++) {
+	console.log(todos[i]+&quot;!&quot;);
+	todos[i] = todos[i]+&quot;!&quot;;
+}
+
+var todosLength=todos.length;
+for (var i=0; i &lt; todos.length; i++) {
+	todos.pop();
+}</code></pre></details></li></ul><ul id="738a43b3-e8e8-4770-b009-5b8dbf7faba9" class="toggle"><li><details open=""><summary><code>while</code></summary><pre id="6aa3e4e6-49dc-46e1-b6c6-379065115428" class="code"><code>var counterOne = 0;
+while (counterOne &lt; 10) {
+	console.log(counterOne);
+	counterOne++
+};</code></pre></details></li></ul><ul id="cab8791c-626c-494c-b841-8b47a40033ec" class="toggle"><li><details open=""><summary><code>do</code></summary><pre id="067e6f08-3785-4242-9a5a-b9504d341965" class="code"><code>var counterTwo = 10;
+do {
+	console.log(&quot;do while&quot;, counterTwo);
+	counterTwo--;
+} while (counterTwo &gt; 0);</code></pre></details></li></ul><ul id="7702a597-2778-4221-982d-d0b536477631" class="toggle"><li><details open=""><summary><code>forEach</code> (new in ECMAScript 5)</summary><pre id="ec8bdf69-5267-4aeb-aeae-565e21ee4bdb" class="code"><code>var todosLength = todos.length;
+todos.forEach(function(todo, i) {
+	console.log(todo, i);
+})
+
+function logTodos(todo,i) {
+	console.log(todo,i)
+}
+
+todos.forEach(logTodos);</code></pre></details></li></ul><ul id="6cce4c97-c78d-438b-87c7-f6701c19c8b3" class="toggle"><li><details open=""><summary><code>for of</code></summary><pre id="38cb9355-1735-40aa-84ba-12c4dd6c39a6" class="code"><code>const basket = [&#x27;apples&#x27;,&#x27;oranges&#x27;,&#x27;bananas&#x27;]
+
+for (item of basket) {
+	console.log(item);
+}
+
+for (item of &#x27;basket&#x27;) {
+	console.log(item);
+}</code></pre></details></li></ul><ul id="3ac1c168-3990-427a-97fa-cb675592ae69" class="toggle"><li><details open=""><summary><code>for in</code></summary><pre id="a7e95151-0719-43a0-a602-322522d9d7bf" class="code"><code>const detailedBasket = {
+	apples: 5,
+	oranges: 10,
+	grapes: 1000
+}
+
+// Enumerating - Objects
+for (item in detailedBasket) {
+	console.log(item);
+}
+// apples, oranges, grapes</code></pre></details></li></ul><ul id="66c208d3-96c3-4c80-b3cd-2016fa846657" class="toggle"><li><details open=""><summary>Clarification of Above</summary><pre id="a4443afb-f82c-4b93-87aa-06db45c0def7" class="code"><code>const basket = [&#x27;apples&#x27;,&#x27;oranges&#x27;,&#x27;bananas&#x27;]
+const detailedBasket = {
+	apples: 5,
+	oranges: 10,
+	grapes: 1000
+}
+
+for (item of detailedBasket) {
+	console.log(item);
+}
+// Error, not iterable
+
+// Enumerating - Objects
+for (item in basket) {
+	console.log(item);
+}
+// 0, 1, 2</code></pre></details></li></ul></details></li></ul><ul id="e8350724-7585-48db-8823-dc20a4b4c774" class="toggle"><li><details open=""><summary>Exercise: Build Facebook 2</summary><ul id="0a9e1c33-5a84-4717-a65a-76bbcbf6fe69" class="toggle"><li><details open=""><summary><code>script.js</code></summary><pre id="c69405cd-294d-4e06-a5d4-5fbd12e8e13d" class="code"><code>var database = [
+	{
+		username: &quot;andrei&quot;,
+		password: &quot;supersecret&quot;
+	}
+];
+
+var newsFeed = [
+	{
+		username: &quot;Bobby&quot;,
+		timeline: &quot;So tired&quot;
+	},
+	{
+		username: &quot;Sally&quot;
+		timeline: &quot;Javascript is cool&quot;
+	}
+];
+
+var userNamePrompt = prompt(&quot;What&#x27;s your username?&quot;)
+var passwordPrompt = prompt(&quot;What&#x27;s your password?&quot;)
+
+function isUserValid(username,password) {
+	for (var i=0; i &lt; database.length; i++) {
+		if (database[i].username === username &amp;&amp; 
+			database[i].password === password) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function signIn(username,password) {
+	if (isUserValid(username, password)) {
+		console.log(newsfeed);
+	} else {
+		alert(&quot;Sorry, wrong username and password&quot;);
+	}
+}
+
+signIn(userNamePrompt, passwordPrompt);</code></pre></details></li></ul></details></li></ul><ul id="2b0bd2c3-8d69-43b1-b600-b64a94899ecd" class="toggle"><li><details open=""><summary>Javascript Keywords</summary><ul id="02601580-4dfd-4c99-a9c6-30f0c6f9d26d" class="toggle"><li><details open=""><summary><code>break</code></summary></details></li></ul><ul id="328e6355-34a4-4cc9-ac62-0c3f9a523151" class="toggle"><li><details open=""><summary><code>case</code></summary></details></li></ul><ul id="294569d1-daa8-4a99-9e81-ab437398b392" class="toggle"><li><details open=""><summary><code>catch</code></summary></details></li></ul><ul id="bebdd717-7efd-4f63-9808-44e816d7c8a4" class="toggle"><li><details open=""><summary><code>class</code></summary></details></li></ul><ul id="c6027ae4-57dc-4f1b-bfca-13a7d8551f0e" class="toggle"><li><details open=""><summary><code>const</code></summary></details></li></ul><ul id="9f845667-a490-429b-9000-b1c9e6c394f7" class="toggle"><li><details open=""><summary><code>continue</code></summary></details></li></ul><ul id="15ba6bf0-0e56-4e7b-8a8c-099c51e70fde" class="toggle"><li><details open=""><summary><code>debugger</code></summary></details></li></ul><ul id="163f10fd-6f5a-430e-b0ea-709da87321a6" class="toggle"><li><details open=""><summary><code>default</code></summary></details></li></ul><ul id="5cf265cc-b72e-489c-b4a0-6c51664df1e9" class="toggle"><li><details open=""><summary><code>do</code></summary></details></li></ul><ul id="37397b56-eb2e-4038-aed3-27e7bac78741" class="toggle"><li><details open=""><summary>…</summary></details></li></ul></details></li></ul><hr id="8e2d9af5-52b1-4dfc-9e1a-0a78e6faed9b"/><h2 id="f5093adb-e148-41bd-8940-274eeb4d7fc1" class="">Section 02: Javascript Foundation II</h2><hr id="752d4739-7664-4904-ad5d-0d7aeb6bc96f"/><ul id="a2620e60-92c9-4bfa-84ca-46c93dbc4d46" class="toggle"><li><details open=""><summary>Scope</summary><pre id="def74508-e8bb-4c48-8e6d-ef9d553e1fc1" class="code"><code>function aa() {
+	console.log(&quot;test&quot;);
+}
+
+window.aa()
+// Function aa added to the window scope
+
+function bb() {
+	var a = &quot;hello&quot;;
+}
+
+console.log(a)
+// a only lives within bb
+
+
+
+// Root Scope (window)
+var fun = 5;
+
+function funFunction() {
+	// child scope
+	var fun = &quot;Hellooo&quot;;
+	console.log(fun);
+}
+
+function funnerFunction() {
+	// child scope
+	var fun = &quot;Byeee&quot;;
+	console.log(fun);
+}
+
+function funnestFunction() {
+	// child scope
+	fun = &quot;AHHH&quot;; // changes var outside
+	console.log(fun);
+}
+
+console.log(fun); // will print out &quot;AHHH&quot;</code></pre></details></li></ul><ul id="3ad8bd21-9fda-4565-979e-e13c9a92ef8e" class="toggle"><li><details open=""><summary>Advanced Control Flow</summary><ul id="7305ae1e-24f8-4a6c-b5bc-9dec1ec7d4ea" class="toggle"><li><details open=""><summary>Ternary Operator</summary><p id="174f8666-9e0e-40a5-9f71-089f58f1de76" class=""><strong>Syntax: </strong><strong><code>condition ? expr1: expr2;</code></strong></p><pre id="67a3801d-0673-45c9-a99d-f489d1a8a0e5" class="code"><code>function isUserValid(bool) {
+	return bool;
+}
+
+var answer = isUserValid(true) ? &quot;You may enter&quot; : &quot;Access Denied&quot;
+answer;
+// &quot;You may enter&quot;
+
+var answer = isUserValid(false) ? &quot;You may enter&quot; : &quot;Access Denied&quot;
+answer;
+// &quot;Access Denied&quot;
+
+var automatedAnswer = &quot;Your account # is &quot; + (isUserValid(false) ? &quot;1234&quot; : &quot;not available&quot;);
+automatedAnswer
+// &quot;Your account number is 1234&quot;</code></pre></details></li></ul><ul id="0d2c9a3f-ef2c-4e16-8288-90c1b948cae5" class="toggle"><li><details open=""><summary>Switch</summary><pre id="ad066f8e-59a8-438b-83f4-cb5efb288c1b" class="code"><code>function moveCommand(direction) {
+	var whatHappens;
+	switch (direction) {
+		case &quot;forward&quot;:
+			whatHappens = &quot;you encounter a monster&quot;;
+			break;
+		case &quot;back&quot;:
+			whatHappens = &quot;you arrived home&quot;;
+			break;
+		case &quot;right&quot;:
+			whatHappens = &quot;you found a river&quot;;
+			break;
+		case &quot;left&quot;:
+			whatHappens = &quot;you run into a troll&quot;;
+			break;
+		default:
+			whatHappens = &quot;please enter a valid direction&quot;;
+	}
+	return whatHappens;
+}
+
+window.moveCommand(&quot;foward&quot;);
+// &quot;you encounter a monster&quot;</code></pre></details></li></ul></details></li></ul><ul id="2f629006-614d-4f24-b29d-077b85e1b508" class="toggle"><li><details open=""><summary>ES5 and ES6</summary><ul id="a32654f1-9da5-4102-b8c1-5affd5782807" class="toggle"><li><details open=""><summary><code>let + const</code></summary><ul id="c01f8f51-ef9c-4850-8bb3-1955d876988a" class="toggle"><li><details open=""><summary><code>const</code></summary><pre id="f87af9a1-a72c-4617-91d3-f7271f880435" class="code"><code>const player = &#x27;bobby&#x27;; // cannot update
+const player = &quot;Sally&quot;;
+// error^
+
+const obj = {
+	player: &#x27;bobby&#x27;,
+	experience: 100,
+	wizardLevel: false,
+}
+
+obj.wizardLevel = True;
+// ok^
+
+const player = obj.player;
+const experience = obj.experience; 
+//
+const { player, experience } = obj; // same thing
+//
+let wizardLevel = obj.wizardLevel;
+//
+let { wizardLevel } = obj; // same thing
+
+const name = &#x27;john snow&#x27;;
+const obj = {
+	[name]: &#x27;hello&#x27;,
+	[1+2]: &#x27;hihi&#x27;
+}
+
+const a = &#x27;Simon&#x27;;
+const b = true;
+const c = {};
+
+const obj = {
+	a,
+	b,
+	c
+}</code></pre></details></li></ul><ul id="e2082e9a-c6a1-45a6-9dc1-fbf279751b8e" class="toggle"><li><details open=""><summary><code>let vs var</code></summary><pre id="a96ce962-563c-43e4-b1bc-2de05443e354" class="code"><code>const player = &#x27;bobby&#x27;; // cannot update const
+let experience = 100;
+let wizardLevel = false;
+
+if (experience&gt;90) {
+	let wizardLevel = true;
+	console.log(&quot;inside&quot;, wizardLevel)
+	// true
+}
+
+console.log(&quot;outside&quot;, wizardLevel)
+// false
+
+//////////
+
+var wizardLevel = false;
+
+if (experience&gt;90) {
+	var wizardLevel = true;
+	console.log(&quot;inside&quot;, wizardLevel)
+	// true
+}
+
+console.log(&quot;outside&quot;, wizardLevel)
+// true</code></pre></details></li></ul><ul id="0cf19309-84d2-434a-9c8d-ebe4b62bdd0e" class="toggle"><li><details open=""><summary>Template Strings</summary><pre id="9759d018-7683-4a16-ba05-74092b4e932c" class="code"><code>const name = &quot;Sally&quot;;
+const age = 34;
+const pet = &quot;horse&quot;;
+
+const greetingBest = `Hello ${name} you seem to be ${age-10}. 
+	What a lovely ${pet} you have`;</code></pre></details></li></ul><ul id="7dc52087-5e0e-4996-84e6-21c1bce8c1be" class="toggle"><li><details open=""><summary>Default Arguments</summary><pre id="80d5a286-3b5d-4c5d-91f6-fc1a4c974080" class="code"><code>function greet(name=&#x27;&#x27;, age=30, pet=&#x27;cat&#x27;) {
+	return `Hello ${name} you seem to be ${age-10}. What a 
+		lovely ${pet} you have`
+}</code></pre></details></li></ul></details></li></ul></details></li></ul><ul id="a4538398-0c45-47cf-a64e-bb8376dd8a67" class="toggle"><li><details open=""><summary>Advanced Functions</summary><ul id="76c81e35-035c-45a5-a995-417f7bbcf688" class="toggle"><li><details open=""><summary>Closures</summary><ul id="46d42386-e740-4828-8df5-1260ed9b97f1" class="bulleted-list"><li style="list-style-type:disc"><strong>Child scope always has access to the parent scope</strong></li></ul><ul id="20ea7aec-3caa-4259-83a2-a46003b21a28" class="bulleted-list"><li style="list-style-type:disc"><em>A function ran, the function executed. It’s never going to execute again, but it’s going to remember that there are references to those variables, so the child scope always has access to the parent scope.</em></li></ul><pre id="0dcce117-5c79-4e58-a046-01f23a25fc88" class="code"><code>const first = () =&gt; {
+	const greet = &#x27;Hi&#x27;;
+	const second = () =&gt; {
+		alert(greet)
+	}
+	return second
+}
+
+const newFunc = first();
+// so,
+// const newFunc = const second = () =&gt; {
+//		alert(greet)
+//	}
+// but second HAS ACCESS to greet
+newFunc();</code></pre></details></li></ul><ul id="b67242bc-4820-4518-8d39-37490d7289a9" class="toggle"><li><details open=""><summary>Currying</summary><pre id="6e7f6b6d-3c43-4a2d-afbd-6bbdd46cd7c1" class="code"><code>const multiply = (a,b) =&gt; a*b;
+const curriedMultiply = (a) =&gt; (b) =&gt; a*b;
+curriedMultiply(3);
+// (b) =&gt; a*b
+curriedMultiply(3)(4);
+// 12
+
+const multiplyBy5 = curriedMultiply(5);
+multiplyBy5(10);
+// 50</code></pre></details></li></ul><ul id="894d7e52-4b01-479e-bbdc-0dd91b36c45f" class="toggle"><li><details open=""><summary>Compose</summary><pre id="ff140f3c-73c1-44ba-810a-da15c9ea282c" class="code"><code>const compose = (f,g) =&gt; (a) =&gt; f(g(a));
+const sum = (num) =&gt; num + 1;
+compose(sum,sum)(5)
+// 7 --&gt; sum(sum(5)) = sum(6) = 7</code></pre></details></li></ul></details></li></ul><ul id="c648494d-07ea-4ecf-b4c8-3825af6b9f9b" class="toggle"><li><details open=""><summary>Advanced Arrays</summary><pre id="ba763d39-2b45-4b2c-b4a6-e51e34447c1c" class="code"><code>const array = [1, 2, 10, 16];
+
+const double = [];
+const newArray = array.forEach((num) =&gt; {
+	double.push(num*2);
+})
+
+console.log(double);</code></pre><ul id="e8e0f0e3-b026-4095-95ad-7fc19ae6431c" class="toggle"><li><details open=""><summary><code>map</code></summary><pre id="4dbf4ed2-b3a8-48fa-8c63-8bebfd6bfc04" class="code"><code>const mapArray = array.map((num) =&gt; {
+	return num*2
+})
+
+console.log(&quot;map&quot;, mapArray)</code></pre></details></li></ul><ul id="cc3d0ab5-063f-4c47-b430-d3eb967103b0" class="toggle"><li><details open=""><summary><code>filter</code></summary><pre id="c677b557-7f99-49f3-83ec-b84ff55b8609" class="code"><code>const filterArray = array.filter(num =&gt; num&gt;5);
+console.log(filterArray);
+// in this case, we get [10,16]
+
+const filterArray = array.filter(num =&gt; num===5);
+console.log(filterArray);
+// in this case, we get []</code></pre></details></li></ul><ul id="2aceed22-5c7f-4a49-95eb-1c1a59620c4c" class="toggle"><li><details open=""><summary><code>reduce</code></summary><pre id="1f747379-eb8e-4a0a-b455-100b9e5643a1" class="code"><code>const reduceArray = array.reduce((accumulator,num) =&gt; {
+	return accumulator + num
+}, 0)
+console.log(reduceArray)
+// 29
+
+const reduceArray = array.reduce((accumulator,num) =&gt; {
+	return accumulator + num
+}, 5)
+console.log(reduceArray)
+// 34</code></pre></details></li></ul></details></li></ul><ul id="c5b9cda5-492a-4b8e-babe-b2a0ae168062" class="toggle"><li><details open=""><summary>Advanced Objects</summary><ul id="f4f50596-e454-4b09-9265-1343ff9be4c3" class="toggle"><li><details open=""><summary>Reference Type</summary><pre id="dc5fcca1-a7aa-4d29-a7af-95bb07643a7d" class="code"><code>var object1 = {value: 10};
+var object2 = object1;
+var object3 = {value: 10};</code></pre></details></li></ul><ul id="08b79fd7-f852-4d74-972f-66a155d79d02" class="toggle"><li><details open=""><summary>Context</summary><pre id="2979963d-1de0-459b-96f9-e8152216b65b" class="code"><code>const object4 = {
+	a: function() {
+		console.log(this); // object 4, not the window
+	}
+}</code></pre></details></li></ul><ul id="c4c751c1-4c53-45ff-a65a-e9fd19006f0a" class="toggle"><li><details open=""><summary>Instantiation</summary><pre id="586035e0-b530-4aae-92c6-2bf01dc02602" class="code"><code>class Player{
+	constructor(name,type) {
+		console.log(this);
+		this.name = name;
+		this.type = type;
+	}
+	introduce() {
+		console.log(`Hi, I am ${this.name}, I&#x27;m a ${this.type}`)
+	}
+}
+
+class Wizard extends Player{
+	constructor(name,type) {
+		super(name,type) // any time we extend, so we have access to original propertes
+	} play {
+			console.log(`WEEE I&#x27;m a ${this.type}`);
+		}
+}
+
+const wizard1 = new Wizard(&#x27;Shelly&#x27;,&#x27;Healer&#x27;);
+const wizard2 = new Wizard(&#x27;Shawn&#x27;,&#x27;Dark Magic&#x27;);</code></pre></details></li></ul></details></li></ul><ul id="516ad3f1-ee79-4657-8ea4-4865a329256c" class="toggle"><li><details open=""><summary>ES7</summary><ul id="cdcdea56-6e52-47ed-a98c-4c289f8795af" class="toggle"><li><details open=""><summary><code>.includes()</code></summary><pre id="5670aa94-b351-4433-93a7-9c244aaa86c9" class="code"><code>&#x27;Hellooooo&#x27;.includes(&#x27;o&#x27;);
+// true
+
+const pets = [&#x27;cat&#x27;,&#x27;dog&#x27;,&#x27;bat&#x27;];
+pets.includes(&#x27;dog&#x27;);
+// true</code></pre></details></li></ul><ul id="7713d3c7-9a5a-4f91-a495-04e199a86f53" class="toggle"><li><details open=""><summary>Exponential Operator <code>**</code></summary><pre id="00f57c8a-3f20-4cb2-9d0f-ecea80d7af60" class="code"><code>const square = (x) =&gt; x**2;</code></pre></details></li></ul></details></li></ul><ul id="6936023a-b79a-46ce-b324-81846015f37b" class="toggle"><li><details open=""><summary>ES8</summary><ul id="317a211d-63ce-4e85-bf66-cd2faa50b5df" class="toggle"><li><details open=""><summary>String Padding</summary><ul id="90271c95-430f-47ad-b00c-1301edfd2762" class="toggle"><li><details open=""><summary><code>.padStart()</code></summary><pre id="08ac3dd4-fd11-42a9-bb62-d38cb25527e9" class="code"><code>&#x27;Turtle&#x27;.padStart(10)
+// &quot;          Turtle&quot;</code></pre></details></li></ul><ul id="8bbe6f89-10c9-498e-bd20-e7c583175953" class="toggle"><li><details open=""><summary><code>.padEnd()</code></summary><pre id="cc62d87b-fdc4-4c81-ba3f-66291ad93f31" class="code"><code>&#x27;Turtle&#x27;.End(10)
+// &quot;Turtle          &quot;</code></pre></details></li></ul></details></li></ul><ul id="5b106897-3ea6-475c-a679-77cff396e447" class="toggle"><li><details open=""><summary>Trailing Commas</summary><pre id="c236d2c7-ea08-460c-9309-9931e406d189" class="code"><code>const fun = (a,b,c,d,) =&gt; {
+	console.log(a);
+}
+
+fun(1,2,3,4,)</code></pre></details></li></ul><ul id="67938eaa-f3b4-4d06-afa8-3405574932cf" class="toggle"><li><details open=""><summary><code>Object.values</code> and <code>Object.entries</code></summary><pre id="7a186e15-e343-4799-9ff5-5823ccd2fadb" class="code"><code>let obj = {
+	username0: &#x27;Santa&#x27;,
+	username1: &#x27;Rudolf&#x27;,
+	username2: &#x27;Mr. Grinch&#x27;
+}
+
+Object.keys(obj).forEach((key,index) =&gt; {
+	console.log(key, obj[key])
+})
+// username0, username1, username2
+
+Object.values(obj).forEach(value =&gt; {
+	console.log(value);
+})
+// Santa, Rudolf, Mr. Grinch
+
+Object.entries(obj).forEach(value =&gt; {
+	console.log(value);
+})
+// [&quot;username0&quot;, &quot;Santa&quot;], [&quot;username1&quot;, &quot;Rudolf&quot;], [&quot;username2&quot;, &quot;Mr. Grinch&quot;]
+
+Object.entries(obj).map(value =&gt; {
+	return value[1]+value[0].replace(&#x27;username&#x27;,&#x27;&#x27;);
+}) </code></pre></details></li></ul></details></li></ul><ul id="2c8aa7f1-2875-47a0-a1db-8f9195c44d7e" class="toggle"><li><details open=""><summary>ES10</summary><ul id="34bb30c5-077e-419f-b4f5-9c40e61b6472" class="toggle"><li><details open=""><summary><code>.flat</code></summary><pre id="280c5ae1-c08d-40f7-8976-3e5e20166781" class="code"><code>const array = [1,[2,3],[4,5]]
+array.flat()
+// [1,2,3,4,5]
+
+const array2 = [1,2,[3,4,[5]]
+array2.flat()
+// [1,2,3,4,Array(1)]
+array2.flat(2)
+// [1,2,3,4,5]
+
+const entries = [&#x27;bob&#x27;,&#x27;sally&#x27;,,,,,,&#x27;cindy&#x27;]
+entires.flat()
+// [&#x27;bob&#x27;,&#x27;sally&#x27;,&#x27;cindy&#x27;]
+
+const jurassicParkChaos = jurassicPark.flatmap(creature =&gt; creature+&quot;rawr&quot;)</code></pre></details></li></ul><ul id="76c731a3-5f1b-4265-93f3-5ec5749be153" class="toggle"><li><details open=""><summary><code>.trimStart</code> and <code>.trimEnd</code></summary><pre id="d619978c-abd7-430a-be42-c44a6a5cdc27" class="code"><code>const userEmail = &#x27;        eddytheagle@gmail.com&#x27; 
+const userEmail2 = &#x27;jonnydangerous@gmail.com.......&#x27;
+console.log(userEmail.trimStart())
+console.log(userEmail2.trimEnd())</code></pre></details></li></ul><ul id="f31f9aa4-6f89-4e52-9c1a-8d1c63c63dfa" class="toggle"><li><details open=""><summary><code>.fromEntries</code></summary><pre id="3f239e84-b8f4-4358-bba9-d5ed14c029ee" class="code"><code>userProfiles = [[&#x27;commanderTom&#x27;,23],[&#x27;derekzlander&#x27;,40],[&#x27;hansel&#x27;,14]]
+
+Object.fromEntries(userProfiles)
+// {
+//		commanderTom: 23
+//		derekzlander: 40
+//		hansel: 14
+// }
+
+Object.entries(obj) // userProfiles</code></pre></details></li></ul><ul id="6311055f-f402-418b-8d1c-7c6afd553060" class="toggle"><li><details open=""><summary><code>try-catch</code></summary><pre id="2b6c22f9-f3d6-48e8-a02d-39de411708e4" class="code"><code>try { 
+	4+5
+} catch (error) {
+	console.log(&#x27;you messed up&#x27; + error)
+}</code></pre></details></li></ul></details></li></ul><ul id="63a50fdb-d020-4eaf-b571-e3115e69524b" class="toggle"><li><details open=""><summary>ES2020</summary><ul id="5c6e472f-66d1-4e10-9366-4cd121b2116d" class="toggle"><li><details open=""><summary>BigInt</summary><pre id="0fc5a6bb-37af-409e-ba76-59d2b3321261" class="code"><code>typeof 1n
+// BigInt
+
+// MAX_SAFE_INTEGER is about ~9 quadrillion (Number.MAX_SAFE_INTEGER)
+// Javascript starts breaking for numbers bigger than MAX_SAFE_INTEGER,
+// BigInt solves this
+1n + 3n</code></pre></details></li></ul><ul id="3d43ca3c-8705-41fe-8303-c988e502d79f" class="toggle"><li><details open=""><summary>Nullish Coalescing Operator ?? </summary><pre id="4cdf5982-c119-4560-8414-817e4dd96d82" class="code"><code>let andrei_pokemon = {
+	pikachu: {
+		species: &#x27;Mouse Pokemon&#x27;,
+		height: 0.8,
+		weight: 30
+	}
+}
+
+let power = andrei_pokemon?.pikachu?.power || &#x27;no power&#x27;
+// &#x27;no power&#x27;
+
+let andrei_pokemon = {
+	pikachu: {
+		species: &#x27;Mouse Pokemon&#x27;,
+		height: 0.8,
+		weight: 30,
+		power: false
+	}
+}
+
+let power = andrei_pokemon?.pikachu?.power || &#x27;no power&#x27;
+// &#x27;no power&#x27;
+
+let andrei_pokemon = {
+	pikachu: {
+		species: &#x27;Mouse Pokemon&#x27;,
+		height: 0.8,
+		weight: 30,
+		power: 0
+	}
+}
+
+// Checks if null or undefined
+let power = andrei_pokemon?.pikachu?.power ?? &#x27;no power&#x27;
+// 0</code></pre></details></li></ul><ul id="fc0b1d76-c66a-4d4e-be73-ac873edb87d0" class="toggle"><li><details open=""><summary>Optional Chaining Operator ?.</summary><pre id="f936de3d-54bf-4467-acf1-5ba061145742" class="code"><code>let will_pokemon = {
+	pikachu: {
+		species: &#x27;Mouse Pokemon&#x27;,
+		height: 0.4,
+		weight: 6,
+	}
+}
+
+let andrei_pokemon = {
+	raichu: {
+		species: &#x27;Mouse Pokemon&#x27;,
+		height: 0.8,
+		weight: 30,
+	}
+}
+
+let weight = will_pokemon.pikachu.weight;
+console.log(weight)
+
+if (andrei_pokemon.pikachu &amp;&amp; andrei_pokemon.pikachu.weight){
+	let weight2 = andrei_pokemon.pikachu.weight;
+	console.log(weight2);
+} else {
+	let weight2 = undefined;
+	console.log(weight2);
+}
+
+let weight3 = andrei_pokemon?.pikachu?.weight // ? = &quot;is there an object?&quot;
+console.log(weight3); // ^otherwise, do undefined</code></pre></details></li></ul><ul id="bd516ef7-4f9a-492d-a373-67d246d0820f" class="toggle"><li><details open=""><summary>Promise.allSettled</summary></details></li></ul><ul id="47675356-a6ec-4c5b-b44d-c960d4664f35" class="toggle"><li><details open=""><summary>globalThis</summary><p id="55e0df01-eb46-4c66-8e43-14d5bc3d40a7" class="">Similar to the window object, but works outside the browser as well</p></details></li></ul></details></li></ul><ul id="a64769a9-74c7-4331-9f49-e51c42a606d0" class="toggle"><li><details open=""><summary>ES2021</summary><pre id="e6557c62-4846-4c21-839b-f6bb124f881c" class="code"><code>const str = &quot;ztm is the best of the best&quot;
+str.replaceAll(&#x27;best&#x27;,&#x27;worst&#x27;)
+str.replace(&#x27;best&#x27;,&#x27;worst&#x27;) // only replaces first instance</code></pre></details></li></ul><ul id="3ebca898-b7a0-4b38-848b-bbd7f0c05cb7" class="toggle"><li><details open=""><summary>ES2022</summary><pre id="42673dd5-218a-4dcf-9cea-b3c0d6e8d9c8" class="code"><code>const arr = [100, 200, 300, 50000, 10];
+arr[arr.length-2]
+// 50000
+arr.at(-2)
+// 50000</code></pre></details></li></ul><ul id="5a0fa041-f6d1-48ee-8ad6-2f67d3986d5a" class="toggle"><li><details open=""><summary>Debugger</summary><pre id="df510f77-60da-464c-80f3-b495bc3d261a" class="code"><code>const flattened = [[1,2],[3,4],[5,6]].reduce(
+	(accumulator,array) =&gt; {
+		debugger;
+		return accumulator.concat(array)
+	},[]);</code></pre></details></li></ul><ul id="2f8bfa66-9bd5-4ddd-b8f7-42e508c0f52c" class="toggle"><li><details open=""><summary>Modules</summary><figure id="33e8d2f4-dd9d-4f08-902f-65ce249bbc0e" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-24_at_5.55.19_PM.png"><img style="width:144px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-24_at_5.55.19_PM.png"/></a></figure><pre id="37c1b5a7-18d1-466b-946c-7908471ee10b" class="code"><code>-----ES6+Webpack2-----
+//js1
+export const add = (a,b) =&gt; a+b;
+//or
+export default function add {
+	return a+b;
+}
+
+//js2
+import { add } from &#x27;./add&#x27;;
+//or
+import add from &#x27;./add&#x27;;
+
+//webpack
+module.exports = {
+	entry: &#x27;./app/main.js&#x27;,
+	outut: {
+		path: &#x27;./dist&#x27;,
+		filename: &#x27;bundle.js&#x27;
+	}
+}</code></pre></details></li></ul><hr id="1bad415d-def7-4edf-8bce-f1cba1f9f8aa"/><h2 id="681fcfca-afe8-426d-a1ea-2fc008959241" class="">Section 03: Data Structures in Javascript</h2><hr id="f4a6b386-279d-4952-8622-d968dd34e190"/><ul id="4157252e-1c9e-45af-8a9d-bb210fa50b49" class="toggle"><li><details open=""><summary>Operations On Data Structures</summary><ul id="c23373e8-0a6e-4c92-825a-b380ec5163f2" class="bulleted-list"><li style="list-style-type:disc">Insertion</li></ul><ul id="18ee9af6-e240-4783-a8c9-193206d10cc3" class="bulleted-list"><li style="list-style-type:disc">Deletion</li></ul><ul id="b0d213d5-c2b0-4938-b24c-c2bb1d18d441" class="bulleted-list"><li style="list-style-type:disc">Traversal</li></ul><ul id="632638a9-1069-4231-9cf5-e70f0b834fa7" class="bulleted-list"><li style="list-style-type:disc">Searching</li></ul><ul id="d5983ac0-1b0a-407e-b393-0286caf8436a" class="bulleted-list"><li style="list-style-type:disc">Sorting</li></ul><ul id="0352f385-ff49-4476-83d7-94280ff566df" class="bulleted-list"><li style="list-style-type:disc">Access</li></ul></details></li></ul><ul id="fae9eac5-6097-4f34-8720-9e44b23e9608" class="toggle"><li><details open=""><summary>Array Introduction</summary><ul id="80ed453a-a125-4452-b7ce-7bef6399f6ee" class="toggle"><li><details open=""><summary>Pros &amp; Cons</summary><ul id="4e343f45-3229-4b2d-bcd1-ec047f665b8a" class="toggle"><li><details open=""><summary>Pros</summary><ul id="0883e8e5-8cd3-4008-a683-b86ad05dc3cc" class="bulleted-list"><li style="list-style-type:disc">Fast lookups</li></ul><ul id="bef5689b-9e05-4ab3-bb2e-6c6255ba692d" class="bulleted-list"><li style="list-style-type:disc">Fast push/pop</li></ul><ul id="2b555ac0-4a85-4dd2-bdba-8d5d535f0bb3" class="bulleted-list"><li style="list-style-type:disc">Ordered</li></ul></details></li></ul><ul id="0f7678c1-751a-4747-bfd3-5b9152d29ce3" class="toggle"><li><details open=""><summary>Cons</summary><ul id="8991c071-181d-48f1-9ebe-beaf5ccc29cc" class="bulleted-list"><li style="list-style-type:disc">Slow inserts</li></ul><ul id="bb905cf7-a20e-4a00-a7d5-8a5b899e02fc" class="bulleted-list"><li style="list-style-type:disc">Slow deletes</li></ul><ul id="bbc14bcc-698a-4831-9dbf-68db72fd6de4" class="bulleted-list"><li style="list-style-type:disc">Fixed size (if using static array)</li></ul></details></li></ul></details></li></ul><ul id="97e89484-f9f1-4581-b000-c418b4b511f9" class="toggle"><li><details open=""><summary>Lookup</summary><p id="d9a61857-8a9e-4450-a4c7-729efc4b198c" class="">O(1)</p></details></li></ul><ul id="41e1c46f-4aea-498f-a38a-900332c0d564" class="toggle"><li><details open=""><summary>Push</summary><p id="3ac2ea35-0062-47d9-a273-ee1b7bd19faf" class="">O(1)</p></details></li></ul><ul id="38a605fa-f033-4893-aa83-7e1863198ab4" class="toggle"><li><details open=""><summary>Insert</summary><p id="1047f4b1-1f39-4086-8f23-3ed330398435" class="">O(n)</p></details></li></ul><ul id="4ff6954a-1026-4265-b384-51177514dc67" class="toggle"><li><details open=""><summary>Delete</summary><p id="aee9df9a-87b6-46bd-b35b-86830e34ec13" class="">O(n)</p></details></li></ul><pre id="69ef66b2-84a9-421a-bc27-9bfc9b85c5e6" class="code"><code>const strings=[&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;,&#x27;d&#x27;];
+// On 32-bit system (4 shelves): 4*4 = 16 bytes of storage
+
+strings[2]
+
+// push
+strings.push(&#x27;e&#x27;); // O(1), adding at the end not looping
+
+// pop
+strings.pop(); // O(1)
+
+// unshift
+strings.unshift(&#x27;x&#x27;) // O(n), (add at beginning) 
+
+// splice
+strings.splice(2, 0, &#x27;alien&#x27;) // O(n/2)=O(n), add &#x27;alien&#x27; to index 2</code></pre></details></li></ul><ul id="90213b88-8f28-4091-b226-64cebe2b3594" class="toggle"><li><details open=""><summary>Static vs Dynamic Arrays</summary><ul id="74490ce0-c7e4-4514-921f-3accc1e642cb" class="toggle"><li><details open=""><summary>Static</summary><p id="b424ab49-823e-44f1-84ef-90d546d38b95" class="">Fixed in size</p></details></li></ul><ul id="2b9ea84d-2e55-439e-b8b6-db93ca617df5" class="toggle"><li><details open=""><summary>Dynamic</summary></details></li></ul></details></li></ul><ul id="06bcf7c2-0c5c-4b29-9c16-8b3d2f6f8f39" class="toggle"><li><details open=""><summary>Implementing An Array</summary><pre id="323af688-bf62-40b9-b27a-030a1da09e32" class="code"><code>class MyArray {
+	constructor() {
+		this.length = 0;
+		this.data = {};
+	}
+
+	get(index) {
+		return this.data[index];
+	}
+
+	push(item) {
+		this.data[this.length] = item;
+		this.length++
+		return this.length
+	}
+
+	pop() {
+		const lastItem = this.data[this.length-1];
+		delete this.data[this.length-1];
+		this.length--;
+		return lastItem;
+	}
+
+	delete() {
+		const item = this.data[index];
+		this.shiftItems(index);
+	}
+
+	shiftItems(index) {
+		for (let i = index; i &lt; this.length - 1; i++)
+		{
+			this.data[i]  this.data[i+1];
+		}
+		delete this.data[this.length-1];
+		this.length--;
+	}
+}
+
+const newArray = new MyArray();
+newArray.push(&#x27;hi&#x27;);
+newArray.push(&#x27;you&#x27;);
+newArray.pop();
+newArray.push(&#x27;are&#x27;);
+newArray.push(&#x27;nice&#x27;);
+console.log(newArray);</code></pre></details></li></ul><ul id="16f33035-ed7b-44b7-b861-a63e4dc77fa2" class="toggle"><li><details open=""><summary>Strings and Arrays</summary><p id="deec8e08-4978-4ecc-a355-73aeba9ca53e" class="">Turn string questions into array questions :) </p></details></li></ul><ul id="59cc36c3-68b5-4f0b-a3bf-b8c418237055" class="toggle"><li><details open=""><summary>Exercise: Reverse a String</summary><ul id="5ef64eb8-81b9-4d00-9012-859eebd3f3da" class="toggle"><li><details open=""><summary>First Solution</summary><pre id="bd753a5a-bd32-4cf2-bd79-5d6720f74d90" class="code"><code>// Reverse any arbitrary string
+// &#x27;Hi my name is Alex&#x27; should be &#x27;xelA si eman ym iH&#x27;
+
+function reverse(str) {
+	// Check input is a string
+	if (!str || str.length &lt;2 || typeof str !== &#x27;string&#x27;) {
+		return(&#x27;Please put in a valid string greater than 2 characters&#x27;)
+	} 
+
+	const backwards = [];
+	const totalItems = str.length-1;
+
+	for (let i = totalItems; i=0; i--) {
+		backwards.push(str[i]);
+	} 
+	
+	return backwards.join(&#x27;&#x27;); // convert back into a string
+	//return backwards.toString
+}</code></pre></details></li></ul><ul id="28af7f62-4229-45f7-a196-397567176107" class="toggle"><li><details open=""><summary>Second (Cleaner) Solution</summary><pre id="00337a64-8ed2-424f-aa45-eda3f3a71b50" class="code"><code>function reverse2(str) {
+	return str.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;);
+}</code></pre></details></li></ul><ul id="72a1ffa9-13dc-4f8a-8e49-d245c754364a" class="toggle"><li><details open=""><summary>Third (Cleaner) Solution</summary><pre id="313ba951-3f07-4236-83fe-90ca92a18069" class="code"><code>const reverse3 = str =&gt; str.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;);</code></pre></details></li></ul></details></li></ul><ul id="be2a3da7-1a7c-4cff-824c-ba440c40c602" class="toggle"><li><details open=""><summary>Exercise: Merge Sorted Arrays</summary><pre id="f22756ea-3f23-4a3c-b41f-c29847c0f722" class="code"><code>// mergeSortedArrays([0,3,4,31],[4,6,30])
+// [0,3,4,4,6,30,31]
+
+function mergeSortedArrays(array1,array2) {
+	const mergedArray= [];
+	let array1Item = array1[0];
+	let array2Item = array2[0];
+	let i = 1;
+
+	// Check Input
+	if (array1.length === 0) {
+		return array2;
+	}
+
+	if (array2.length === 0) {
+		return array1;
+	}
+
+	while (array1Item || array2Item) {
+		if (!undefined array2Item || array1Item &lt; array2Item) {
+			mergedArray.push(array1Item);
+			array1Item = array1[i]
+			i++;
+		} else {
+			mergedArray.push(array2Item);
+			array2Item = array2[j]
+			j++;
+		}
+	}
+
+	return mergedArray;
+}</code></pre></details></li></ul><ul id="72097100-7058-42f6-858b-920ae955bff0" class="toggle"><li><details open=""><summary>Hash Functions</summary><p id="6dfd9223-ea3d-46d1-ae20-d2406272c164" class=""><strong>Idempotent: 1-1 (unique output)</strong></p></details></li></ul><ul id="0bdb7e42-4fc5-4019-8eeb-8383031e3540" class="toggle"><li><details open=""><summary>Hash Collisions</summary><ul id="3187d291-6b85-4393-9280-ac9907fed7d6" class="toggle"><li><details open=""><summary>Main Problem with Hash Functions: Hash Collisions</summary></details></li></ul><ul id="94f1845b-ebd8-4f49-a32c-39e34976fff4" class="toggle"><li><details open=""><summary>Insert</summary><p id="e2831c52-c9d8-4db9-9cf9-2de4b3e7bb04" class="">O(1)</p></details></li></ul><ul id="c2f98ec7-71d6-48f9-bbf6-e9a19a03496a" class="toggle"><li><details open=""><summary>Lookup (may take O(n))</summary><p id="676049b1-fce7-425f-a720-feac52d6a294" class="">O(1)</p></details></li></ul><ul id="3c00b38c-fda3-4d3f-bd54-0c5828bee2e9" class="toggle"><li><details open=""><summary>Delete</summary><p id="5b5728e0-0ae3-49d2-a900-6587430d761c" class="">O(1)</p></details></li></ul><ul id="5fda1c02-13ee-4b70-b06f-4d4ab12b6ca4" class="toggle"><li><details open=""><summary>Search</summary><p id="dbb3236e-0845-455f-b40f-09ffb021ab60" class="">O(1)</p></details></li></ul><pre id="b4f13608-346a-46f2-bfeb-ea357774c8e7" class="code"><code>let user = {
+	age: 54,
+	name: &#x27;Kylie&#x27;,
+	magic: true,
+	scream: function() {
+		console.log(&#x27;ahhh!&#x27;);
+	}
+}
+
+user.age // O(1)
+user.spell = &#x27;abra kadabra&#x27;; // O(1)
+user.scream(); // O(1)
+// Hash collisions  O(n/k)
+// Many methods to resolve (separate chaining (linked lists), etc.)</code></pre></details></li></ul><ul id="09d03268-01cc-4806-9172-88ce4a5d7087" class="toggle"><li><details open=""><summary>Hash Tables in Different Languages</summary><pre id="40935772-f13b-4a7a-ac92-aa1c2130cc69" class="code"><code>// Map allows you to save any data type as key
+// Maintains insertion order
+const a = new Map()
+
+// Sets only stores the keys, no values
+const b = new Sets()</code></pre></details></li></ul><ul id="98c64bbc-3bdd-49e2-839b-7e223126e40e" class="toggle"><li><details open=""><summary>Exercise: Implement a Hash Table</summary><pre id="a94e3823-ee77-4658-8274-4640e905e378" class="code"><code>class HashTable() {
+	constructor(size) {
+		this.data = newArray(size);
+	}
+
+	_hash(key) {
+		let hash = 0;
+		for (let i =0; i &lt; key.length; i++){
+			hash = (hash+key.charCodeAt(i)*i)%this.data.length;
+		}
+		return hash;
+	}
+
+	set(key,value) {
+		// Need to account for collisions
+		let address = this._hash(key);
+		if (!this.data[address]) {
+			this.data[address] = [];
+		} 
+		this.data[address].push(key,value);
+		return this.data
+	}
+	
+	get(key) {
+		// Need to check if actually exists
+		// Also need to check for multiple items
+		if (this.data[this._hash(key)]) {
+			for (let i = 0; i&lt; this.data[this._hash(key)].length; i++) {
+				if (this.data[this._hash(key)][i][0] === key) {
+					return this.data[this._hash(key)][i][1];
+				}
+			}
+		} // O(1)
+		return undefined
+	}
+}
+
+const myHashTable = new HashTable(50);
+myHashTable.set(&#x27;grapes&#x27;,10000);
+myHashTable.get(&#x27;grapes&#x27;);</code></pre></details></li></ul><ul id="90b760ce-5b34-4cfa-ba9a-28c09fddec9d" class="toggle"><li><details open=""><summary>keys()</summary><pre id="8789a24b-4de7-42a7-8668-30ce21e7f31a" class="code"><code>class HashTable() {
+	constructor(size) {
+		this.data = newArray(size);
+	}
+
+	_hash(key) {
+		let hash = 0;
+		for (let i =0; i &lt; key.length; i++){
+			hash = (hash+key.charCodeAt(i)*i)%this.data.length;
+		}
+		return hash;
+	}
+
+	set(key,value) {
+		// Need to account for collisions
+		let address = this._hash(key);
+		if (!this.data[address]) {
+			this.data[address] = [];
+		} 
+		this.data[address].push(key,value);
+		return this.data
+	}
+	
+	get(key) {
+		// Need to check if actually exists
+		// Also need to check for multiple items
+		if (this.data[this._hash(key)]) {
+			for (let i = 0; i&lt; this.data[this._hash(key)].length; i++) {
+				if (this.data[this._hash(key)][i][0] === key) {
+					return this.data[this._hash(key)][i][1];
+				}
+			}
+		} // O(1)
+		return undefined
+	}
+
+	keys() {
+		const keysArray = [];
+		for (let i=0; i &lt; this.data.length; i++) {
+			if (this.data[i]) {
+				keysArray.push(this.data[i][0][0])
+			}
+			return keysArray;
+		}
+}
+
+const myHashTable = new HashTable(50);
+myHashTable.set(&#x27;grapes&#x27;,10000);
+myHashTable.get(&#x27;grapes&#x27;);</code></pre></details></li></ul><ul id="88593da2-36d9-4daa-8af5-69d425bd8195" class="toggle"><li><details open=""><summary>Exercise: First Reccuring Character</summary><ul id="c4a4b971-506b-433f-a96d-8cc0eb9b7b36" class="toggle"><li><details open=""><summary>Overview</summary><pre id="bac10ce2-f573-4f99-b75e-4689ad1eaa45" class="code"><code>// [2,5,1,2,5] should return 2
+// [2,1,5] should return undefined</code></pre></details></li></ul><ul id="1aae0b96-5277-4ebb-a945-51d657688e7d" class="toggle"><li><details open=""><summary>Hash Table/Dictionary Solution</summary><pre id="74c503da-1692-4aa9-9adf-9dd82e63077b" class="code"><code>// [2,5,1,2,5] should return 2
+// [2,1,5] should return undefined
+
+function firstRecurringCharacter(input) {
+	let map = {};
+	for (let i = 0; i &lt; input.length; i++) {
+		if (map[input[i]] !== undefined) {
+			return input[i]
+		} else {
+			map[input[i]] = i;
+		}
+	}
+	return undefined;
+} // O(n)
+firstRecurringCharacter([2,5,1,2,3,5,1,2,4]);</code></pre></details></li></ul></details></li></ul><ul id="dbadaa89-2397-4836-8fdd-6da44d6e268d" class="toggle"><li><details open=""><summary>Hash Tables Review</summary><ul id="2ba0c674-a178-468e-8c2e-1b4ca6829883" class="toggle"><li><details open=""><summary>Pros</summary><ul id="f69f328e-cfaf-4eab-9c7b-bf753130378a" class="bulleted-list"><li style="list-style-type:disc">Fast lookups*<ul id="29a3328b-3808-457d-a627-3842a3f8e70f" class="bulleted-list"><li style="list-style-type:circle">*Good collision resolution needed</li></ul></li></ul><ul id="ec18c553-aabe-4807-a7c4-6d43a7cc8cea" class="bulleted-list"><li style="list-style-type:disc">Fast inserts</li></ul><ul id="e8477c8c-8708-4cec-adad-cdb6ab5389a5" class="bulleted-list"><li style="list-style-type:disc">Flexible keys</li></ul></details></li></ul><ul id="bcadd9bc-db1a-430c-b9ef-d83ce7be49eb" class="toggle"><li><details open=""><summary>Cons</summary><ul id="3d4f8821-f068-4941-842f-f3b3fa30a6a5" class="bulleted-list"><li style="list-style-type:disc">Unordered</li></ul><ul id="9b2d96f7-5bea-460a-acf0-e65b7773e639" class="bulleted-list"><li style="list-style-type:disc">Slow key iteration</li></ul></details></li></ul></details></li></ul><hr id="234a5d42-a65a-4f25-a87c-d04760f559f1"/><h2 id="f2f1d5b2-5a23-4052-8250-17ca5f7846d4" class="">Section 04: Javascript Foundation III</h2><hr id="20f74ce7-6ebe-4284-9e31-83fac02a36f3"/><ul id="fe93af52-16b4-410f-87f9-9f6bcf0ed68c" class="toggle"><li><details open=""><summary>Inside the Engine</summary><ul id="5aff2ded-fca9-40bd-b2c0-af04ab24f9d3" class="toggle"><li><details open=""><summary>Parser</summary><p id="5267c9b9-752f-4d7b-8d03-7bd8cbf5b074" class="">Give Javascript file, completes <strong>lexical analysis </strong>(turn the code into tokens to identify their meaning)</p></details></li></ul><ul id="ac7565df-8e7a-4970-b076-9be48d20a00e" class="toggle"><li><details open=""><summary>AST</summary><p id="df55f689-1030-4626-8c34-4eaf6e924770" class="">Tokens are formed into an Abstract Syntax Tree (AST)</p></details></li></ul><ul id="0a8678ec-94d0-4664-b91b-12a0fa39a118" class="toggle"><li><details open=""><summary>Interpreter</summary><ul id="74b61371-e6f3-46f3-8d78-2a0641c3b3cb" class="bulleted-list"><li style="list-style-type:disc">“Ignition” [V8]</li></ul><ul id="cbd38817-cd70-4c83-b74b-ece98b8db922" class="bulleted-list"><li style="list-style-type:disc">Spits out bytecode from AST</li></ul></details></li></ul><ul id="9c18e707-81af-43a4-9957-e65b9211216f" class="toggle"><li><details open=""><summary>Bytecode</summary><ul id="dda1f70e-9070-4447-8f14-a0896ab1c9df" class="bulleted-list"><li style="list-style-type:disc">Not low level, but code able to be interpreted by engine</li></ul></details></li></ul><ul id="b440a688-4ea3-4acf-88b1-b69a976a50e6" class="toggle"><li><details open=""><summary>Profiler</summary><ul id="a96c1a32-0609-4f8b-8499-8334a2e615f9" class="bulleted-list"><li style="list-style-type:disc">Makes notes on how to optimize code</li></ul><ul id="00bd43de-d385-4e5f-bf7f-883ad9c7476e" class="bulleted-list"><li style="list-style-type:disc">If same lines of codes are run, some of these lines passed to the compiler</li></ul></details></li></ul><ul id="859c8973-7e9f-4ca4-81ae-9436c1609cd4" class="toggle"><li><details open=""><summary>Compiler</summary><ul id="95ed8041-ae92-4c17-83ab-5534b41dbb71" class="bulleted-list"><li style="list-style-type:disc">“Turbofan” [V8]</li></ul><ul id="d9531734-6f04-4338-a35c-119679e02633" class="bulleted-list"><li style="list-style-type:disc">As application runs, compilers makes optimizations + replaces sections where it can be improved in the bytecode instead of the slow bytecode</li></ul></details></li></ul><ul id="bcc2bc01-769a-49f2-99c7-1252d377a671" class="toggle"><li><details open=""><summary>Mini Javascript Engine</summary><pre id="b3a510b8-f430-43cc-8156-30cb08b63406" class="code"><code>// Javascript Engine
+function jsengine(code) {
+	return code.split(/\s+/)
+}
+
+jsengine(&#x27;var a = 5&#x27;)</code></pre></details></li></ul><figure id="76e4592c-48d0-4130-a313-981dd64b2c1c" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-25_at_9.55.04_PM.png"><img style="width:2462px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-25_at_9.55.04_PM.png"/></a></figure></details></li></ul><ul id="c61cc954-77ed-4e0a-9875-f080b71ee6df" class="toggle"><li><details open=""><summary>Interpreters and Compilers</summary><ul id="fa2530c5-d1f0-4f0f-a532-d1cd0f6c7092" class="toggle"><li><details open=""><summary>Interpreters</summary><ul id="934d9fa0-20a9-4708-b28d-2456ebd5ba5b" class="bulleted-list"><li style="list-style-type:disc">Translation happens line-by-line, on the fly</li></ul><ul id="0417c348-6be8-4493-881d-08ddc95ec375" class="toggle"><li><details open=""><summary>Pros</summary><ul id="d014ed9b-f728-42f6-b90c-d66b1369c55a" class="bulleted-list"><li style="list-style-type:disc">Quick to get up and running</li></ul></details></li></ul><ul id="41ef92f4-3349-4904-a62b-e4cc5195e855" class="toggle"><li><details open=""><summary>Cons</summary><ul id="1d16795b-3324-48a1-91f6-d4cfe4123ca4" class="bulleted-list"><li style="list-style-type:disc">Doesn’t perform optimizations</li></ul></details></li></ul></details></li></ul><ul id="6400e06d-640d-4d8d-a9c9-2417ecea20a4" class="toggle"><li><details open=""><summary>Compilers</summary><ul id="faf9dcf5-4570-4359-9ad4-452b94a09020" class="bulleted-list"><li style="list-style-type:disc">Works ahead of time to create a translation of what’s written</li></ul><ul id="03a4a227-4841-42fc-8045-12a69038709c" class="bulleted-list"><li style="list-style-type:disc">Takes a pass through the code and creates the program in a new language</li></ul><ul id="dd2643ad-53e2-4477-a31e-f6564f055054" class="bulleted-list"><li style="list-style-type:disc">Lower level languages generally</li></ul><ul id="7ae46e0e-3f15-4841-a7d6-39379e311a7d" class="toggle"><li><details open=""><summary>Pros</summary><ul id="1b9fda4f-0225-4a04-91ab-b79efb981a9c" class="bulleted-list"><li style="list-style-type:disc">e.g. sees repeated code, simplifies it</li></ul><ul id="b6f645ea-c30b-4c6d-99eb-b16111c8b278" class="bulleted-list"><li style="list-style-type:disc">Doesn’t need to repeat translation for each fast through</li></ul><ul id="ac332241-c0ab-4576-a61c-1c2247130958" class="bulleted-list"><li style="list-style-type:disc">Generally faster to run</li></ul></details></li></ul><ul id="14d28a1e-68c1-417b-ab01-22f306ad6182" class="toggle"><li><details open=""><summary>Cons</summary><ul id="76db74d5-ad10-4fbd-b0d0-082ff8cc6960" class="bulleted-list"><li style="list-style-type:disc">Little bit more time to start up</li></ul></details></li></ul></details></li></ul><ul id="dddd9574-2a84-496b-b7fe-9c8483bdcc2f" class="toggle"><li><details open=""><summary>Most programs are both interpreters and compilers (<strong>JIT Compilers</strong> = Just in Time Compilers)</summary></details></li></ul></details></li></ul><ul id="0a562c66-f10d-4d12-9f60-a7b8aebf2266" class="toggle"><li><details open=""><summary>Comparing Other Languages</summary><ul id="4754262c-80a2-4b5a-bbb0-e6f9f638b476" class="toggle"><li><details open=""><summary><code>g++ your_program.cpp -o your_program</code></summary><ul id="eaf8187a-0e6e-40c8-8c9f-0cccca1c13ee" class="bulleted-list"><li style="list-style-type:disc">Complies your_program (in C++) into an executable (your_program)</li></ul></details></li></ul><ul id="6a9c1f96-f946-427e-8586-bf98e94cfdfe" class="bulleted-list"><li style="list-style-type:disc">However, with Java, Java used a JVM (Java Virtual Machine)</li></ul><ul id="e35f5bb5-f6c0-4d6a-b4ba-4a8e109d68a3" class="bulleted-list"><li style="list-style-type:disc">Complied/interprets code into byte code</li></ul><ul id="cbc51d51-7e8d-4a87-b584-9cbd7da0d93b" class="bulleted-list"><li style="list-style-type:disc">JVM interprets this byte code (only once)</li></ul><ul id="3184b119-d34a-4eab-8a78-10cc6a52d5e8" class="bulleted-list"><li style="list-style-type:disc">Machines don’t understand this byte code</li></ul><ul id="860390f4-c53a-4c5f-ab30-eabebbbc19a5" class="bulleted-list"><li style="list-style-type:disc">Need a JVM or engine to translate this byte code</li></ul><ul id="230cab23-827e-4b58-b42e-e7450a4b0b87" class="bulleted-list"><li style="list-style-type:disc">Javascript is both an interpreted and compiled language (depends on implementation)</li></ul></details></li></ul><ul id="bfb69c21-ad29-43a9-b65d-0d11079b0437" class="toggle"><li><details open=""><summary>Writing Optimized Code</summary><ul id="02363444-4662-4a1a-bbaa-df0b2c0d06c3" class="toggle"><li><details open=""><summary>Things to Watch Out For (can be bad for optimizations)</summary><ul id="3dc038f9-3c15-4beb-b4ae-5fef3e9aa1ad" class="bulleted-list"><li style="list-style-type:disc"><code>eval()</code></li></ul><ul id="38713222-d2e0-4ec4-95c4-0a7160e8173d" class="bulleted-list"><li style="list-style-type:disc">arguments</li></ul><ul id="fb20e11e-cc79-4761-94ac-2a525fc6307c" class="bulleted-list"><li style="list-style-type:disc"><code>for in</code></li></ul><ul id="f4c24fb0-e721-427c-b74f-b485ea02c40a" class="bulleted-list"><li style="list-style-type:disc"><code>with</code></li></ul><ul id="7b419632-b27b-48c9-966c-a506b66fe616" class="bulleted-list"><li style="list-style-type:disc"><code>delete</code></li></ul><ul id="2a2986ec-3ab0-40fe-9e19-a7bc65913eb8" class="bulleted-list"><li style="list-style-type:disc">Hidden classes</li></ul><ul id="a81674ea-eaff-4586-9fab-0838647241a5" class="bulleted-list"><li style="list-style-type:disc">Inline catching</li></ul></details></li></ul><ul id="9fdff14d-b8b5-4469-8d18-66a928f67852" class="toggle"><li><details open=""><summary><strong>Inline Caching</strong></summary><pre id="5eaa939f-b262-43b5-b111-9583e488f1ee" class="code"><code>// inline caching
+function findUser(user) {
+	return `found ${user.firstName} ${user.lastName}`
+}
+
+const userData {
+	firstName: &#x27;Johnson&#x27;
+	lastName: &#x27;Junior&#x27;
+}
+
+findUser(userData);</code></pre></details></li></ul><ul id="32671c82-7733-4575-926f-4dec1fc34761" class="toggle"><li><details open=""><summary><strong>Hidden Classes</strong></summary><pre id="a832520c-efba-40ed-a2b0-8f707b253a6a" class="code"><code>// hidden classes
+function animal(x,y) {
+	this.x = x;
+	thix.y = y;
+}
+
+const obj1 = new animal(1,2);
+const obj2 = new animal(3,4);
+
+obj1.a = 30;
+obj1.b = 100;
+obj2.b = 30;
+obj2.a = 100;
+// this order of things will actually run slower^^
+// either add as undefined in the beginning and then change, or
+// keep things in the same order
+// same reason we have problems with delete
+
+delete obj1.x = 30; // now objects don&#x27;t match up anymore
+// ** Write code that is predictable **</code></pre></details></li></ul></details></li></ul><ul id="61f0ec9e-b355-46bb-ae3f-157c3767a500" class="toggle"><li><details open=""><summary>WebAssembly</summary><ul id="8953e0a3-c74c-4110-af86-2970150bcf4f" class="toggle"><li><details open=""><summary>Why not just use machine code from the beginning?</summary><ul id="8fef769d-c4f6-4ca9-a9fa-f31ec0c834f8" class="bulleted-list"><li style="list-style-type:disc">Either compilation would have to be super fast (UI end)</li></ul><ul id="1a84be32-2bc2-46a6-a68b-038f453ff5de" class="bulleted-list"><li style="list-style-type:disc">OR competing browsers would have to agree on binary executable format that would understand this machine code<ul id="253f885b-927f-4aa3-8c5e-3d1bcc1546d9" class="bulleted-list"><li style="list-style-type:circle">…but WebAssembly is an agreed upon binary executable file</li></ul></li></ul></details></li></ul><ul id="95dfd9dd-4a74-408e-9475-86743b0ab5d7" class="toggle"><li><details open=""><summary>Web Assembly may be a game changer</summary></details></li></ul></details></li></ul><ul id="b7eb2ae9-eec6-427f-84e5-30136aebf28b" class="toggle"><li><details open=""><summary>Call Stack and Memory Heap</summary><ul id="cbda1844-a723-4868-8cd7-b7fa3dc4d73d" class="toggle"><li><details open=""><summary>Call Stack</summary><ul id="6ec4f023-eac9-4f3d-b65b-21314837f44b" class="bulleted-list"><li style="list-style-type:disc">Region in memory that operates in First in Last Out Mode (FILO)</li></ul><ul id="08231a5f-6713-4f5c-b8af-5596cfaf6dfc" class="bulleted-list"><li style="list-style-type:disc">Stores functions and variables as code executes</li></ul><ul id="3ed1259b-4a25-479a-8ed7-46e670c57dbf" class="bulleted-list"><li style="list-style-type:disc">At each entry, the stack frame lets us know where we are in the code</li></ul><ul id="49d8aa3a-c054-4df3-b2fb-362e193a8117" class="bulleted-list"><li style="list-style-type:disc">^Uses the memory heap</li></ul></details></li></ul><ul id="4b02ca0b-2105-4cf7-9e2c-15c930c6814b" class="toggle"><li><details open=""><summary>Memory Heap</summary><ul id="a6557148-4d77-47da-aba6-71c529475c07" class="bulleted-list"><li style="list-style-type:disc">Free store</li></ul><ul id="2248031f-7ffc-48fe-9151-ebf170ae6be0" class="bulleted-list"><li style="list-style-type:disc">Large region in memory able to store any arbitrary data</li></ul></details></li></ul><pre id="65c0cad1-6a58-46d3-abd7-6e8912ca4e60" class="code"><code>// call stack and memory heap
+const number = 610; // allocate memory for number
+const string = &#x27;string text&#x27;; // allocate memory for string
+const human = { // allocate memory for an object and its values
+	first: &#x27;Andrei&#x27;,
+	last: &#x27;Neagoie&#x27;
+}
+
+function subtractTwo(num) {
+	return num-2;
+}
+
+function calculate() {
+	const sumTotal = 4+5;
+	return subtractTwo(sumTotal);
+}
+
+calculate() ;
+
+
+// callstack:
+// subtractTwo
+// calculate
+// (anonymous) - Global Execution Context</code></pre></details></li></ul><ul id="d3f644b5-d29e-4530-a505-e0809b27a562" class="toggle"><li><details open=""><summary>Stack Overflow</summary><pre id="2219e948-5ebc-4858-bbac-a024b6bc5b6d" class="code"><code>function inception() {
+	inception()
+}
+
+inception()</code></pre></details></li></ul><ul id="5eb3d9e6-1eaf-4966-beab-47a9bbc452d4" class="toggle"><li><details open=""><summary>Garbage Collection</summary><ul id="4328785a-dd18-4a19-97ba-4a80c824b020" class="bulleted-list"><li style="list-style-type:disc">When we finish calling a function (in Javascript), it’ll clean it up for us</li></ul><ul id="67d7347e-f52e-48e0-bb89-fd4822eb34b0" class="bulleted-list"><li style="list-style-type:disc">^Automatically frees up our memory</li></ul><ul id="727e6616-d7e4-4564-a2bf-2aa22d19735f" class="bulleted-list"><li style="list-style-type:disc">“Garbage collector” frees up our memories, “preventing memory leaks”<ul id="6d50f405-92f4-4545-a91c-3544942a922b" class="bulleted-list"><li style="list-style-type:circle">Uses Mark and Sweep algorithm <ul id="4f8d9fbf-5d66-4fdb-8402-5b4dded629f7" class="bulleted-list"><li style="list-style-type:square">Mark what we need, sweep what we don’t</li></ul></li></ul></li></ul><ul id="75c7148b-07ae-4d3a-a3e1-a5561d3bd2bc" class="bulleted-list"><li style="list-style-type:disc">In low level languages like C, <em>you</em> control garbage collection</li></ul></details></li></ul><ul id="e2120bc3-c778-47f7-a2ad-fc86db52e315" class="toggle"><li><details open=""><summary>Memory Leaks</summary><p id="3acfdfa1-8784-48cf-a662-58c55beb6d3e" class=""><strong><em>Pieces of memory that the application has used in the past and is not needed any longer, but has not been returned back to us</em></strong></p><ul id="83cb8444-1427-40f1-98c1-932b51af94d0" class="toggle"><li><details open=""><summary>Three common memory leaks</summary><pre id="3f998b5d-1f9d-40e1-86a1-e443f38401bc" class="code"><code>// Memory Leaks
+
+// Global variables
+var a = 1;
+var b = 1;
+var c = 1;
+
+// Event Listeners
+var element = document.getElementById(&#x27;button&#x27;);
+element.addEventListener(&#x27;click&#x27;,onClick);
+
+// Set Interval
+setInterval(() =&gt; {
+	// referencing objects
+	// never collected by garbage collector, keeps running
+})</code></pre></details></li></ul><pre id="0d37cfec-f017-4894-9990-e4b6d85fb7e8" class="code"><code>let array = [];
+for (let i=5; i&gt;1; i++) {
+	array.push(i-1)
+}
+// crashes browser</code></pre><ul id="66b06938-0409-4b59-95d7-93f2e7e1cdc7" class="toggle"><li><details open=""><summary>More examples</summary><pre id="b6f87d49-464b-4dac-8bd6-0add489a202e" class="code"><code>// var arr = [];
+// var obj = {};
+// var str = &#x27;&#x27;;
+for (var i=0; i&lt;1024*1024*128; i++) {
+	// arr.push(i)
+	// obj[i] = 1;
+	str += &#x27;&#x27;;
+}</code></pre></details></li></ul><ul id="4199c72a-2d2c-4103-a4cc-34f2f3f9d2fa" class="toggle"><li><details open=""><summary>Another Example (closures)</summary><pre id="32feb987-ec4d-4cee-a861-3bc06cf45af4" class="code"><code>var value = null;
+function closer() {
+	var last = value;
+	(function() {
+		last;
+	})(last);
+	value = {
+		a: function() {},
+	};
+}
+
+setInterval(function() {
+	closure();
+	console.log(process.memoryUsage());
+}, 1);</code></pre></details></li></ul><ul id="cbb7f053-292d-49e3-8081-e426914ffeca" class="toggle"><li><details open=""><summary>another</summary></details></li></ul></details></li></ul><ul id="a7a891b1-964c-45b5-8054-0c4235e813e4" class="toggle"><li><details open=""><summary>Single Threaded</summary><ul id="35ccd1c4-5d84-4c82-9d51-8e236839b127" class="bulleted-list"><li style="list-style-type:disc">Only one set of instructions executed at a time (one call stack) (synchronous)</li></ul></details></li></ul><ul id="77e298fc-e8df-4826-a643-11eb1bc1b1ee" class="toggle"><li><details open=""><summary>Exercise: Issue with Single Thread</summary><figure id="28775902-ca30-42b3-85a3-cc7b491cd863" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-25_at_11.16.17_PM.png"><img style="width:2454px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-25_at_11.16.17_PM.png"/></a></figure></details></li></ul><ul id="cc117a89-9241-4f55-972b-02d33d16c2d3" class="toggle"><li><details open=""><summary>Javascript Runtime</summary><ul id="1752f56d-0c96-4284-93d0-fcfaf6999497" class="bulleted-list"><li style="list-style-type:disc">Web browsers is working in the background while the synchronous javascript code is running (using Web API to communicate)</li></ul><ul id="7a03789e-32c0-4350-8649-b578f3f80dc4" class="bulleted-list"><li style="list-style-type:disc">Web API comes with the browser (javascript implementation and javascript runtime that provide their own Web API) (<code>window</code>)<ul id="0ba5b977-bfc6-4d67-8920-c8da65a9c46d" class="bulleted-list"><li style="list-style-type:circle">Web APIs = applications that provide a variety of things<ul id="6d8ec707-9bd8-43d8-a1c1-ba6a0c9e6a82" class="bulleted-list"><li style="list-style-type:square">Sent HHTP requests, click events on a DOM, setInterval, caching, database storage, etc.</li></ul></li></ul></li></ul><ul id="17396394-4b96-4693-a5cd-929ac93dde3c" class="bulleted-list"><li style="list-style-type:disc">These Web APIs are asynchronous</li></ul><ul id="f376f481-18d9-4e85-a5d1-4fe3f8befa4f" class="bulleted-list"><li style="list-style-type:disc">Items on the Call Stack, meant for the Web API, finishes that task, moves it to the callback queue<ul id="c6c0aa0f-b62a-4b00-be73-b48b8787910c" class="bulleted-list"><li style="list-style-type:circle">As soon as call stack is EMPTY, will grab this finished results from the callback queue</li></ul><ul id="a55fcd61-61c4-4034-91a1-f83f160fb072" class="bulleted-list"><li style="list-style-type:circle">Event loop only passes things from the Callback Queue when the call stack is EMPTY and we’ve run through the entire file at least once</li></ul></li></ul><pre id="6b294935-b9f4-475b-b6cd-8251f67fe686" class="code"><code>console.log(&#x27;1&#x27;);
+setTimeout(() =&gt; {console.log(&#x27;2&#x27;),1000}); // runs for 1s
+console.log(&#x27;3&#x27;);
+
+// 1, 3, 2</code></pre></details></li></ul><ul id="2b503a58-d53d-4c70-818f-4a46b18d77a0" class="toggle"><li><details open=""><summary>Node.js</summary><ul id="69ad3ec2-8bf0-4660-8095-1dc1a6919fc1" class="bulleted-list"><li style="list-style-type:disc">Global api</li></ul><ul id="2e60e63e-6dd4-4a49-a20d-2a3fe98e2fc2" class="bulleted-list"><li style="list-style-type:disc">Server-side platform based on asynchronousio that’s non-blocking</li></ul><ul id="4a183be2-2410-43c3-b5f2-a9e41b5245f1" class="bulleted-list"><li style="list-style-type:disc">Uses javascript outside of the browser</li></ul><figure id="0c20b41c-dbb3-48d1-8480-5b08af5cc6d9" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_11.23.20_AM.png"><img style="width:2484px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_11.23.20_AM.png"/></a></figure></details></li></ul><ul id="a7de7ced-2c98-45f9-bd0e-49460f43ffaf" class="toggle"><li><details open=""><summary>Exercise: Fix this Code</summary><ul id="9f00209a-fcf4-4938-8ec1-03dd652e8cf6" class="toggle"><li><details open=""><summary>Code</summary><pre id="a7bdfd2e-83c8-430a-9b2a-c199007f0689" class="code"><code>//fill array with 60000 elements
+const list = new Array(60000).join(&#x27;1.1&#x27;).split(&#x27;.&#x27;);
+
+function removeItemsFromList() {
+    var item = list.pop();
+
+    if (item) {
+        removeItemsFromList();
+    }
+};
+
+removeItemsFromList();</code></pre></details></li></ul><ul id="4a0fc01e-ddbc-425d-8eff-ed058cb6f49c" class="toggle"><li><details open=""><summary>Solution</summary><pre id="72c67fb5-322f-41d0-ba3e-e51ff3d58f44" class="code"><code>//fill array with 60000 elements
+const list = new Array(60000).join(&#x27;1.1&#x27;).split(&#x27;.&#x27;);
+
+function removeItemsFromList() {
+    var item = list.pop();
+
+    if (item) {
+      setTimeout(removeItemsFromList, 0);
+    }
+};
+
+removeItemsFromList();</code></pre></details></li></ul></details></li></ul><ul id="3738f8f4-a913-43e4-b903-b1b043b4196f" class="toggle"><li><details open=""><summary>Advanced Javascript Cheatsheet</summary><p id="642aac20-6a89-4eba-b20f-a783db9eb35a" class=""><a href="https://www.dropbox.com/s/30vy4rabchshvv2/Javascript_Cheatsheet_Zero_To_Mastery_V11.pdf?utm_campaign=your_javascript_cheatsheet_pdf_download&amp;utm_medium=email&amp;utm_source=mailerlite&amp;utm_term=2022-12-26&amp;dl=0">Cheatsheet</a></p></details></li></ul><hr id="7007c443-af1e-40f9-9ec3-1830cee05de8"/><h2 id="49b30335-5174-4b22-8e85-f084fd08dfca" class="">Section 05: Javascript Foundation III</h2><hr id="5ac2ee51-8efd-424e-ad4d-89d3f290af49"/><ul id="a7484152-beaf-47de-8d50-a98db7035573" class="toggle"><li><details open=""><summary>Execution Context</summary><ul id="4e525b6b-6df8-4d0d-91d3-754186f10ca5" class="toggle"><li><details open=""><summary>Execution contexts are what are called on the call stacks</summary></details></li></ul><ul id="c1f57ddb-9a7b-4870-af6f-af9c92167b58" class="toggle"><li><details open=""><summary>Any time code is run, it is always run within an execution context</summary></details></li></ul><ul id="eef7af75-bc49-45cd-b93a-38b1d1e68260" class="toggle"><li><details open=""><summary>Global Execution Context</summary><ul id="789c7e6c-3377-4ffe-bcb1-c855b724fb4d" class="toggle"><li><details open=""><summary>Global Object</summary></details></li></ul><ul id="24bacb93-464b-4d3b-b10d-aa353ed8ace4" class="toggle"><li><details open=""><summary>this</summary></details></li></ul></details></li></ul><figure id="ce310e85-37b9-4798-916c-f5af1f5b7d58" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_11.32.59_AM.png"><img style="width:480px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_11.32.59_AM.png"/></a></figure><figure id="9fac8b1d-4bfa-48e6-b30b-ecaf43b8e270" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_11.32.17_AM.png"><img style="width:192px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_11.32.17_AM.png"/></a></figure></details></li></ul><ul id="efca52a1-7d84-409b-9e89-4d5442a104fb" class="toggle"><li><details open=""><summary>Lexical Environment</summary><p id="7735d3ab-b2bf-4096-97d4-c9fe0a4a0402" class="">AKA Scope</p><p id="e6f2fb08-d7cc-4ae3-92a3-e29780f2ac5d" class=""><em>Lexical: relating to the words or vocabulary of a language</em></p><ul id="ce163e86-ace9-4257-9a2e-80e6d5de3c8f" class="bulleted-list"><li style="list-style-type:disc"><em>Where you write something</em></li></ul><ul id="69f2c1cd-ab9c-4642-b477-8dce14fc4e9b" class="bulleted-list"><li style="list-style-type:disc"><em><strong>“Lexical analysis” = checking to see where the words were written/which execution environment</strong></em></li></ul><ul id="6e00d443-ab59-4ab0-adb5-3186faca6d52" class="bulleted-list"><li style="list-style-type:disc">In Javascript our <span style="border-bottom:0.05em solid"><em>lexical scope</em></span> (available data + variables where the function was defined) determines our available variables. Not where the function is called (<span style="border-bottom:0.05em solid"><em>dynamic scope</em></span>)</li></ul></details></li></ul><ul id="c878d410-29c6-4234-918d-ae1eebe56b48" class="toggle"><li><details open=""><summary>Hoisting</summary><ul id="3219ce19-3ee7-49d2-aa87-bce57cb1c629" class="bulleted-list"><li style="list-style-type:disc">Allocates memory in advance, gets ready to run the function</li></ul><p id="1be0f043-809a-4d01-a91a-27d750160887" class=""><em><strong>Only </strong></em><em><strong><code>var</code></strong></em><em><strong> and </strong></em><em><strong><code>function</code></strong></em><em><strong> get hoisted</strong></em></p><ul id="8bf5fd3d-e580-497c-94e7-27e24e747f84" class="bulleted-list"><li style="list-style-type:disc"><code>var</code> gets hoisted (to undefined)</li></ul><ul id="a83c3951-36ac-4d2e-8a71-1d2f4d85f6b3" class="bulleted-list"><li style="list-style-type:disc"><code>function</code> gets fully hoisted</li></ul><pre id="21b8ed0f-5e0f-4e27-957b-d2c046ca90a3" class="code"><code>console.log(&#x27;1-----&#x27;);
+// var teddy = undefined;
+console.log(teddy);
+console.log(sing());
+var teddy = &#x27;bear&#x27;;
+function sing() {
+	console.log(&#x27;oh la la&#x27;);
+}
+
+// &#x27;1-----&#x27;
+// undefined
+// oh la la
+// undefined
+
+// first: allocates memory to vars and fns
+// functions are FULLY hoisted
+
+// but, if you change it so &#x27;function&#x27; is not the first keyword
+sing();
+(function sing() {
+	console.log(&#x27;oh la la&#x27;);
+})
+// undefined
+// not hoisted</code></pre></details></li></ul><ul id="4253c8bc-98c9-4389-9df5-282a9aa965bf" class="toggle"><li><details open=""><summary>Function Invocation</summary><p id="eb8cfa68-cf2f-4bd9-bffc-eb89c0d65096" class=""><em>Invocation = Call = Execution</em></p></details></li></ul><ul id="3e26b0f7-4837-4f97-8fad-1b532798ae89" class="toggle"><li><details open=""><summary>arguments Keyword</summary><ul id="1ae3185c-257b-431e-b193-0a74c9af85e9" class="toggle"><li><details open=""><summary>Example of arguments</summary><pre id="72eb7884-b60f-43c2-a172-f8c1541b415f" class="code"><code>function marry(person1,person2) {
+	console.log(&#x27;arguments&#x27;,arguments);
+	console.log(Array.from(arguments))
+	return `${person1} is now married to ${person2}`;
+}
+
+marry(&#x27;Tim&#x27;,&#x27;Tina&#x27;)
+
+// arguments: arguments {0: &#x27;Tim&#x27;, 1: &#x27;Tina&#x27;}</code></pre></details></li></ul><ul id="82d59287-c5cf-4e4a-bb0c-50a974c35e19" class="toggle"><li><details open=""><summary><strong>Rest Parameters</strong></summary><pre id="9206823f-ef65-4e5a-baf6-bfdf62eba7d4" class="code"><code>function marry(...args) {
+	console.log(&#x27;arguments&#x27;,args);
+	console.log(Array.from(arguments))
+	return `${args[0]} is now married to ${args[1]}`;
+}
+
+marry(&#x27;Tim&#x27;,&#x27;Tina&#x27;)
+
+// arguments: arguments {0: &#x27;Tim&#x27;, 1: &#x27;Tina&#x27;}</code></pre></details></li></ul></details></li></ul><ul id="49cb1a34-f374-4ab8-879e-a6f41ffc99f0" class="toggle"><li><details open=""><summary>Variable Environment</summary><figure id="5b16a235-82e3-4787-b9cb-94d39778c4ff" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_12.00.21_PM.png"><img style="width:2472px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_12.00.21_PM.png"/></a></figure><pre id="4529cd2e-2fd4-45f1-965d-e6a6d8487e28" class="code"><code>function two() {
+	var isValid; // undefined
+}
+
+function one() {
+	var isValid=true; // local environment
+	two(); // new
+}
+
+var isValid = false;
+one();
+
+// two() -- undefined
+// one() -- true
+// global -- false</code></pre></details></li></ul><ul id="0dabc528-7f13-4fbf-a0a8-c0fb112dfa01" class="toggle"><li><details open=""><summary>Scope Chain</summary><ul id="9ace26a0-b124-4d25-bfb9-2c6f5fb21cd2" class="bulleted-list"><li style="list-style-type:disc">Each context has a link to its parent<ul id="427e5e36-2643-4dd8-b370-f5018f8a7706" class="bulleted-list"><li style="list-style-type:circle">Depends on where the function is lexically</li></ul><ul id="d87b2ce7-891b-4065-95f0-3d2dfbcd0916" class="toggle"><li><details open=""><summary>Global Lexical Environment</summary><figure id="7db4541f-a074-4ad5-9e2c-b1b6391349fc" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_12.03.47_PM.png"><img style="width:2472px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_12.03.47_PM.png"/></a></figure><pre id="f93900d2-87f0-476b-abe4-e303fd2f1af5" class="code"><code>function findName() {
+	var b = &#x27;b&#x27;;
+	return printName();
+}
+
+function printName() {
+	var c = &#x27;c&#x27;;
+	return &#x27;ur name&#x27;
+}
+
+function sayMyName() {
+	var a = &#x27;a&#x27;;
+	return findName();
+}
+
+sayMyName();</code></pre></details></li></ul><ul id="e0123a10-1d28-4da9-9420-d6f41a131eba" class="toggle"><li><details open=""><summary>Function Lexical Environment</summary><figure id="26936b31-7af0-4edf-bee9-fef8a8b57243" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_12.07.41_PM.png"><img style="width:2470px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-26_at_12.07.41_PM.png"/></a></figure><pre id="a820a1ae-3b2c-4f16-9539-705324b89b53" class="code"><code>function sayMyName() {
+	var a = &#x27;a&#x27;;
+	return function findName() {
+		var b = &#x27;b&#x27;;
+		return function printName() {
+			var c = &#x27;c&#x27;;
+			return &#x27;ur name&#x27;
+		}
+	}
+}
+
+sayMyName(); // [Function: findName]
+sayMyName()(); // [Function: printName]
+sayMyName()()(); // &#x27;ur name&#x27;</code></pre></details></li></ul></li></ul></details></li></ul><ul id="dfcbf290-6b11-4b4f-b654-354e44e00f61" class="toggle"><li><details open=""><summary>Exercise: JS is Weird</summary><ul id="8f357dd8-a1ef-469a-b809-736e6363783f" class="toggle"><li><details open=""><summary>Example 1 </summary><pre id="2567e5e9-3191-454a-b33e-7ad8cccf5f1f" class="code"><code>// leakage of global variables
+&#x27;use strict&#x27; // prevents global from making vars
+function weird() {
+	height = 50; // not in weird env, GLOBAL creates this for you
+							// ** NEED TO DECLARE BEFORE HAND (HOISTING) **
+	return 50;
+}
+
+weird();
+
+// other, how to fix with &#x27;use strict&#x27;
+&#x27;use strict&#x27; 
+function weird() {
+	var height = 50;
+	return 50;
+}
+
+weird();</code></pre></details></li></ul><ul id="7b81baee-a3b4-46e6-b671-d5556092b51a" class="toggle"><li><details open=""><summary>Example 2</summary><pre id="25a4e647-3b6d-4893-b77b-43e833d17f99" class="code"><code>var heyhey = function doodle() {
+	// do something
+	return &#x27;heyhey&#x27;
+}
+
+heyhey() // no prob
+doodle() // nope
+				// doodle enclosed in own scope,
+				// added to its OWN execution context env
+// i.e. can only access doodle like this
+var heyhey = function doodle() {
+	// do something
+	doodle();
+	return &#x27;heyhey&#x27;
+}</code></pre></details></li></ul></details></li></ul><ul id="f4bb73a3-acd5-41e3-93c2-13d4e4b7ab43" class="toggle"><li><details open=""><summary>Function Scope vs. Block Scope</summary><ul id="b93aaa79-d4b3-4fb2-b0c7-6fd5e3505565" class="toggle"><li><details open=""><summary>Function Scope</summary><ul id="4f59047c-6782-4278-86c7-d439e97da79c" class="bulleted-list"><li style="list-style-type:disc">can’t access vars contained within function from the outside</li></ul></details></li></ul><ul id="1d1a7f8d-1a7a-4166-99c4-ce0fe5629431" class="toggle"><li><details open=""><summary>Block Scope</summary><p id="a7c55b27-5102-4a5e-be97-62f4dec4e115" class=""><code>let</code> and <code>const</code> let you do block scoping </p><ul id="95c8c087-9d5a-4504-9d17-a986d0b945e2" class="bulleted-list"><li style="list-style-type:disc">can’t access these vars within a loop</li></ul></details></li></ul></details></li></ul><ul id="2b393ba7-f721-411b-bb06-7963f69fb521" class="toggle"><li><details open=""><summary>Global Variables</summary></details></li></ul><ul id="14998426-7abf-4c7a-b86c-a0bea594684a" class="toggle"><li><details open=""><summary>IIFE</summary><p id="651b8856-320b-483c-b932-ba21a5b916fe" class="">Immediately Invoked Function Expression</p><ul id="1dac8158-47b7-4264-b31d-38abd9f6811c" class="toggle"><li><details open=""><summary>Immediately Invoked Function Expression</summary><pre id="fcc0c2d4-8043-41f1-b26c-6d386466d0fb" class="code"><code>(function() {
+
+})();</code></pre></details></li></ul><ul id="fd01429f-a1ed-4c09-9878-5c44faf82e39" class="toggle"><li><details open=""><summary>How to get about this local problem</summary><pre id="dd7ae91f-d27a-43a3-8830-2af6d3891e7e" class="code"><code>...
+&lt;script&gt;
+	var z = 1;
+	var script1 = (function () {
+		function a() {
+			return 5;
+		}
+		return {
+			a:a
+		} // returning an object
+	})();
+&lt;/script&gt;
+
+script1.a();
+//5</code></pre></details></li></ul><ul id="9cf6fba1-ecbd-4e48-8505-b14b0f902e6d" class="toggle"><li><details open=""><summary>Using jQuery</summary><pre id="64b570df-9781-4172-b146-b996078047c7" class="code"><code>...
+&lt;h1&gt;HELLLLOOOO&lt;/h1&gt;
+&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+	var z = 1;
+	var script1 = (function () {
+		$(`h1`).click(function() {
+			$(`h1`).hide();
+		})
+		return {
+		} 
+	})();
+&lt;/script&gt;</code></pre></details></li></ul><ul id="bee13b8c-4e77-4927-81ed-432eb7bc019d" class="toggle"><li><details open=""><summary>Using jQuery as a parameter</summary><pre id="0471077f-443d-415a-b0bf-54401595a665" class="code"><code>...
+&lt;h1&gt;HELLLLOOOO&lt;/h1&gt;
+&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+	var z = 1;
+	var script1 = (function (OMG) {
+		OMG(&#x27;h1&#x27;).click(function() {
+			OMG(&#x27;h1&#x27;).hide();
+		})
+		return {
+		} 
+	})(jQuery);
+&lt;/script&gt;</code></pre></details></li></ul></details></li></ul><ul id="9e4fb5e1-5adf-4223-aea1-11321f306048" class="toggle"><li><details open=""><summary>this Keyword</summary><p id="e3f4db9d-7feb-41ca-bb50-4d2f1ea549cc" class=""><em><span style="border-bottom:0.05em solid"><strong>this</strong></span></em><em> is the object that the function is a property of</em></p><ol type="1" id="66d28a2e-e9cf-49ca-abd4-da3f010f9617" class="numbered-list" start="1"><li>Gives methods access to their objects</li></ol><ol type="1" id="30eb8666-c245-4a71-94dd-9dea08a661b8" class="numbered-list" start="2"><li>Executes same code for multiple objects</li></ol><ul id="49db7898-6bb6-47e7-9a34-8c1375514d67" class="toggle"><li><details open=""><summary>Examples</summary><ul id="38d74006-0ebf-4723-b5e3-7798aae852f4" class="toggle"><li><details open=""><summary>Example 1</summary><pre id="93c70156-845d-4537-b568-13cea8ee22be" class="code"><code>function a() {
+	console.log(this); // referring to the window
+}
+
+a();</code></pre></details></li></ul><ul id="025d27ce-a54a-4945-8e70-64defdb1c9a9" class="toggle"><li><details open=""><summary>Example 2</summary><pre id="f2c4de06-3775-4a52-95ee-f7dbb5e010a3" class="code"><code>function b() {
+	&#x27;use strict&#x27;
+	console.log(this);
+};
+
+b(); // undefined</code></pre></details></li></ul><ul id="4f077a97-5904-4383-bb60-956f61800890" class="toggle"><li><details open=""><summary>Example 3</summary><pre id="457a0202-88bc-457a-96d9-74f66757daed" class="code"><code>const obj = {
+	name: &#x27;Billy&#x27;,
+	sing: function() {
+		return &#x27;la la la&#x27; + this.name
+	}
+}
+
+obj.sing();</code></pre></details></li></ul><ul id="8d83459c-d213-446a-b344-d056bbb7f423" class="toggle"><li><details open=""><summary>Example 4</summary><pre id="6684b6df-9a20-4a58-bf99-c2af5cda5562" class="code"><code>const obj = {
+	name: &#x27;Billy&#x27;,
+	sing: function() {
+		return &#x27;la la la&#x27; + this.name
+	}
+	singAgain() {
+		return this.sing() + &#x27;!&#x27;
+	}
+}
+
+obj.sing();</code></pre></details></li></ul><ul id="cdb67067-0b6f-47cd-89ed-b706993165e2" class="toggle"><li><details open=""><summary>Example 5</summary><pre id="c3a67647-ce63-4a51-8abd-eb8fcdccdd42" class="code"><code>function importantPerson() {
+	console.log(this.name);
+}
+
+const name = &#x27;Sunny&#x27;;
+const obj1 = {
+	name: &#x27;Cassy&#x27;,
+	importantPerson: importantPerson
+}
+const obj2 = {
+	name: &#x27;Jacob&#x27;,
+	importantPerson: importantPerson
+}</code></pre></details></li></ul></details></li></ul></details></li></ul><ul id="3c7efb40-8380-4fd0-bcb1-46ba7365c785" class="toggle"><li><details open=""><summary>Exercise: Dynamic Scope vs Lexical Scope</summary><p id="a6029d01-7932-4ece-b6ec-99dec45c458a" class=""><strong>Arrow functions are lexically bound</strong></p><ul id="880260ad-bc99-40c0-b8bb-d8c7c5e98d9b" class="toggle"><li><details open=""><summary>Example 1</summary><pre id="20cb6ef6-ff49-4bbc-ba38-11d6a0005f5e" class="code"><code>const a = function() {
+	console.log(&#x27;a&#x27;,this);
+	const b = function() {
+		console.log(&#x27;b&#x27;, this);
+		const c = function() {
+			hi: function() {
+			console.log(&#x27;c&#x27;,this)
+			}}
+		c.hi();
+	}
+	b();
+}
+
+a();
+// Window, window, hi</code></pre></details></li></ul><ul id="c82d1fe3-bf4b-4d09-9ccf-cbc56939b594" class="toggle"><li><details open=""><summary>Example 2</summary><pre id="41994432-4834-419b-b9e4-5065519f14ab" class="code"><code>const obj = {
+	name: &#x27;Billy&#x27;,
+	sing() {
+		console.log(&#x27;a&#x27;,this);
+		var anotherFunc = function();
+		{
+			console.log(&#x27;b&#x27;,this);
+		}
+		anotherFunc()
+	}
+}
+
+obj.sing();
+// name: &#x27;Billy&#x27; then Window
+// * instead of sing is where anotherFunc() got ran
+// ** obj didn&#x27;t call another function, sing did</code></pre></details></li></ul><ul id="f061e476-aa8a-4e06-b2d8-718c3aa21375" class="toggle"><li><details open=""><summary>Example 3</summary><pre id="179346ed-6c71-4142-b82d-e5e51bb5f732" class="code"><code>const obj = {
+	name: &#x27;Billy&#x27;,
+	sing() {
+		console.log(&#x27;a&#x27;,this);
+		var anotherFunc = () =&gt; {
+			console.log(&#x27;b&#x27;,this);
+		}
+		anotherFunc()
+	}
+}
+
+obj.sing();
+// name: &#x27;Billy&#x27; then name: &#x27;Billy&#x27;</code></pre></details></li></ul><ul id="05407415-b367-403a-a575-733fa7b65312" class="toggle"><li><details open=""><summary>Example 4</summary><pre id="af11616d-607b-4bd8-b2e5-ad46bcca77fa" class="code"><code>const obj = {
+	name: &#x27;Billy&#x27;,
+	sing() {
+		console.log(&#x27;a&#x27;,this);
+		var anotherFunc = function() {
+			console.log(&#x27;b&#x27;,this);
+		}
+		return anotherFunc.bind(this)
+	}
+}
+
+obj.sing()()
+// name: Billy then name: Billy</code></pre></details></li></ul><ul id="645ce88c-0a07-4bd6-8aab-7a81576d8430" class="toggle"><li><details open=""><summary>Example 5</summary></details></li></ul></details></li></ul><ul id="aa8f8d93-d0e8-4d16-b671-867b7504323b" class="toggle"><li><details open=""><summary><code>call()</code>, <code>apply()</code>, <code>bind()</code></summary><pre id="77733162-06e7-4b2c-a500-e1743a7ec919" class="code"><code>function a() {
+	console.log(&#x27;hi&#x27;);
+}
+
+a.call();
+a.apply(); // do the same, for now</code></pre><pre id="9072a296-ed2f-4c62-a158-1faee7b38b3a" class="code"><code>const wizard = {
+	name = &#x27;Merlin&#x27;,
+	health: 50,
+	heal(num1,num2) {
+		return this.health += num1+num2;
+	}
+}
+
+const archer = {
+	name: &#x27;Robin Hood&#x27;,
+	health: 30
+}
+
+wizard.heal();
+// Borrow the heal method from wizard for archer
+wizard.heal.call(archer, 50, 30) // 1st param is what it should be bound to
+wizard.heal.call(archer, [50,30]) // takes array of parameters, same thing
+
+// ** bind returns a function!! **
+const healArcher = wizard.heal.bind(archer, 50, 30);
+healArcher()</code></pre><ul id="7b42f909-3050-434f-9db5-462d8e805fec" class="toggle"><li><details open=""><summary><code>bind()</code></summary></details></li></ul></details></li></ul><ul id="964475f9-fb9c-4ea0-aaa2-2c45fa2e20b9" class="toggle"><li><details open=""><summary><code>bind()</code> and currying</summary><pre id="e2ccebbe-77bf-4508-9d7f-4eb1ca88c818" class="code"><code>// currying = only giving function partial parameter
+function multiply(a,b) {
+	return a*b
+}
+
+let multiplyByTwo = multiply.bind(this,2)
+console.log(multiplyByTwo(4));</code></pre></details></li></ul><ul id="c6ff0e42-9687-4115-8fac-fd12eb4e610e" class="toggle"><li><details open=""><summary>Exercise: <code>this</code> Keyword</summary><ul id="9a2c472c-01c5-4018-80c4-c8b202a887e9" class="toggle"><li><details open=""><summary>Exercise 1</summary><pre id="bcc5d02d-f05b-4947-a3dc-0dcab454d35f" class="code"><code>var b = {
+	name: &#x27;jay&#x27;,
+	say() {console.log(this)}
+}
+
+b.say(); // {name: jay, say: [Function]}</code></pre></details></li></ul><ul id="2e185392-e36e-4209-a394-1942eb179640" class="toggle"><li><details open=""><summary>Exercise 2</summary><pre id="45705942-5329-4700-b796-0b98c4756a90" class="code"><code>var c = {
+	name: &#x27;jay&#x27;,
+	say() {return function() {console.log(this)}}
+}
+
+c.say() // [Function]
+c.say()() // Window</code></pre></details></li></ul><ul id="be1bfe37-7204-416a-acd6-ae3ea71fbcd5" class="toggle"><li><details open=""><summary>Exercise 3</summary><pre id="400ad66a-2c30-497c-ab0e-b18fe0b6c067" class="code"><code>var d = {
+	name: &#x27;jay&#x27;,
+	say() {return () =&gt; console.log(this)}
+}
+
+d.say() // [Function]
+d.say()() // [name: &#x27;jay&#x27;, say: [Function]]</code></pre></details></li></ul></details></li></ul><ul id="d4b164c6-e165-4f3b-8ca7-987ab01241db" class="toggle"><li><details open=""><summary>Exercise: <code>this</code> Keyword 2</summary><ul id="056687c8-305d-4fee-aa71-d11418abcd37" class="toggle"><li><details open=""><summary>The Code</summary><pre id="cabf96db-90a9-44e1-ad66-1adfd4575c89" class="code"><code>const character = {
+  name: &#x27;Simon&#x27;,
+  getCharacter() {
+    return this.name;
+  }
+};
+const giveMeTheCharacterNOW = character.getCharacter;
+
+//How Would you fix this?
+console.log(&#x27;?&#x27;, giveMeTheCharacterNOW()); //this should return &#x27;Simon&#x27; bud doesn&#x27;t</code></pre></details></li></ul><ul id="deb8eef7-f9ac-4729-bff5-d986ea41b814" class="toggle"><li><details open=""><summary>The Fix</summary><pre id="8a91a4bc-9172-4d4f-aa6b-31701fa71d3e" class="code"><code>const character = {
+  name: &#x27;Simon&#x27;,
+  getCharacter() =&gt; return this.name;
+};
+const giveMeTheCharacterNOW = character.getCharacter;
+
+//How Would you fix this?
+console.log(&#x27;?&#x27;, giveMeTheCharacterNOW()); //this should return &#x27;Simon&#x27; bud doesn&#x27;t</code></pre></details></li></ul></details></li></ul><ul id="c820b612-91a2-4fdc-bf5e-5d99bab94bf0" class="toggle"><li><details open=""><summary>Context vs Scope</summary></details></li></ul><hr id="34668c65-0d93-4aac-96c1-f2dd8c5d1320"/><h2 id="e06638ce-a90d-4596-923f-618935011456" class="">Section 06: Types in Javascript</h2><hr id="19d9ee03-133f-4d70-a4bd-21515931c966"/><ul id="68161ca3-fb34-4562-80d5-4a541806e606" class="toggle"><li><details open=""><summary>Array.isArray()</summary></details></li></ul><ul id="d4cd56a5-8803-40ff-be74-7aeccdd0c615" class="toggle"><li><details open=""><summary>Pass by Value vs Pass by Reference</summary><pre id="25c34b37-87ca-46d6-8f99-d496062242f6" class="code"><code>let obj1 = {name: &#x27;Yao&#x27;, password: &#x27;123&#x27;};
+let obj2 = obj1;
+
+obj2.password = &#x27;easypeasy&#x27;
+
+console.log(obj1);
+console.log(obj2);
+// {name: &#x27;Yao&#x27;, password: &#x27;easypeasy&#x27;}
+// {name: &#x27;Yao&#x27;, password: &#x27;easypeasy&#x27;}
+
+var c = [1,2,3,4,5];
+var d = [].concat(c); // makes it so treated separate
+d.push(123)
+console.log(c);
+console.log(d);
+// [1,2,3,4,5]
+// [1,2,3,4,5,123]
+
+let obj = {a: &#x27;a&#x27;, b: &#x27;b&#x27;, c: &#x27;c&#x27;};
+let clone = Object.assign({},obj);
+let clone2 = {...obj}
+obj.c = 5; // effectively clones
+
+// Shallow clone
+let obj = {a: &#x27;a&#x27;, b: &#x27;b&#x27;, c: {deep: &#x27;try and copy me&#x27;}};
+let clone = Object.assign({},obj);
+let clone2 = {...obj}
+obj.c.deep = &#x27;hahaha&#x27;
+console.log(obj1);
+console.log(clone);
+console.log(clone2);
+// {a: &#x27;a&#x27;, b: &#x27;b&#x27;, c: {deep: &#x27;hahaha&#x27;}}
+// {a: &#x27;a&#x27;, b: &#x27;b&#x27;, c: {deep: &#x27;hahaha&#x27;}}
+// {a: &#x27;a&#x27;, b: &#x27;b&#x27;, c: {deep: &#x27;hahaha&#x27;}}
+
+// how to fix
+let obj = {a: &#x27;a&#x27;, b: &#x27;b&#x27;, c: {deep: &#x27;try and copy me&#x27;}};
+let superClone = JSON.parse(JSON.stringify(obj)); // be careful
+// superClone could be super deep (has performance implications)
+obj.c.deep = &#x27;hahaha&#x27;
+console.log(superClone); // this works
+</code></pre></details></li></ul><ul id="a1dc45b5-494a-47c5-ac89-4af063836e66" class="toggle"><li><details open=""><summary>Exercise: Compare Objects</summary><p id="fd5cdd10-009a-48e9-b4f8-fc4a2e0cfd3e" class="">How would you compare two objects if they are pointing to a different location in memory but still have the same properties?</p><pre id="6c86e85b-bd06-4912-90df-df40cd8775b7" class="code"><code>JSON.stringify(obj1) === JSON.stringify(obj2)
+// order is important though!!</code></pre></details></li></ul><ul id="1b7c8641-7f2e-4f56-9c9c-04dcf7180b02" class="toggle"><li><details open=""><summary>Type Coercion</summary><figure id="d6fd17f8-5759-402b-867e-6e5fc0b55137" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-28_at_7.26.15_PM.png"><img style="width:288px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-28_at_7.26.15_PM.png"/></a></figure><pre id="eb21952c-363e-4a31-bc18-623a92156d7f" class="code"><code>1 == &#x27;1&#x27; // type coercion
+1 === &#x27;1&#x27; // compare two values, but don&#x27;t coerce the values
+
+-0 === +0 // true
+Object.is(-0,+0) // false
+
+NaN === NaN // false
+Object.is(NaN,NaN) // true</code></pre></details></li></ul><ul id="b26fb1d0-98c8-4087-b8b7-83f5cc57f2fa" class="toggle"><li><details open=""><summary>Exercise: Type Coercion</summary><pre id="c6031c43-2af9-4756-8bcd-baf2faf63ec1" class="code"><code>false == &quot;&quot;  // true
+false == []  // true
+false == {}  // false
+&quot;&quot; == 0      // true
+&quot;&quot; == []     // true
+&quot;&quot; == {}     // false
+0 == []      // true
+0 == {}      // false
+0 == null    // false</code></pre></details></li></ul><ul id="638860b5-026f-46d7-b965-0b5c6f7aa8c3" class="toggle"><li><details open=""><summary>JTS: Dynamic vs Static Typing</summary><ul id="81d99739-7a02-4aa1-ac24-f18004dc92fc" class="toggle"><li><details open=""><summary>Static</summary><p id="37d8e937-4450-41e5-8309-7d76cb1671a6" class="">Have to declare variables explicitly before using them (type)</p><ul id="c6dc4001-40ef-4642-aa04-2b83674f7ef4" class="toggle"><li><details open=""><summary>Pros</summary><p id="48703a4b-7280-4de3-b5ec-cc356727a115" class="">-Documentation, self-documented</p><p id="ef3938c4-74e8-48fc-a014-4327ce5f0a10" class="">-Helps with completion in IDEs</p><p id="dd10b4c9-0cf3-409c-bd93-67988f94a38e" class="">-Less bugs (caught early)</p><pre id="a5e46572-fcfa-42fd-b527-6aa653e64617" class="code"><code>function sum(a: number, b: number) {
+	return a + b;
+}</code></pre></details></li></ul><ul id="cfcf223c-17fb-40f3-b912-52ba14f5de15" class="toggle"><li><details open=""><summary>Cons</summary><ul id="0286fb54-236a-49d1-8b50-b053c79b1b12" class="bulleted-list"><li style="list-style-type:disc">Code is harder to read</li></ul><ul id="8a577b73-2a59-46e3-b040-a90b58dce48c" class="bulleted-list"><li style="list-style-type:disc">Why not write better tests?</li></ul><ul id="91fd98a4-1766-4262-a140-78d386bf1b13" class="bulleted-list"><li style="list-style-type:disc">Slower development process</li></ul></details></li></ul></details></li></ul><ul id="1a937bc1-92e6-410a-bee2-72b005bd28f6" class="toggle"><li><details open=""><summary>Dynamic</summary><p id="e355c72a-d3c6-47a0-833a-7752afae49ba" class="">Type is checked during runtime</p></details></li></ul></details></li></ul><ul id="30ffc4c1-35bd-446a-ac63-d687300fb3fb" class="toggle"><li><details open=""><summary>JTS: Weakly vs Strongly Typed</summary><ul id="bb694464-f6cb-4bbe-999d-7bb8126ca6a6" class="toggle"><li><details open=""><summary>Weakly</summary><pre id="1c1b6589-f50e-4146-9863-c780080d3f57" class="code"><code>// type coercion
+var a = &quot;booya&quot;;
+a + 17; // &quot;booya17&quot; </code></pre></details></li></ul><ul id="9ece8184-bc0c-4b09-8206-7fb6f7b26fd8" class="toggle"><li><details open=""><summary>Strongly</summary></details></li></ul></details></li></ul><ul id="405a496a-7186-4f62-8074-c31b4184200a" class="toggle"><li><details open=""><summary>JTS: Static Typing in Javascript</summary><ul id="f5191d51-4097-424f-ab42-6627ba792fab" class="bulleted-list"><li style="list-style-type:disc">Typescript is a superset of Javascript (adds functionality on top)</li></ul><figure id="b8f8f6b6-f811-473f-b5e9-774107bee431" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-28_at_7.40.20_PM.png"><img style="width:336px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-28_at_7.40.20_PM.png"/></a></figure></details></li></ul><hr id="45b61c85-7afa-4e33-a8a2-d795af858526"/><h2 id="94105a08-7aaa-4926-b601-c8055af26eb2" class="">Section 07: The 2 Pillars: Closures and Prototypal Inheritance</h2><hr id="91756d8d-5f7f-4fcc-b66f-5a9a423be91e"/><ul id="8fe09796-a8a6-4fa4-8f8e-4374c7f9d28a" class="toggle"><li><details open=""><summary>Functions are Objects</summary><figure id="374a249e-7f5e-4d21-9b77-351f97440b0d" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-28_at_7.51.52_PM.png"><img style="width:432px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-28_at_7.51.52_PM.png"/></a></figure><p id="b9655227-86a1-4d17-824d-2d11122fe53b" class="">Other ways of invoking functions</p><pre id="02017341-cbe2-405a-8bdf-15cb6d53379d" class="code"><code>const obj = {
+	two: function() {
+		return 2;
+	}
+}
+obj.two();
+
+const obj = {
+	two() {
+		return 2;
+	}
+}
+obj.two();
+
+function three() {
+	return 3;
+}
+three.call()
+
+// function constructor
+const four = new Function(&#x27;num&#x27;,&#x27;return num&#x27;)
+four(4);
+
+function woohoo() {
+	console.log(&#x27;woohoooo&#x27;);
+}
+woohoo.yell = &#x27;ahhhh&#x27;;
+const specialObj = {
+	yell = &#x27;ahhhh&#x27;,
+	name = &#x27;woohoo&#x27;,
+	(): console.log(&#x27;woohoo&#x27;)
+}
+</code></pre></details></li></ul><ul id="6275c7f7-0e29-44c4-b842-dea8c60db12d" class="toggle"><li><details open=""><summary>First Class Citizens</summary><ul id="197d9407-a846-40e3-ad3d-3cb1403e670b" class="toggle"><li><details open=""><summary>1. Functions can be assigned to variables and properties</summary><pre id="0ade23ab-7f4f-47fa-a725-93dc359da3ba" class="code"><code>var stuff = function(){}</code></pre></details></li></ul><ul id="50fc6f4e-4923-452a-87ff-24bbc19f5ec4" class="toggle"><li><details open=""><summary>2. Pass functions as arguments into another function</summary><pre id="4bf19ded-fd24-46ff-a8ae-75cd8976b672" class="code"><code>function a(fn) {
+	fn()
+}
+
+a(function() console.log(&#x27;hi there!&#x27;))</code></pre></details></li></ul><ul id="6a7f2056-55af-47ea-a80d-a73a2f014ce3" class="toggle"><li><details open=""><summary>3. Return functions as values from other functions</summary><pre id="bf7910ea-6085-4304-81ca-e012c93c7291" class="code"><code>function b() {
+	return function c() {console.log(&#x27;bye&#x27;)}
+}
+b()()
+var d = b()
+d();</code></pre></details></li></ul></details></li></ul><ul id="f14803f4-0c98-48f5-baf0-722d8f8d4023" class="toggle"><li><details open=""><summary>Higher Order Functions</summary><ul id="123df47a-5899-48ba-bb9f-37e91724b38a" class="toggle"><li><details open=""><summary>1</summary></details></li></ul><ul id="d33b31b2-13f5-478f-9277-895b8b886d30" class="toggle"><li><details open=""><summary>2</summary><pre id="329f4109-6199-4318-9170-08a57e5a4733" class="code"><code>const giveAccessTo = (user) =&gt;
+	&#x27;Access granted to &#x27;+user
+
+function letUserLogin(user) {
+	let array = [];
+	for (let i=0; i&lt;10000; i++) {
+		array.push(i)
+	}
+	return giveAccessTo(user);
+}
+
+letUserLogin(&#x27;Ava&#x27;);</code></pre></details></li></ul><ul id="cbbe1a69-777e-446c-a42a-ae64c28367d8" class="toggle"><li><details open=""><summary>3</summary><pre id="211f9bfc-fcf9-4ad5-a6e6-c2d2be7a7665" class="code"><code>function letPerson(person, fn) {
+	if (person.level === &#x27;admin&#x27;) {
+		fn(500000)
+	} else if {
+		fn(100000)
+	}
+	return giveAccessTo(person.name);
+}
+
+letPerson({level: &#x27;user&#x27;, name: &#x27;Tim&#x27;},authenticate);</code></pre></details></li></ul></details></li></ul><ul id="02c39994-634a-4dc5-8af5-071157d30322" class="toggle"><li><details open=""><summary>Exercise: Higher Order Functions</summary><p id="867226ce-2792-45ad-86b9-5641542f9206" class="">Task: Create a generic multiplyBy function</p><pre id="98991f8d-e794-4d23-8747-1fe1147f4526" class="code"><code>const multiplyBy = function() {
+	return function(num2) {
+		return num1*num2;
+	}
+}
+// alternatively,
+const multiplyBy = (num1) =&gt; (num2) =&gt; num1*num2;
+
+const multiplyByTwo = multipyBy(2);</code></pre></details></li></ul><ul id="b89bd8ee-55ee-44bc-bac3-0790a9642d89" class="toggle"><li><details open=""><summary>Closures</summary><pre id="fef2ec17-f010-43f5-a1ab-1e77672a09d8" class="code"><code>function boo(string) {
+	return function(name) {
+		return function(name2) {
+			console.log(`${string} ${name} ${name2}`)
+			}
+	}
+}
+
+// alternatively, in terms of arrow functions
+const boo(string)=&gt;(name)=&gt;(name2)=&gt;
+	console.log(`${string} ${name} ${name2}`)
+
+boo(&#x27;hi&#x27;)(&#x27;tim&#x27;)(&#x27;becca&#x27;)</code></pre></details></li></ul><ul id="57ee25da-39c9-421c-bdbb-b309adc936b8" class="toggle"><li><details open=""><summary>Exercise: Closures</summary><pre id="c7bbda7a-e716-4392-ada1-59b7cf91a6ec" class="code"><code>function callMeMaybe() {
+	setTimeout(function() {
+		console.log(callMe);
+	}, 4000);
+	const callMe = &#x27;Hi! I am now here!&#x27;;
+}
+
+callMeMaybe();</code></pre></details></li></ul><ul id="ec2ce362-1557-47cb-9887-fef82c1ea1a7" class="toggle"><li><details open=""><summary>Closures and Memory</summary><pre id="769767f2-edad-4b2a-b4d2-11155a71d019" class="code"><code>// Memory efficient
+function heavyDuty() {
+	const bigArray = newArray(7000).fill(&#x27;:D&#x27;)
+	return bigArray
+}
+
+// BUT heavyDuty() recreates and deletes this bigArray each time
+// it is called!!
+
+const getHeavyDuty = heavyDuty2();
+// array is only created once!!
+getHeavyDuty(688);
+getHeavyDuty(222);
+
+function heavyDuty2() {
+	const bigArray = newArray(7000).fill(&#x27;:D&#x27;)
+	console.log(&#x27;Created again!&#x27;)
+	return function(index) {
+		return bigArray[index]
+	}
+}</code></pre></details></li></ul><ul id="c7097b05-336a-4d31-964a-30de7e2d79bb" class="toggle"><li><details open=""><summary>Closures and Encapsulation</summary><pre id="822e4593-22d2-4928-8547-2bf370fcf7a8" class="code"><code>// Encapsulation
+const makeNuclearButton = () =&gt; {
+	let timeWithoutDestruction = 0;
+	const passTime = () =&gt; timeWithoutDestruction++;
+	const totalPeaceTime = () =&gt; timeWithoutDestruction;
+	const launch = () =&gt; {
+		timewithoutDestruction = -1;
+		return &#x27;boom&#x27;;
+	}
+	setInterval(passTime,1000);
+	return {
+		totalPeaceTime: totalPeaceTime
+	}
+}
+
+const ohno = makeNuclearButton();
+ohno.passTime();
+ohno.launch(); // error
+							 // works, but *needs to be returned*</code></pre></details></li></ul><ul id="4579adee-fe2d-4108-9f86-5b04155393f8" class="toggle"><li><details open=""><summary>Exercise: Closures 2</summary><pre id="3decfc36-b353-4c28-b8e7-caeffe98d66c" class="code"><code>let view;
+function initialize() {
+	view = &#x27;mountain&#x27;;
+	console.log(&#x27;view has been set&#x27;);
+}
+
+// only want function to run once
+initialize();</code></pre><ul id="640d6112-8040-4631-9d3e-7a2370cf83e9" class="toggle"><li><details open=""><summary>Solution</summary><pre id="51501f49-85b9-421a-808c-73c788b9e8ae" class="code"><code>let view;
+function initialize() {
+	let called = 0;
+	return function() {
+		if (called&gt;0) {
+			return ;
+		} else {
+			view = &#x27;mountain&#x27;;
+			called ++ 
+			console.log(&#x27;view has been set&#x27;);
+		}
+	}
+	
+}
+
+// only want function to run once
+initialize();</code></pre></details></li></ul></details></li></ul><ul id="21c7927e-67c0-4e71-9a4e-8d4c6c45aef3" class="toggle"><li><details open=""><summary>Exercise: Closures 3</summary><pre id="15f4af48-9df1-4540-859b-13d2e40803fc" class="code"><code>const array = [1,2,3,4];
+for (var i=0; i&lt;array.length; i++) {
+	setTimeout(function(){
+		console.log(&#x27;I am at index&#x27;+i)
+	}, 3000)
+}</code></pre><ul id="3bff71c1-5080-4510-923f-222f961184cb" class="toggle"><li><details open=""><summary>Solution</summary><pre id="789fb684-f483-4b84-a4c8-7b7e749e957f" class="code"><code>const array = [1,2,3,4];
+for (let i=0; i&lt;array.length; i++) {
+	setTimeout(function(){
+		console.log(&#x27;I am at index&#x27;+array[i])
+	}, 3000)
+}
+
+// alternatively, use closures
+const array = [1,2,3,4];
+for (var i=0; i&lt;array.length; i++) {
+	(function(closureI) {
+		setTimeout(function(){
+		console.log(&#x27;I am at index&#x27;+array[closureI])
+	}, 3000)
+	})(i)
+}
+</code></pre></details></li></ul></details></li></ul><ul id="5015b1d8-87d2-499b-846c-e8cd78105bc9" class="toggle"><li><details open=""><summary>Closures Review</summary></details></li></ul><ul id="74ad015f-559b-4c84-bf48-d3d6eb2928cd" class="toggle"><li><details open=""><summary>Prototypal Inheritance</summary><figure id="7f78cbd7-2e96-48d5-b9d9-476123560b78" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-29_at_4.06.12_PM.png"><img style="width:624px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-29_at_4.06.12_PM.png"/></a></figure><ul id="6a49cc46-aebb-4750-8509-c7364f8c152a" class="toggle"><li><details open=""><summary>2</summary><pre id="2896b7cc-0e66-4bfd-86a8-231bc25a3e9d" class="code"><code>let dragon = {
+	name = &#x27;Tanya&#x27;,
+	fire = true,
+	fight() {
+		return 5
+	},
+	sing() {
+		if (this.fire) {
+			return `I am ${this.name}, the breather
+			of fire`
+		}
+	}
+}
+
+let lizard = {
+	name: &#x27;Kiki&#x27;,
+	fight() {
+		return 1
+	}
+}
+
+const singLizard = dragon.sing.bind(lizard);
+
+// want lizard to inherit all the properties and methods from dragon
+lizard.__proto__ = dragon;
+lizard.fight(); // but this already defined in lizard
+lizard.sing();
+
+dragon.isPrototypeOf(lizard); // yup!
+lizard.isPrototypeOf(dragon); // yup!</code></pre></details></li></ul><ul id="bba902f3-cd48-46b9-b78c-90eab5d6c516" class="toggle"><li><details open=""><summary>3</summary><pre id="2b14db40-71cc-419d-9772-e6a69f596c70" class="code"><code>let dragon = {
+	name = &#x27;Tanya&#x27;,
+	fire = true,
+	fight() {
+		return 5
+	},
+	sing() {
+		if (this.fire) {
+			return `I am ${this.name}, the breather
+			of fire`
+		}
+	}
+}
+
+let lizard = {
+	name: &#x27;Kiki&#x27;,
+	fight() {
+		return 1
+	}
+}
+
+const singLizard = dragon.sing.bind(lizard);
+
+lizard.__proto__ = dragon;
+for (let prop in lizard) {
+	if (lizard.hasOwnProperty(prop)) {
+		console.log(prop);
+	}	
+}
+
+//
+const obj = {}
+obj.__proto__ // returns a whole bunch of methods
+obj.__proto__.__proto__ // null
+obj.hasOwnProperty(&#x27;name&#x27;); // true
+obj.hasOwnProperty(&#x27;hasOwnProperty&#x27;); // false</code></pre></details></li></ul><ul id="917df9da-1f45-4898-a6bd-38069583769f" class="toggle"><li><details open=""><summary>4</summary><pre id="813a464d-a11d-4758-a653-415f0ec0d588" class="code"><code>function a() {}
+a.hasOwnProperty(&#x27;call&#x27;); // false
+a.hasOwnProperty(&#x27;apply&#x27;); // false
+a.hasOwnProperty(&#x27;bind&#x27;); // false
+a.hasOwnProperty(&#x27;name&#x27;); // true
+
+const array = []
+array.__proto__.hasOwnProperty(&#x27;map&#x27;) // true
+Array.prototype
+array.__proto__ // pointing to above</code></pre></details></li></ul><ul id="2333323e-ccde-46fc-9769-e416443c24d5" class="toggle"><li><details open=""><summary>5</summary><pre id="4f589d9b-281e-4adb-a0af-5f68cf6e9357" class="code"><code>let human = { 
+	mortal: true;
+}
+
+let socrates = Object.create(human);
+socrates.age = 45;
+console.log(socrates.mortal); // true
+console.log(human.isPrototypeOf(socrates)); // true
+</code></pre></details></li></ul><ul id="3414e64e-94b1-437a-a1ac-3400bab2d393" class="toggle"><li><details open=""><summary>6</summary><p id="de4aae70-7175-4f37-a8ef-519f8dd9b9ae" class=""><em>Only functions have the prototype property</em></p><p id="bc2da4fb-5fa7-4dfc-adb4-84437b7fd070" class="">Only type we really use prototypes are with constructor functions</p><pre id="739e8d2d-bfe6-491f-8f92-bd898f37cd6b" class="code"><code>&#x27;string&#x27;.prototype
+String.prototype</code></pre></details></li></ul></details></li></ul><ul id="9fb63472-7020-430c-8b06-44b3a132fafc" class="toggle"><li><details open=""><summary>Exercise: Prototypal Inheritance</summary><pre id="c615ac2b-9615-4930-8a46-e5b6d280f897" class="code"><code>// Exercise - extend the functionality of a built-in object
+// #1
+// Date object =&gt; to have new method .lastYear() which shows you the year in
+// &#x27;YYYY&#x27; format
+
+new Date(&#x27;1990-10-0&#x27;).lastYear()
+// &#x27;1899&#x27;
+
+// # Bonus
+// Modify .map() to print an actual map emoji at the end of each ite
+console.log([1,2,3].map())</code></pre><ul id="65343a4a-e642-4be9-b9dc-b5a32b98d21b" class="toggle"><li><details open=""><summary>Solution</summary><pre id="23002a59-dae3-4280-abb6-468fb92980ba" class="code"><code>// Exercise - extend the functionality of a built-in object
+// #1
+// Date object =&gt; to have new method .lastYear() which shows you the year in
+// &#x27;YYYY&#x27; format
+
+Date.prototype.lastYear = function() {
+	return this.getFullYear -1;
+}
+new Date(&#x27;1990-10-0&#x27;).lastYear()
+// &#x27;1899&#x27;
+
+// HOWEVER, arrow functions won&#x27;t work for this :-)
+
+// # Bonus
+// Modify .map() to print an actual map emoji at the end of each ite
+Array.prototype.map = function() {
+	let arr = [];
+	for (let i=0; i&lt;this.length; i++) {
+		arr.push((this[i]+&#x27;map emoji&#x27;))
+	}
+	return arr
+}
+console.log([1,2,3].map())</code></pre></details></li></ul></details></li></ul><hr id="147a1ee9-a1e0-4989-bfc6-b655721e59a2"/><h2 id="8ae85e59-5805-49b4-bf03-a18a8d32a9d4" class="">Section 08: OOP</h2><hr id="2b101e6c-cdd6-4b1a-82c9-bc7386fd83eb"/><ul id="9bfe49a8-cb33-43ab-b6e9-589c4263ba28" class="toggle"><li><details open=""><summary>OOP1: Factory Functions</summary><pre id="b858c3bd-f5ce-40cb-b570-f2229603ef5f" class="code"><code>// not very DRY
+const elf() {
+	name: &#x27;Orwell&#x27;,
+	weapon: &#x27;bow&#x27;,
+	attack() {
+		return &#x27;attack with &#x27;+elf.weapon
+	}
+}
+
+// factory functions
+function createElf(name,weapon) {
+	return {
+		name: name,
+		weapon: weapon,
+		attack() {
+			return &#x27;attack with &#x27;+weapon
+		}
+	}
+}
+
+const peter = createElf(&#x27;Peter&#x27;,&#x27;stones&#x27;)
+peter.attack()
+
+// BUT what if we want 1000 elves? lots of memory, especially with
+// the method attack() that&#x27;s pretty generic...
+// so we move to Object.create()!</code></pre></details></li></ul><ul id="bb440130-b036-42fc-afa6-57d3a514e9bb" class="toggle"><li><details open=""><summary>OOP2: Object.create()</summary><pre id="c9a57447-fb7d-4114-925e-d2d3e338c457" class="code"><code>// factory functions
+const elfFunctions = {
+	attack() {
+			return &#x27;attack with &#x27;+this.weapon
+		}
+}
+function createElf(name,weapon) {
+	return {
+		name,
+		weapon,
+	}
+}
+
+const peter = createElf(&#x27;Peter&#x27;,&#x27;stones&#x27;)
+peter.attack = elfFunctions.attack()
+
+// BUT, still a lot of mannual work
+// Object.create()
+const elfFunctions = {
+	attack() {
+			return &#x27;attack with &#x27;+this.weapon
+		}
+}
+function createElf(name,weapon) {
+	newElf = Object.create(elfFunctions)
+	console.log(newElf.__proto__) // attack
+	newElf.name = name;
+	newElf.weapon = weapon;
+	return newElf;
+}
+
+const peter = createElf(&#x27;Peter&#x27;,&#x27;stones&#x27;)
+console.log(peter.attack())</code></pre></details></li></ul><ul id="63c2c09d-ca38-4cae-a837-dd8db2d7d269" class="toggle"><li><details open=""><summary>OOP3: Constructor Functions</summary><pre id="b2cdb463-fc23-48bd-88c9-e34b5100b3b1" class="code"><code>// Constructor Functions
+function elf(name,weapon) {
+	this.name = name;
+	this.weapon = weapon;
+}
+
+// dynamically scoped, doesn&#x27;t matter where written
+// this changes on whoever calls it
+elf.prototype.attack = function() {
+	return &#x27;attack with &#x27;+this.weapon
+}
+
+// however, arrow functions won&#x27;t work, since they are
+// lexically scoped
+//elf.prototype.attack = () =&gt; {
+//	return &#x27;attack with &#x27;+this.weapon
+//}
+
+const peter = new elf(&#x27;Peter&#x27;,&#x27;stones&#x27;);
+peter.name
+
+const Elf1 = new Function(&#x27;name&#x27;,&#x27;weapon&#x27;,
+	`this.name = name;
+	this.weapon = weapon;`)
+const sarah = new Elf1(&#x27;Sarah&#x27;,&#x27;fireworks&#x27;)</code></pre></details></li></ul><ul id="f9d9e692-7d9c-4ec2-9430-b3ce4adbffe1" class="toggle"><li><details open=""><summary>More Constructor Functions</summary><pre id="085fab4c-b4ed-4c8f-a2cd-aa6b3902ca88" class="code"><code>// Constructor Functions
+function Elf(name,weapon) {
+	console.log(&#x27;this&#x27;,this) // Elf{}
+	this.name = name;
+	this.weapon = weapon;
+	var a = 5; // not going to work, only way we can add properties 
+						// is with &#x27;this&#x27;
+	console.log(&#x27;this&#x27;,this) // Elf{name: &#x27;Peter&#x27;, weapon: &#x27;stones&#x27;}
+}
+
+console.log(Elf.prototype) // Elf{}
+Elf.prototype.attack = function() {
+	return &#x27;attack with &#x27;+this.weapon
+}
+Elf.prototype.build = function() {
+	function building() {
+		return this.name + &#x27; builds a house&#x27;
+	}
+	building()
+}
+
+const peter = new Elf(&#x27;Peter&#x27;,&#x27;stones&#x27;);
+console.log(peter.__proto__) // Elf{attack: [Function]}
+console.log(Elf.prototype) // Same thing^^
+console.log(peter.prototype) // undefined
+														// peter is not a function, peter is an object
+														// only functions have access to prototype
+peter.build() // undefined
+							// functions inside of methods are functions inside of functions
+							// --&gt; &quot;this&quot; is assigned to the window ob
+// Ways to fix this:
+Elf.prototype.build = function() {
+	const self = this;
+	function building() {
+		return this.name + &#x27; builds a house&#x27;
+	}
+	building()
+}
+
+Elf.prototype.build = function() {
+	function building() {
+		return this.name + &#x27; builds a house&#x27;
+	}
+	return building.bind(this)
+}</code></pre></details></li></ul><ul id="ee378773-1e6b-4ddc-a64f-3ab87e975f28" class="toggle"><li><details open=""><summary>Funny thing about JS…</summary><pre id="f6ee97ee-6e5f-466f-85d8-d07f0be1ba1a" class="code"><code>var a = new Number(5)
+typeof a // &#x27;object&#x27;
+var b = 5
+type of b // &#x27;number&#x27;
+a === b // false
+a == b // true, types get coerced</code></pre></details></li></ul><ul id="b2b50337-503f-403e-be90-ecf7dc24c8c5" class="toggle"><li><details open=""><summary>OOP4: ES6 Classes</summary><pre id="8baf044f-87df-4821-89ee-e0a316d2428f" class="code"><code>class Elf(name,weapon) {
+	constructor(name, weapon) {
+		this.name = name;
+		this.weapon = weapon;
+	}
+	// keep here, or else takes up memory space if we
+	// put into constructor
+	attack () {
+		return &#x27;attack with &#x27;+this.weapon
+	}
+}
+const peter = new Elf(&#x27;Peter&#x27;,&#x27;stones&#x27;);
+console.log(peter.attack())
+console.log(peter instanceof Elf) // true</code></pre></details></li></ul><ul id="7a7bda9a-8daf-4185-9099-88adfd582165" class="toggle"><li><details open=""><summary>this - 4 ways</summary><pre id="f9b1b21b-39da-49e2-974e-9100603f50b1" class="code"><code>// this
+// new binding
+function Person(name,age) {
+	this.name = name;
+	this.age = age;
+}
+const person1 = new Person(&#x27;Xavier&#x27;,55);
+
+// implicit binding
+const person = {
+	name: &#x27;Karen&#x27;,
+	age: 40,
+	hi() {
+		console.log(&#x27;hi&#x27; + this.name);
+	}
+}
+
+// explicit binding
+const person3 = {
+	name: &#x27;Karen&#x27;,
+	age: 40,
+	hi(): function() {
+		console.log(&#x27;hi&#x27; + this.setTimeout)
+	}.bind(window)
+}
+person3.hi()
+
+// arrow functions
+// *lexical scoping*
+const person4 = {
+	name: &#x27;Karen&#x27;,
+	age: 40,
+	hi(): function() {
+		var inner = () =&gt; {
+			console.log(&#x27;hi&#x27; + this.Name)
+		}
+		return inner()
+}
+</code></pre></details></li></ul><ul id="c135413e-8828-4374-ac59-d1b8d283aa44" class="toggle"><li><details open=""><summary>Inheritance</summary><ul id="cebb3150-23e4-4ee4-9414-58ead99c1149" class="toggle"><li><details open=""><summary>To Start out With</summary><pre id="8570d2a2-91dc-4347-93fa-bbbff9c2f0cc" class="code"><code>class Elf{
+	constructor(name,weapon) {
+		this.name = name;
+		this.weapon = weapon;
+	}
+	attack() {
+		return &#x27;attack with &#x27;+this.weapon;
+	}
+}
+
+const fiona = new Elf(&#x27;fiona&#x27;,&#x27;ninja stars&#x27;)
+const ogre = {...fiona}
+console.log(fiona === ogre) // false
+ogre.attack() // error</code></pre></details></li></ul><ul id="c74d24d7-ed60-4824-9a7e-32240c2dbd3b" class="toggle"><li><details open=""><summary>Making Some Changes to the Code</summary><pre id="352d794e-2533-45e0-aae6-31591f4ab485" class="code"><code>class Character{
+	constructor(name,weapon) {
+		this.name = name;
+		this.weapon = weapon;
+	}
+	attack() {
+		return &#x27;attack with &#x27;+this.weapon;
+	}
+}
+
+// subclassing
+class Elf extends Character { // set prototype to Character
+	constructor(name, weapon, type) {
+		super(name,weapon); // hey, call the superclass (Character)
+		this.type = type;
+	}
+}
+
+class Ogre extends Character {
+	constructor(name, weapon, color) {
+		super(name,weapon); // hey, call the superclass (Character)
+		this.color = color;
+	}
+	makeFort() {
+		return &#x27;strongest fort in the world made&#x27;;
+	}
+}
+
+const dolby = new Elf(&#x27;Dolby&#x27;,&#x27;cloth&#x27;,&#x27;house&#x27;)
+const shrek = new Ogre(&#x27;Shrek&#x27;,&#x27;club&#x27;,&#x27;green&#x27;)
+
+console.log(Ogre.isPrototypeOf(shrek)) // false
+console.log(Ogre.prototype.isPrototypeOf(shrek)) // true
+console.log(Character.prototype.isPrototypeOf(Ogre)) // false
+console.log(Character.prototype.isPrototypeOf(Ogre.prototype)) // true
+
+console.log(dolby instanceof Elf) // true
+console.log(dolby instanceof Character) // true</code></pre></details></li></ul></details></li></ul><ul id="59b7624b-b75d-446f-b481-fda52cd481ea" class="toggle"><li><details open=""><summary>Public vs Private</summary><pre id="28789603-f4b6-4044-89ba-cd1854dc4ff7" class="code"><code>class Character{
+	#age = 54; // this is a private variable
+	constructor(name,weapon) {
+		this.name = name;
+		this.weapon = weapon;
+	}
+	attack() {
+		return &#x27;attack with &#x27;+this.#age;
+	}
+}</code></pre></details></li></ul><ul id="d2e22149-15f5-4a34-8fc6-a3398aee90fe" class="toggle"><li><details open=""><summary>4 Pillars of OOP</summary><ol type="1" id="0f663d10-c7b6-4a95-9190-49e561336938" class="numbered-list" start="1"><li>Encapsulation</li></ol><ol type="1" id="ee3677c8-b40f-4cfe-84fd-85b901ad94e3" class="numbered-list" start="2"><li>Abstraction</li></ol><ol type="1" id="fe232a90-d970-42d5-8832-09c91efbba59" class="numbered-list" start="3"><li>Inheritance</li></ol><ol type="1" id="b70549a9-382c-46d5-87d6-6fe60580f1cd" class="numbered-list" start="4"><li>Polymorphism<ul id="3f3aa7ed-75ab-45d3-b743-96765f5f6030" class="toggle"><li><details open=""><summary>Method overwriting, method appears in many forms, i.e. like</summary><pre id="5ecc9a73-aaf3-4cdd-ac33-662eb7ac35c2" class="code"><code>class Character{
+	constructor(name,weapon) {
+		this.name = name;
+		this.weapon = weapon;
+	}
+	attack() {
+		return &#x27;attack with &#x27;+this.weapon;
+	}
+}
+
+// subclassing
+class Elf extends Character { // set prototype to Character
+	constructor(name, weapon, type) {
+		super(name,weapon); // hey, call the superclass (Character)
+		this.type = type;
+	}
+	attack(cry) {
+		return &#x27;attach with &#x27;+cry
+	}
+}
+
+class Ogre extends Character {
+	constructor(name, weapon, color) {
+		super(name,weapon); // hey, call the superclass (Character)
+		this.color = color;
+	}
+	makeFort() {
+		return &#x27;strongest fort in the world made&#x27;;
+	}
+	attack() {
+	return &#x27;arghhhh&#x27;
+	}
+}</code></pre></details></li></ul></li></ol><ul id="450d26a0-7b6a-46ef-be47-e43c817cb441" class="toggle"><li><details open=""><summary>Pros</summary><ul id="d1c53a07-0912-4f67-a710-9e016730e3a2" class="bulleted-list"><li style="list-style-type:disc">Clear + Understandable</li></ul><ul id="c82c31ad-b45f-489d-ab7c-794fa1124b5f" class="bulleted-list"><li style="list-style-type:disc">Easy to extend</li></ul><ul id="b27114da-05be-4c60-8126-ef75ed9c5fd6" class="bulleted-list"><li style="list-style-type:disc">Easy to maintain</li></ul><ul id="da067a7c-47af-4930-85f2-dc7fb88ea67d" class="bulleted-list"><li style="list-style-type:disc">Memory efficient</li></ul><ul id="585ac6ee-c02b-4267-a9e3-8c55fad90144" class="bulleted-list"><li style="list-style-type:disc">DRY</li></ul></details></li></ul></details></li></ul><ul id="06b209e0-d718-419d-9dae-85de8bbc2ada" class="toggle"><li><details open=""><summary>Reviewing OOP</summary><pre id="64959104-69a6-40fb-8c62-c40187494478" class="code"><code>class Character {
+  constructor(name, weapon) {
+    this.name = name;
+    this.weapon = weapon;
+  }
+  attack() {
+    return &#x27;atack with &#x27; + this.weapon
+  }
+}
+//Polymorphism--
+//Extend the Character class to have a Queen class. The output of the below 
+//code should be:
+const victoria = new Queen(&#x27;Victoria&#x27;, &#x27;army&#x27;, &#x27;hearts&#x27;); 
+// create a new instace with the queen having (name, weapon, type). 
+// Type inlcudes: &#x27;hearts&#x27;, &#x27;clubs&#x27;, &#x27;spades&#x27;, &#x27;diamonds&#x27;
+
+victoria.attack() 
+// will console.log the attack() method in Character class 
+// AND will return another string: &#x27;I am the Victoria of hearts, 
+// now bow down to me! &#x27;
+
+class Queen extends Character{
+	constructor(name, weapon, type) {
+		super(name,weapon); 
+		this.type = type;
+	}
+	attack() {
+		return `I am the ${this.name} of ${this.type}, now bow down to me`;
+	}
+}</code></pre></details></li></ul><hr id="bc4965f8-c78f-4ebb-8a94-cf0c4856e0bd"/><h2 id="bef20a82-ee50-4cbd-a115-6cd148f90865" class="">Section 09: Functional Programming</h2><hr id="9fdb847f-c370-405c-b30e-bb32f9399182"/><p id="fbb88cb9-56b0-4f88-84b1-cbc66953fa7d" class=""><em>Goal: Minimize side effects</em></p><ul id="3da9aa0a-1f30-4bb9-a3c4-9f0866474fb9" class="toggle"><li><details open=""><summary>Exercise: Amazon</summary><pre id="7027a239-1220-4ad3-8362-9e85a6617a40" class="code"><code>// Amazon Shopping
+const user = {
+	name: &#x27;Kim&#x27;,
+	active: true,
+	cart: [],
+	purchases: []
+}
+// Implement a cart feature: 
+// 1. Add items to cart
+// 2. Add 3% tax to item in cart
+// 3. Buy item: cart--&gt;purchases
+// 4. Empty cart</code></pre></details></li></ul><ul id="83647e26-bbf1-413e-a4b2-ffafcb644b65" class="toggle"><li><details open=""><summary>Pure Functions</summary><ul id="060ac564-f8f2-43da-a3eb-efe1238f57b1" class="bulleted-list"><li style="list-style-type:disc">Always outputs the same output given the same input</li></ul><ul id="23dbce39-33a0-4b78-a64a-5ba494c984cd" class="bulleted-list"><li style="list-style-type:disc">Cannot modify anything outside of itself</li></ul><pre id="10b101fe-d555-4ee0-b1df-07b57ed8fa66" class="code"><code>// no side effects
+// input --&gt; output
+const array = [1,2,3];
+function a(arr) {
+	arr.pop() // side effect
+}
+a(array);
+
+function removeLastItem(arr) {
+	const newArray = [].concat(arr); // new copy
+	newArray.pop();
+	return newArray
+}
+
+// is this a pure function?
+function a() {
+	console.log(&#x27;hi&#x27;)
+}
+// no! logging something to output of the browser</code></pre></details></li></ul><ul id="466b8328-09d7-4ecb-8613-f9a353640e2a" class="toggle"><li><details open=""><summary>Imperative vs. Declarative</summary><ul id="505de40b-6f5b-4494-b81f-e3123846e37f" class="toggle"><li><details open=""><summary>Imperative</summary><p id="5299f44c-e7b3-4d53-bf85-a48ebc1125e9" class="">Code that tells the machine what to do and how to do it</p></details></li></ul><ul id="cbc39a73-42d1-455c-ba5d-68613bf0f29e" class="toggle"><li><details open=""><summary>Declarative</summary><p id="fe7891c3-aa25-4e69-9beb-3ecc36a1db0c" class="">Code that tells the machine what to do and what should happen (not how to do things)</p></details></li></ul><pre id="9c42cc2b-3454-4da5-b746-3f9c63eef86d" class="code"><code>// Imperative vs. Declarative
+for (let i=0; i&lt;1000; i++) {
+	console.log(i)
+}
+// Make more declarative
+[1,2,3].forEach(item =&gt; console.log(item))</code></pre></details></li></ul><ul id="65ad15ca-8740-40f7-b734-440f2c00a528" class="toggle"><li><details open=""><summary>Immutability</summary><pre id="cdc9eea1-00f2-4f03-9efe-c3ff7a29fde1" class="code"><code>// has a lot of mutations
+const obj = {name:&#x27;Andrei&#x27;}
+function clone(obj) {
+	return {...obj} // pure
+}
+obj.name = &#x27;Nana&#x27;
+
+// better
+function updateName(obj) {
+	const obj2 = clone(obj);
+	obj2.name = &#x27;Nana&#x27;
+	return obj2
+}
+updateName(obj);
+
+// Structural Sharing: only update things that change</code></pre></details></li></ul><ul id="15a8d8e5-8fac-48d2-b782-28c04e650a54" class="toggle"><li><details open=""><summary>Higher order functions and closures</summary><pre id="710688de-2577-43c5-8aa4-6230a043aee7" class="code"><code>// HOF: function composition or returns a function
+const hof = () =&gt; () =&gt; 5
+hof()()
+
+const hof2 = (fn) =&gt; fn(5);
+hof2(function a(x) {return x})
+// Closure: mechanism for containing some sort of state
+const closure = function() {
+	let count = 0;
+	return function increment() { // remembers var count declared 
+																// in outer scope
+		count++
+		return count
+	}
+}
+const incrementFn = closure() ;
+incrementFn();
+// allows for privacy! :D 
+// can&#x27;t access outside</code></pre></details></li></ul><ul id="f2152544-6e25-4f79-aec4-fbb324b5036a" class="toggle"><li><details open=""><summary>Currying</summary><p id="40f29f63-dd3c-4e69-ae07-5b1fce050d20" class="">Talked about before</p><ul id="a8627fe4-59f1-4b93-a1ca-28bca83cb38f" class="bulleted-list"><li style="list-style-type:disc">Use function that takes in multiple parameters and pass in one</li></ul><ul id="11d593bc-f20b-4728-b7ec-cf488d466c0d" class="bulleted-list"><li style="list-style-type:disc">Have that new function, taking in n-1 parameters, to use</li></ul></details></li></ul><ul id="b2256b00-335c-458f-bf63-5a2589dd377c" class="toggle"><li><details open=""><summary>Partial Application</summary><pre id="4a9cb204-0936-49e8-8e90-c8e9dffaa89c" class="code"><code>// way for us to partially apply a function
+const multiply = (a,b,c) =&gt; a*b*c;
+const curriedMultiply = (a) =&gt; (b) =&gt; (c) =&gt; a*b*c;
+curriedMultiply(3)(4)(10) // one argument at a time
+const partialMultiplyBy5 = multiply.bind(null, 5)
+partialMultiplyBy5(4,10) // on second call, I expect all the other args</code></pre></details></li></ul><ul id="f21f9302-b887-42ba-81ae-fb0337ab3d9d" class="toggle"><li><details open=""><summary>Memoization</summary><pre id="625b4dde-1a91-45a1-9f1b-53b291ec627c" class="code"><code>function addTo80(n) {
+	console.log(&#x27;long time&#x27;)
+	return n+80;
+}
+addTo80(4);
+
+// faster
+let cache = {};
+function memoizedAddTo80(n) {
+	if (n in cache) {
+		return cache[n];
+	} else {
+		cache[n] = n+80;
+	}
+}
+memorizedAddTo80(4);
+
+// improved even more, don&#x27;t want cache in global scope
+function memoizedAddTo80Second() {
+	let cache = {};
+	return function(n) {
+		if (n in cache) {
+			return cache[n];
+		} else {
+			cache[n] = n+80;
+		}
+	}
+}
+const memoized = memoizedAddTo80Second();
+console.log(&#x27;1&#x27;,memorized(5));
+console.log(&#x27;1&#x27;,memorized(6));</code></pre></details></li></ul><ul id="bf32dff4-2cd7-4f14-8e06-a1a97ef6da23" class="toggle"><li><details open=""><summary>Compose and Pipe</summary><pre id="69031e2a-acae-4c90-be7c-d70a6b800c00" class="code"><code>// compose
+const compose = (f,g) =&gt; (data) =&gt; f(g(data))
+const multiplyBy3 = (num) =&gt; num*3;
+const makePositive = (num) =&gt; Math.abs(num);
+const multiplyBy3AndAbsolute = compose(multiplyBy3,makePositive)
+
+multiplyBy3AndAbsolute(-5)
+
+// pipe
+// gof instead of fog
+const compose = (f,g) =&gt; (data) =&gt; g(f(data))</code></pre></details></li></ul><ul id="90aedc69-9d02-438b-8203-23b59f048f12" class="toggle"><li><details open=""><summary>Arity</summary><p id="f7df4b9d-05cb-41a9-8b5c-b1aa2b920dbc" class=""><em>The number of arguments a function takes</em></p><p id="be49d6d9-390f-41ec-80dc-79aa3c22019a" class="">The fewer number of parameters, the easier it is to use that function</p></details></li></ul><ul id="b70fe755-8fd7-4111-8e47-8daeeec5118e" class="toggle"><li><details open=""><summary>Is FP the answer to everything?</summary></details></li></ul><ul id="09755fae-8d81-4529-8581-c1ba26f9a8a8" class="toggle"><li><details open=""><summary>Solution: Amazon</summary><pre id="a7858411-6baa-476d-aa51-8ca82f559ce6" class="code"><code>// Amazon Shopping
+const user = {
+	name: &#x27;Kim&#x27;,
+	active: true,
+	cart: [],
+	purchases: []
+}
+
+let amazonHistory = []
+const compose = (f,g) =&gt; (...args) =&gt; f(g(...args))
+purchaseItem(
+	emptyCart,
+	buyItem,
+	applyTaxToItems,
+	addItemToCart,
+)(user,{name: &#x27;laptop&#x27;, price:200)
+
+function purchaseItem(...fns) {
+	fns.reduce(compose)
+}
+
+function itemToCart(user,item) {
+	const updateCart = user.cart.concat(item)
+	return Object.assign({}, user, {cart: updateCart})
+}
+
+function applyTaxToItems(user) {
+	const {cart} = user;
+	const taxRate = 1.3;
+	const updatedCart = cart.map(item =&gt; 
+		return {
+			name: item.name,
+			price: item.price*taxRate
+		}
+})
+	return Object.assign({}, user, {cart:updatedCart)
+}
+
+function buyItem(user) {
+	amazonHistory.push(user);
+	return Object.assign({}, user,{purchases: user.cart})
+}
+
+function emptyCart(user) {
+	amazonHistory.push(user);
+	return Object.assign({}, user,{cart: []})
+}
+
+amazonHistory;
+
+// Implement a cart feature: 
+// 1. Add items to cart
+// 2. Add 3% tax to item in cart
+// 3. Buy item: cart--&gt;purchases
+// 4. Empty cart</code></pre></details></li></ul><hr id="714fbaf6-63af-40c5-86b2-ef22dec15bbb"/><h2 id="55e281fa-9287-44d4-9ad2-a8ef38a32917" class="">Section 10: OOP vs FP</h2><hr id="6d2e6f08-f155-406d-bbaa-34f9c6c48a87"/><ul id="18ec5dba-905f-416c-a968-151a98edc7f2" class="toggle"><li><details open=""><summary>Composition vs. Inheritance</summary><ul id="67bd8db0-6354-4edd-b14f-c5b2f2e1a08f" class="toggle"><li><details open=""><summary>Inheritance</summary><ul id="0db7d996-2fb0-467d-8b08-eace719c1d29" class="bulleted-list"><li style="list-style-type:disc">What it is</li></ul><ul id="a6c22445-ca7b-43f0-b306-d8292b486190" class="bulleted-list"><li style="list-style-type:disc">Tight Coupling</li></ul><ul id="d6f90314-5f09-4bee-a748-967c197bb877" class="bulleted-list"><li style="list-style-type:disc">Fragile Base Class Problem (can break code with minor changes to base class)</li></ul><ul id="180fac6d-35e0-4b2e-a174-fd9521cad4b3" class="bulleted-list"><li style="list-style-type:disc">Hierarchy</li></ul><ul id="37d4162f-f1d8-4b9f-a6c2-fecd7604e8aa" class="bulleted-list"><li style="list-style-type:disc">Few operations on common data</li></ul><ul id="bb21f65f-8cec-4321-bc34-2cab647f080c" class="bulleted-list"><li style="list-style-type:disc">Stateful</li></ul></details></li></ul><ul id="62a73705-f0ff-4f9f-af88-8d283e932feb" class="toggle"><li><details open=""><summary>Composition</summary><ul id="404c4474-3fdc-4c70-a987-0df07d3bea9a" class="bulleted-list"><li style="list-style-type:disc">What it has</li></ul><ul id="95b8da80-e5df-497d-b5ea-b2515e9f4a2c" class="bulleted-list"><li style="list-style-type:disc">Instead of changing base class, can do</li></ul><ul id="21bf6521-4383-4c92-a6a8-24bcea0b4379" class="bulleted-list"><li style="list-style-type:disc">Many operations, fixed data</li></ul><ul id="6d25e2d3-cc2f-4503-b0b8-8556d90b66bb" class="bulleted-list"><li style="list-style-type:disc">Stateless</li></ul><pre id="db35fe3c-6e5d-41c4-a3c2-4a9c51b3763a" class="code"><code>function getAttack(character) {
+	return Object.assign({}, character, {attackFn: ()})
+}
+function Elf(name,weapon,type) {
+	let elf = {
+		name,
+		weapon,
+		type
+	}
+	return getAttack(elf)
+}</code></pre></details></li></ul></details></li></ul><ul id="42fb30f6-efd7-4dab-9650-b5a9b266cb87" class="toggle"><li><details open=""><summary>OOP vs FP</summary></details></li></ul><hr id="682bb8b1-e349-44c2-9c39-16955929d22e"/><h2 id="5791ee62-b457-4478-b388-09216bff6dc8" class="">Section 11: Asynchronous Javascript</h2><hr id="204f1746-3c00-4a77-b1e3-c069f81bd989"/><ul id="4042416b-a810-4dfb-9160-d7909af43bf6" class="toggle"><li><details open=""><summary>Section Overview</summary><pre id="34b4bfbd-d435-42a4-a70c-6f3a7e2f0ce4" class="code"><code>setTimeout(()=&gt;{console.log(&#x27;1&#x27;,&#x27;is the loneliest number&#x27;)},0)
+setTimeout(()=&gt;{console.log(&#x27;2&#x27;,&#x27;can be as bad as 1&#x27;)},10)
+
+// 2
+Promise.resolve(&#x27;hi&#x27;).then((data)=&gt;console.log(&#x27;2&#x27;,data))
+
+// 3
+console.log(&#x27;3&#x27;, &#x27;is a crowd&#x27;)
+
+// Returns 
+// &#x27;3 is a crowd&#x27;
+// &#x27;2 hi&#x27;
+// &#x27;1 is the loneliest number&#x27;
+// &#x27;2 can be as bad as 1&#x27;</code></pre></details></li></ul><ul id="2db97429-86c3-481e-a240-e9aabf851927" class="toggle"><li><details open=""><summary>How Javascript Works</summary><ul id="3dcf7607-9bd2-4125-b8ee-328901e739b6" class="toggle"><li><details open=""><summary>“Javascript is a single threaded language that can be non-blocking”</summary><ul id="0dee3463-c778-4c21-b930-568f8283323e" class="toggle"><li><details open=""><summary>“Single Threaded” = One call stack, only one things gets executed at a time</summary><ul id="f1c67e9c-0950-4ad7-b1ce-b969c01fffae" class="toggle"><li><details open=""><summary>Don’t have to deal with complicated scenarios (deadlocks)</summary></details></li></ul></details></li></ul><ul id="98236609-1a65-40dd-a0d7-2989b08694e5" class="toggle"><li><details open=""><summary><strong>Need a javascript runtime environment</strong> (on top of engine, they have web apis, callback queues, and event loops)</summary></details></li></ul><ul id="7fc8efa2-4c00-40c4-bfc5-484fb8d9aca6" class="toggle"><li><details open=""><summary>In order to not block the single thread, it can be asynchronous with callback functions, which get run in the background</summary></details></li></ul></details></li></ul></details></li></ul><ul id="f74a7b94-cc3e-4cf0-a123-1cc403d47295" class="toggle"><li><details open=""><summary>Promises</summary><ul id="b3a14656-5579-45fa-9be1-4bdfd93160f3" class="bulleted-list"><li style="list-style-type:disc">A promise is an object that may produce a single value some time in the future<ul id="62c5daf0-0bee-4dff-9c5d-27685c1980be" class="bulleted-list"><li style="list-style-type:circle">Either a resolved value </li></ul><ul id="52d60fcf-f73f-4761-a619-46e465e869ed" class="bulleted-list"><li style="list-style-type:circle">Or a reason that it’s not resolved (rejected)</li></ul></li></ul><ul id="4be5e938-d782-45a7-bc05-9c341cf612a7" class="bulleted-list"><li style="list-style-type:disc">Three possible states:<ul id="16f1b513-f8c2-49ed-9301-a340bb171bb8" class="bulleted-list"><li style="list-style-type:circle">1. Fulfilled</li></ul><ul id="0f89956b-db43-4b22-991c-0fcbe1d192ef" class="bulleted-list"><li style="list-style-type:circle">2. Pending</li></ul><ul id="42706327-e3ac-495d-8f6d-a5a56b77e74e" class="bulleted-list"><li style="list-style-type:circle">3. Rejected</li></ul></li></ul><ul id="eafbee7a-33b0-44a2-9f35-f0fac893e461" class="toggle"><li><details open=""><summary>Examples</summary><pre id="13b0a15c-1df9-413d-8653-a28da760a821" class="code"><code>el.addEventListener(&quot;click&quot;,submitForm);</code></pre></details></li></ul><ul id="729348a2-11ce-4c12-8ffc-13aa9fd33243" class="toggle"><li><details open=""><summary>Creating Promises</summary><pre id="dfb42c85-a4d6-4a65-b1ee-925059df1e31" class="code"><code>const promise = new Promise((resolve,reject) =&gt; {
+	if (true) {
+		resolve(&#x27;Stuff worked&#x27;);
+	} else {
+		reject(&#x27;Error, it broke&#x27;);
+	}
+})
+
+const promise2 = new Promise((resolve,reject) =&gt; {
+	setTimeout(resolve, 100, &#x27;hii&#x27;)
+})
+
+const promise3 = new Promise((resolve,reject) =&gt; {
+	setTimeout(resolve, 1000, &#x27;pookie&#x27;)
+})
+
+const promise4 = new Promise((resolve,reject) =&gt; {
+	setTimeout(resolve, 3000, &#x27;Is it me you are looking for?&#x27;)
+})
+
+Promise.all([promise,promise2,promise3,promise4])
+	.then(values=&gt;{
+		console.log(values)
+})
+
+promise.then(result =&gt; console.log(result));
+// Chaining
+promise
+	.then(result =&gt; result + &#x27;!&#x27;)
+	.then(result2 =&gt; {
+		throw Error
+		console.log(result2);
+	})
+		.catch(() =&gt; console.log(&#x27;error!&#x27;))
+
+promise
+	.then(result =&gt; result + &#x27;!&#x27;)
+	.then(result2 =&gt; result2 + &#x27;?&#x27;)
+	.catch(() =&gt; console.log(&#x27;error!&#x27;)) // only if stuff before fails
+	.then(result3=&gt;{
+		console.log(result3+&#x27;!&#x27;);
+	})</code></pre></details></li></ul><ul id="0fcc332a-db1d-4495-90fb-634945faf7bc" class="toggle"><li><details open=""><summary>More of a real-world example</summary><pre id="e0927cf9-b94a-4e6a-8ca8-ff388edce8d1" class="code"><code>const urls = [
+	&#x27;https://jsonplaceholder.typicode.com/users&#x27;,
+	&#x27;https://jsonplaceholder.typicode.com/posts&#x27;,
+	&#x27;https://jsonplaceholder.typicode.com/albums&#x27;
+]
+
+Promise.all(urls.map(url=&gt; {
+	return fetch(url).then(resp=&gt;resp.json())
+})).then(results=&gt;{
+	console.log(results[0])
+	console.log(results[1])
+	console.log(results[2])
+}).catch(()=&gt;console.log(&#x27;error&#x27;))</code></pre></details></li></ul></details></li></ul><ul id="ce64fc45-a5b7-424b-83a6-ab57e8318747" class="toggle"><li><details open=""><summary>ES8 - Async Await</summary><ul id="97436398-aeab-49cd-8350-29f590f0302a" class="toggle"><li><details open=""><summary>Example 1</summary><pre id="24759fdf-de71-44b3-8842-5a45ec52cad4" class="code"><code>// Async Await
+movePlayer(100,&#x27;Left&#x27;)
+	.then(()=&gt;movePlayer(400,&#x27;Left&#x27;))
+	.then(()=&gt;movePlayer(10,&#x27;Right&#x27;))
+	.then(()=&gt;movePlayer(330,&#x27;Left&#x27;))
+
+// --&gt;
+async function playerStart() {
+	const firstMove = await movePlayer(100,&#x27;Left&#x27;);
+	await movePlayer(400,&#x27;Left&#x27;); // pause
+	await movePlayer(10,&#x27;Right&#x27;); // pause
+	await movePlayer(330,&#x27;Left&#x27;); // pause
+}</code></pre></details></li></ul><ul id="5c719753-e21b-4fea-85f8-88373bc8a2a8" class="toggle"><li><details open=""><summary>Example 2</summary><pre id="434a0e1f-7e4b-4718-9759-c60e5c85d4b4" class="code"><code>async function fetchUsers() {
+	const response = await fetch(&#x27;someurl&#x27;)
+	const data = await response.json();
+	console.log(data);
+}</code></pre></details></li></ul><ul id="8a130414-c1cd-4168-9ea9-30dbc3445198" class="toggle"><li><details open=""><summary>Example 3</summary><pre id="03e5f444-d2ff-42ad-8f7f-f71ff500d4dd" class="code"><code>const urls = [
+	&#x27;ur1&#x27;,
+	&#x27;url2&#x27;
+	&#x27;url3&#x27;
+]
+
+const getData = async function() {
+	try {
+		const [ users, posts, albums ] = await Promise.all(urls.map(url =&gt;
+		fetch(url).then(resp=&gt;resp.json())
+		console.log(&#x27;users&#x27;,users);
+		console.log(&#x27;posts&#x27;,posts);
+		console.log(&#x27;albums&#x27;,albums);
+	} catch (err) {
+		console.log(&#x27;oops&#x27;,err);
+	}
+}</code></pre></details></li></ul></details></li></ul><ul id="e0fc1724-ef4e-4ef0-949f-415bc32afa0e" class="toggle"><li><details open=""><summary>ES9(ES2018)</summary><pre id="5f75b69b-6c1e-4ba9-935f-d8f90555a56d" class="code"><code>// Object spread operator
+const animals = {
+	tiger: 23,
+	lion: 5,
+	monkey: 2,
+	bird: 40
+}
+
+const { tiger, ...rest} = animals
+tiger // 23
+rest // {lion: 5, monkey: 2, bird: 40}
+
+const array = [1,2,3,4,5];
+function sum (a,b,c,d,e) {
+	return a + b + c + d + e;
+}
+
+function objectSpread(p1,p2,p3) {
+	console.log(p1);
+	console.log(p2);
+	console.log(p3);
+}
+
+objectSpread(tiger, lion, rest) // 23, 5, {monkey:2, bird: 40}</code></pre></details></li></ul><ul id="b2a053ba-20f8-498b-a6b7-d93956321cf7" class="toggle"><li><details open=""><summary>ES9(ES2018) - Async</summary><pre id="eea825a9-b35c-4bfe-ae22-6284a2a10f3b" class="code"><code>// finally
+const urls = [
+	&#x27;url1&#x27;,
+	&#x27;url2&#x27;,
+	&#x27;url3&#x27;,
+	&#x27;url4&#x27;
+]
+
+Promise.all(urls.map(url =&gt; {
+	return fetch(url).then(people =&gt; people.json())
+}))
+	.then(array =&gt; {
+		console.log(&#x27;1&#x27;,array[0])
+		console.log(&#x27;2&#x27;,array[1])
+		console.log(&#x27;3&#x27;,array[2])
+		console.log(&#x27;4&#x27;,array[3])
+	})
+		.catch(err=&gt;console.log(&#x27;uhh fix it!&#x27;),err)
+		.finally(()=&gt;console.log(&#x27;extra&#x27;)) // runs whether error or not
+
+// for await of
+const getData2 = async function() {
+	const arrayOfPromises = urls.map(url =&gt; fetch(url));
+	for await (let request of arrayOfPromises) {
+		const data = await request.json();
+	}
+}</code></pre></details></li></ul><ul id="11f856ce-fd8f-4153-88d6-0e05707b6f26" class="toggle"><li><details open=""><summary>Job Queue</summary><figure id="ab3eb633-07ba-4463-8421-a2cec2a49891" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-30_at_5.16.11_PM.png"><img style="width:2420px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-30_at_5.16.11_PM.png"/></a></figure><pre id="88b63617-685a-4049-ac13-d60910e26186" class="code"><code>// Callback Queue - Task Queue
+setTimeout(()=&gt;{console.log(&#x27;1&#x27;,&#x27;is the loneliest number&#x27;)},0)
+setTimeout(()=&gt;{console.log(&#x27;2&#x27;,&#x27;can be as bad as 1&#x27;)},10)
+
+// 2 - Job Queue/Microtask Queue
+// Higher priority than callback queue
+// Checked before callback queue
+Promise.resolve(&#x27;hi&#x27;).then((data)=&gt;console.log(&#x27;2&#x27;,data))
+
+// 3
+console.log(&#x27;3&#x27;, &#x27;is a crowd&#x27;)
+
+// Returns 
+// &#x27;3 is a crowd&#x27;
+// &#x27;2 hi&#x27;
+// &#x27;1 is the loneliest number&#x27;
+// &#x27;2 can be as bad as 1&#x27;</code></pre></details></li></ul><ul id="c176b509-a415-4cfa-9d6a-2fb9fa432821" class="toggle"><li><details open=""><summary>Parallel, Sequence, Rate</summary><pre id="49b376a6-3deb-4cbe-bd22-a51d9b644c7c" class="code"><code>// 3 promises need to handle
+// parallel, seqential, or race
+
+const promisify = (item,delay) =&gt;
+	new Promise((resolve) =&gt; 
+		setTimeout(() =&gt; 
+			resolve(item),delay));
+
+const a = () =&gt; promisify(&#x27;a&#x27;,100);
+const b = () =&gt; promisify(&#x27;b&#x27;,5000);
+const c = () =&gt; promisify(&#x27;c&#x27;,3000);
+
+async function parallel() {
+	const promises = [a(), b(), c()];
+	const [output1, output2, output3] = await Promise.all(promises);
+	return `parallel is done: ${output1} ${output2} ${output3}` // a b c
+}
+parallel().then(console.log)
+
+async function rate() {
+	const promises = [a(), b(), c()];
+	const output1 = await Promise.race(promises);
+	return `race is done: ${output1}`
+}
+race().then(console.log) // a
+
+async function sequence() {
+	const output1 = await a();
+	const output2 = await b();
+	const output3 = await c();
+	return `sequence is done: ${output1} ${output2} ${output3}`
+}
+sequence().then(console.log) // a b c
+
+parallel().then(console.log) // second
+race().then(console.log) // first
+sequence().then(console.log) // third</code></pre></details></li></ul><ul id="3423a6ce-b97c-4d8e-a5d6-ccb12325c9fe" class="toggle"><li><details open=""><summary>ES2020: allSettled()</summary><ul id="2fb31b47-6682-4034-b987-e848214d6105" class="bulleted-list"><li style="list-style-type:disc"><em>Promise.all([promise1,promise2]) only resolves if BOTH promises are resovled!!</em></li></ul><pre id="9367f644-31e7-4cf3-a781-882b82a1ebd0" class="code"><code>// allSettled()
+// runs all promises whether rejected or not
+const promise1 = new Promise((resolve,reject)=&gt;setTimeout(resolve,3000))
+const promise2 = new Promise((resolve,reject)=&gt;setTimeout(reject,3000))
+
+Promise.allSettled([promise1,promise2]).then(data=&gt;console.log(data))
+	.catch(e=&gt;console.log(&#x27;something failed&#x27;,e));
+// returns dictionary of what succeeded and what failed</code></pre></details></li></ul><ul id="fa6584af-f835-475a-b932-545625418ca9" class="toggle"><li><details open=""><summary>Threads, Concurrency, and Parallelism</summary><figure id="3f485cae-7fdf-4918-af24-3a168d677e91" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-30_at_5.44.50_PM.png"><img style="width:432px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-30_at_5.44.50_PM.png"/></a></figure><figure id="47b6fa51-e363-48e9-9b2e-563580f431d1" class="image"><a href="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-30_at_5.43.13_PM.png"><img style="width:432px" src="Javascript%20caf239e5cae6431fb7f83cba57ad372b/Screenshot_2022-12-30_at_5.43.13_PM.png"/></a></figure><pre id="63c9c172-bb22-41d1-9c4d-ecb19bb71052" class="code"><code>var worker = new Worker(&#x27;worker.js&#x27;) // spawn a new web worker
+worker.postMessage(&#x27;hello!&#x27;) // runs alongside our main thread
+// communicate through messages
+// do not have access to everything available to web apis
+
+const {spawn} = require(&#x27;child_process&#x27;)
+spawn(&#x27;git&#x27;,[&#x27;stuff&#x27;])</code></pre></details></li></ul><hr id="90053b71-27a6-45c2-b182-50534b618bce"/><h2 id="0b0fe212-2cf5-401f-865a-a0fce585c692" class="">Section 12: Modules in Javascript</h2><hr id="751d38fb-a614-427d-a3f0-da380790a37e"/><ul id="22287304-2d17-46eb-b56a-36330f7664ce" class="toggle"><li><details open=""><summary>Module pattern</summary><ul id="56921dcc-9b11-497e-ba99-5e88c6dd40ab" class="toggle"><li><details open=""><summary>(Revaling) Module Pattern</summary><pre id="47ef3e70-e6ff-4174-a216-cdcf19c7bda4" class="code"><code>// Global scope
+	// Module scope
+		// Function scope
+			// Block scope - let and const
+
+// Immediately Invoked Function Expression (IIFE)
+(function() {
+})()
+
+// Module Pattern
+// (Revealing) Module Pattern, reveal only what you need
+// Everything else untouchable
+var fightModule = (function() {
+	var harry = &#x27;potter&#x27;;
+	var voldemort = &#x27;he who must not be named&#x27;;
+	
+	function fight(char1,char2) {
+		var attack1 = Math.floor(Math.random*char1.length);
+		var attack2 = Math.floor(Math.random*char2.length);
+		return attack1&gt;attack2 ? `${char1} wins` : `${char2} wins`
+	}
+	return {
+		fight: fight(harry,voldemort)
+	}	
+})()</code></pre></details></li></ul><ul id="17b79d98-590a-4ac4-b684-48ccda8c22db" class="toggle"><li><details open=""><summary>Example in HTML</summary><pre id="7ba800ee-6d7a-40f3-bdf9-e8cd031cb031" class="code"><code>&lt;!-- importing jquery above --&gt;
+&lt;script&gt;
+	var globalSecret = &#x27;1234&#x27;
+	var fight = &#x27;hahah&#x27;
+&lt;/script&gt;
+&lt;script&gt;
+	var script2 = (function(gs) {
+		$(&#x27;h1&#x27;).click(function(){
+			$(&#x27;h1&#x27;).hide();
+	})
+	gs = &#x27;0&#x27; &lt;!-- don&#x27;t have access to this bc inside our module --&gt;
+})(globalSecret)
+&lt;/script&gt;
+
+&lt;!--  polluting global name space, need to make sure not overwrite var,
+make sure dependencies in the correct order --&gt;</code></pre></details></li></ul></details></li></ul><ul id="8b825073-5b4e-4998-8c29-52eb5b5230ff" class="toggle"><li><details open=""><summary>CommonJS, AMD, UMD</summary><ul id="578d52e1-7495-4bd8-bb1a-221fa9acc584" class="toggle"><li><details open=""><summary>Common JS and Asynchronous Module Definition (AMD)</summary><ul id="ed28fa92-69e3-4d19-9161-89e14860433d" class="bulleted-list"><li style="list-style-type:disc">No IIFE and module pattern</li></ul><ul id="681525e5-1b49-42c0-b75b-8124fd2ed4dd" class="bulleted-list"><li style="list-style-type:disc"><strong>Solved problem of </strong><ul id="061faae1-8987-4131-935b-faf92aa85c30" class="bulleted-list"><li style="list-style-type:circle"><strong>Dependency resolution</strong></li></ul><ul id="229f436d-0c56-4d15-9e17-4523673bd0df" class="bulleted-list"><li style="list-style-type:circle"><strong>Polluting global scope</strong></li></ul></li></ul><ul id="8f0a6c89-1428-42f8-8e66-29c596893467" class="bulleted-list"><li style="list-style-type:disc">Modules are meant to be loaded synchronously<ul id="54b3d499-b607-41fd-8583-6b38e98e67ea" class="bulleted-list"><li style="list-style-type:circle">Mainly used on the server</li></ul></li></ul><ul id="eb5dc906-0582-4b97-be0f-0203937ee02b" class="bulleted-list"><li style="list-style-type:disc">Two things that came out for Common JS:<ul id="a37f05b5-c69e-4d92-bd1a-2d322874e27c" class="bulleted-list"><li style="list-style-type:circle">Browserify (require modules in browser by bundling up all dependencies) <ul id="e4b56e0e-6110-48c1-ad04-00fcc0461cd0" class="bulleted-list"><li style="list-style-type:square"><code>browserify script.js &gt; bundle.js</code></li></ul><ul id="4748a230-2b75-40a7-9bf0-fd33268c8f64" class="bulleted-list"><li style="list-style-type:square">(also like WebPack)</li></ul></li></ul></li></ul><ul id="0ab0868f-f5d2-4998-b7a5-849c10e70e11" class="toggle"><li><details open=""><summary>AMD</summary><ul id="00406dfd-77d3-4bcd-925e-e1f9d3a59634" class="bulleted-list"><li style="list-style-type:disc">Designed specifically for browsers</li></ul><ul id="645d8571-c768-47e2-a69b-a94db4b5a98c" class="bulleted-list"><li style="list-style-type:disc">Loads scripts/modules asynchronously</li></ul><ul id="8ef0516e-8bab-49c9-b078-8dd44751b1df" class="bulleted-list"><li style="list-style-type:disc">Require.js helped people use AMD</li></ul></details></li></ul><pre id="90539bb3-869f-4a5c-9102-88c80f6dcd69" class="code"><code>// Common JS and AMD
+var module1 = require(&#x27;module1&#x27;) // fight
+var module2 = require(&#x27;module2&#x27;) // importedFunc2
+
+function fight() {
+}
+
+module.exports = {
+	fight: fight;
+};
+
+// AMD
+
+define([&#x27;module1&#x27;,&#x27;module2&#x27;]),
+	function(module1Import, module2Import) {
+		var module1 = module1Import
+		var module2 = module2Import
+
+		function dance() {}
+
+		return {
+			dance: dance,
+		};
+	});</code></pre></details></li></ul><ul id="5f900f1d-f2e5-4769-ad9c-5552276dd97d" class="toggle"><li><details open=""><summary>UMD (Universal Module Definition)</summary><ul id="fee2435f-22ae-403b-b791-731b69199e5e" class="bulleted-list"><li style="list-style-type:disc">If-else statement to define module style</li></ul></details></li></ul></details></li></ul><ul id="5e3a4fc8-800d-4470-8650-433685f8b929" class="toggle"><li><details open=""><summary>ES6 Modules 😍</summary><pre id="dded297d-b14b-429d-bb66-c7a39e8b5790" class="code"><code>import module1 from &#x27;module1&#x27;;
+import module2 from &#x27;module2&#x27;;
+
+const harry = &#x27;potter&#x27;;
+const voldemort = &#x27;he who must not be named&#x27;;
+
+function jump() {}
+
+export function fight(char1,char2) {
+	const attack1 = Math.floor(Math.random*char1.length);
+	const attack2 = Math.floor(Math.random*char2.length);
+	return attack1&gt;attack2 ? `${char1} wins` : `${char2} wins`
+}
+
+// in HTML
+// bc a module, need to serve it from a server
+// do live-server from html file
+&lt;script type=&quot;module&quot;&gt;
+	// named export
+	import fight, { jump } from &#x27;./script.js&#x27;;
+&lt;/script&gt;
+
+// (default export)
+export default function fight(char1,char2) {
+	const attack1 = Math.floor(Math.random*char1.length);
+	const attack2 = Math.floor(Math.random*char2.length);
+	return attack1&gt;attack2 ? `${char1} wins` : `${char2} wins`
+}</code></pre></details></li></ul><ul id="bc9c3044-d94d-4772-979a-e82b581ef0bc" class="toggle"><li><details open=""><summary>Optional: ES2022 Top Level Await</summary><pre id="d98411ad-ad83-444b-b91a-dd08a27ba953" class="code"><code>const arr = [100,200,400,50000,10]
+arr[2];
+arr.at(2);
+
+arr[arr.length-2];
+arr.at(-2);
+
+// Top Level Await
+// (Past)
+// #1) Covert the below promise into async await
+fetch(&quot;https://jsonplaceholder.typicode.com/users&quot;)
+	.then((response) =&gt; response.json())
+	.then(console.log);
+
+async function fetchStarship() {
+	const response = await fetch(&quot;https://jsonplaceholder.typicode.com/users&quot;);
+	const data = await response.json();
+	console.log(data);
+}
+
+// Now (&#x27;22)
+fetch(&quot;https://jsonplaceholder.typicode.com/users&quot;)
+	.then((response) =&gt; response.json())
+	.then(console.log);
+
+const response = await fetch(&quot;https://jsonplaceholder.typicode.com/users&quot;);
+const data = await response.json();
+
+</code></pre></details></li></ul><ul id="4f1c3385-09bd-4013-a650-7aab5b5e7428" class="toggle"><li><details open=""><summary>ES2022 Exercises</summary><ul id="91301e7b-6df0-4ff1-b27d-6ba144b5e890" class="toggle"><li><details open=""><summary>Exercises</summary><pre id="8e0c6c15-be53-4a5a-8ff4-42be155aa20b" class="code"><code>// Solve the below problems:
+
+// #1) Convert the below async function to remove the async keyword
+async function fetchStarship() {
+  const response = await fetch(&quot;https://jsonplaceholder.typicode.com/users&quot;);
+  const data = await response.json();
+  console.log(data);
+}
+
+// --------- Answer:
+
+
+
+// #2) ADVANCED: Remove the async function from the below wherever possible:
+const urls = [
+  &quot;https://jsonplaceholder.typicode.com/users&quot;,
+  &quot;https://jsonplaceholder.typicode.com/posts&quot;,
+  &quot;https://jsonplaceholder.typicode.com/albums&quot;,
+];
+
+const getData = async function () {
+  const [users, posts, albums] = await Promise.all(
+    urls.map((url) =&gt; fetch(url).then((resp) =&gt; resp.json())),
+  );
+  console.log(&quot;users&quot;, users);
+  console.log(&quot;posta&quot;, posts);
+  console.log(&quot;albums&quot;, albums);
+};
+
+// --------- Answer:
+const [users, posts, albums] = await Promise.all(
+  urls.map(async function (url) { //NOTICE: how you have to keep this async function in here. WHY?
+    // Because TOP LEVEL AWAIT means you can use `await` in async functions and the top level bodies of modules...not inside functions
+    // If it&#x27;s wrapped inside a function you need to use the `async` keyword since it&#x27;s not &quot;top level&quot; of scope. 
+    const response = await fetch(url);
+    return response.json();
+  }),
+);
+console.log(&quot;users&quot;, users);
+console.log(&quot;posta&quot;, posts);
+console.log(&quot;albums&quot;, albums);
+
+// #3  ADVANCED: Try to run this piece of code just as a JS file not inside the browser dev tool, instea using this:
+//https://glot.io/new/javascript
+const response = await fetch(&quot;https://jsonplaceholder.typicode.com/users&quot;);
+const data = await response.json();
+console.log(data);
+//!! It will actually give you an error: &quot;await is only valid in async functions and the top level bodies of modules&quot;
+//WHY?
+
+// ANSWER: Top Level Await ONLY works inside of a module. We were able to run this code in the chrome dev tools
+// because inside the console, it technically runs like a module. 
+// In order to fully understand this concept, we have another lesson for you coming up!</code></pre></details></li></ul></details></li></ul><ul id="9cd6838e-4519-460d-a751-f1ddf846ca19" class="toggle"><li><details open=""><summary>Optional: ES2022 Await Import </summary><pre id="732077b6-3268-4161-abf8-e75f356b6499" class="code"><code>// Can also use await on imports
+import { largeNumber } from &#x27;./script2.js&#x27;;
+
+let a;
+if (1===1) {
+	const { largeNumber } = await import(&#x27;./script2.js&#x27;);
+	a = largeNumber;
+}
+const a = largeNumber;
+const b = 7;
+
+console.log(a,b);</code></pre></details></li></ul><hr id="24572174-608c-46fc-9675-e7f838fca1aa"/><h2 id="b20170b3-6b03-4b2a-8353-334528d06fc4" class="">Section 13: Error Handling</h2><hr id="687ce0ea-4c47-443b-b8c7-1a6583fe25ac"/><ul id="3fd1fcd1-c65e-4499-a685-34c365fa8197" class="toggle"><li><details open=""><summary>Errors in Javascript</summary><pre id="c6595a76-655e-40b6-8aca-1d90c9f92b28" class="code"><code>new Error(&#x27;oopsie&#x27;);
+throw new Error()
+
+const myError = new Error(&#x27;oopsie&#x27;);
+myError.name;
+myError.message; // &#x27;oopsie&#x27;
+myError.stack; // where error happened
+
+function a() {
+	const b = new Error(&#x27;what??&#x27;);
+	return b
+}
+
+// new SyntaxError
+// new ReferenceError</code></pre></details></li></ul><ul id="db5587e0-5732-4ff1-a1a9-fc267cad591d" class="toggle"><li><details open=""><summary>Try Catch</summary><pre id="d53911f4-2fa6-41f3-a385-9ae77943dff4" class="code"><code>function fail() {
+	// try-catch used to catch any synchronous errors
+	try {
+		throw new Error(&#x27;oopsie!&#x27;)
+		console.log(&#x27;this works&#x27;)
+	} catch (error) {
+		console.log(&#x27;error message&#x27;)
+	} finally {
+		console.log(&#x27;still good&#x27;)
+		return &#x27;returning fail&#x27;
+	}
+	console.log(&#x27;!!!!!!&#x27;)
+}
+
+fail()
+
+// doesn&#x27;t handle asynchronous errors
+try {
+	setTimeout(function {
+		fakevariable;
+	},1000)
+} catch (e) {
+	console.log(&#x27;got it&#x27;, e)
+} // succeeds</code></pre></details></li></ul><ul id="3ee188be-dc4b-463c-94ef-2fd1156b7608" class="toggle"><li><details open=""><summary>Async Error Handling</summary><pre id="49bf9cc4-b7d3-4365-a755-c548d60566b2" class="code"><code>// Silent Error - looks like succeeded
+Promise.resolve(&#x27;asyncfail&#x27;)
+	.then(response =&gt; {
+		throw new Error(&#x27;#1 fail&#x27;) 
+		return response
+	})
+	.then(response =&gt; {
+		console.log(response)
+	})
+
+Promise.resolve(&#x27;asyncfail&#x27;)
+	.then(response =&gt; {
+		throw new Error(&#x27;#1 fail&#x27;) 
+		return response
+	})
+	.then(response =&gt; {
+		console.log(response)
+	})
+	.catch(err =&gt; {
+		console.log(err)
+	})
+
+Promise.resolve(&#x27;asyncfail&#x27;)
+	.then(response =&gt; {
+		throw new Error(&#x27;#1 fail&#x27;) 
+		return response
+	})
+	.then(response =&gt; {
+		console.log(response)
+	})
+	.catch(err =&gt; {
+		return err
+	})
+	.then(response =&gt; {
+		console.log(reponse.message)
+	})
+	// Never going to run, unless error thrown in previous .catch
+	.catch(err =&gt; {
+		console.log(&#x27;final error&#x27;)
+	})
+
+Promise.resolve(&#x27;asyncfail&#x27;)
+	.then(response =&gt; {
+		Promise.resolve().then(() =&gt; {
+			throw new Error(&#x27;#3 fail&#x27;)
+		}) 
+		return 5
+	})
+	.then(response =&gt; {
+		console.log(response)
+	})
+	.then(response =&gt; {
+		console.log(reponse.message)
+	})
+	// Never going to run, unless error thrown in previous .catch
+	.catch(err =&gt; {
+		console.log(&#x27;final error&#x27;)
+	})
+// 5, final error
+
+
+Promise.resolve(&#x27;asyncfail&#x27;)
+	.then(response =&gt; {
+		Promise.resolve().then(() =&gt; {
+			throw new Error(&#x27;#3 fail&#x27;)
+		}).
+		return 5
+	}).catch(console.log())
+	.then(response =&gt; {
+		console.log(response)
+	})
+	.then(response =&gt; {
+		console.log(reponse) // undefined
+	})
+	// Never going to run, unless error thrown in previous .catch
+	.catch(err =&gt; {
+		console.log(&#x27;final error&#x27;)
+	})
+
+(async function () {
+	try {
+		await Promise.resolve(&#x27;oopsie #1&#x27;)
+		await Promise.reject(&#x27;oopsie #2&#x27;)
+	} catch (err) {
+		console.log(err)
+	}
+	console.log(&#x27;is this still good?&#x27;);
+})()</code></pre></details></li></ul><ul id="a38a5c95-61ea-43e8-8cf0-2d00e996d432" class="toggle"><li><details open=""><summary>Extending Errors</summary><pre id="bf250695-9629-4f1c-b7bd-9680690f7ae5" class="code"><code>// maybe don&#x27;t want to throw any error to the user/hackers
+class AuthenticationError extends Error {
+	constructor(message) {
+		super(message)
+		this.name = &#x27;authenticationError&#x27;;
+		this.favoriteSnack = &#x27;grapes&#x27;;
+	}
+}
+
+const a = new AuthenticationError(&#x27;oopsie&#x27;)
+a.favoriteSnack</code></pre></details></li></ul><hr id="2045da8e-21d8-49f1-9082-95d485fa518d"/><p id="bd8b9b3d-99f6-40dd-832c-c6cccd750515" class="">
+</p><h2 id="adf3e539-7f31-4f52-aa64-46d61e86cba1" class="">Appendix *: Things I’ve Stumbled Across</h2><hr id="6449ecf0-b787-43aa-92d9-b7d0a4dfbd4b"/><ul id="bbade08f-cd4e-4008-8094-6ed066f09142" class="toggle"><li><details open=""><summary><code>textContent</code> vs <code>innerText</code></summary><ul id="640579df-be29-4f06-9749-dd2210121602" class="bulleted-list"><li style="list-style-type:disc"><code>textContent</code> returns the<strong> text content </strong>of all elements, while <code>innerText</code> returns the content of all elements except for <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> elements </li></ul><ul id="90b45ee9-0554-4147-9cfb-3bcd37abc219" class="bulleted-list"><li style="list-style-type:disc"><code>innerText</code> will also not return hidden elements</li></ul><ul id="2c6d9029-a8d3-4aa7-9807-daac24dfd65e" class="bulleted-list"><li style="list-style-type:disc"><strong>Since </strong><strong><code>innerText</code></strong><strong> takes CSS styling into account, reading the value of </strong><strong><code>innerText</code></strong><strong> triggers a reflow to ensure up-to-date computed styles</strong><ul id="f87f7555-a9e0-4aec-a9f5-1d037251b82b" class="bulleted-list"><li style="list-style-type:circle">Reflows are computationally expensive and should be avoided whenever possible</li></ul></li></ul></details></li></ul><ul id="483790e9-479b-43db-a727-0ad682118c55" class="toggle"><li><details open=""><summary><code>setTimeout</code> vs <code>setInvterval</code></summary><ul id="a2ebadb0-4d10-4883-8b0e-4be94dbde503" class="bulleted-list"><li style="list-style-type:disc"><code>setTimeout(function,milliseconds)</code> <ul id="3486159a-96bb-4a5e-9111-2df2623aa9ee" class="bulleted-list"><li style="list-style-type:circle">Executes a function after waiting a specified number of milliseconds</li></ul></li></ul><ul id="bba0e6a9-4b8d-473a-a9e1-bcb12afe3d80" class="bulleted-list"><li style="list-style-type:disc"><code>setInterval(function,milliseconds)</code><ul id="e1891827-09e0-4a87-9d93-a6751908c2df" class="bulleted-list"><li style="list-style-type:circle">Same as <code>setTimeout()</code>, but repeats the execution of the function continuously</li></ul></li></ul></details></li></ul><ul id="231aa42d-6218-4f8f-bf94-c2e1c0de1e36" class="toggle"><li><details open=""><summary><code>JSON.stringify()</code></summary></details></li></ul><p id="469d672f-0331-4f0c-bdb2-c4ab3ca65617" class="">
+</p></div></article></body></html>
